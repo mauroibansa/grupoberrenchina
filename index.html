@@ -463,7 +463,7 @@ function renderCarta(key){
   // Menú especial (Navidad): tarjeta propia bajo la de hoy y pestaña en el menú de secciones
   const X=L.special, xd=madridDate(), xon=X&&(!X.desde||xd>=X.desde)&&(!X.hasta||xd<=X.hasta), xm=$("navidad"); xm.replaceChildren(); xm.hidden=!xon;
   if(xon){ const tx=v=>Array.isArray(v)?(lang==="en"&&v[1]?v[1]:v[0]):v[lang];
-    [["--s:34px;left:24px;top:52px"],["--s:18px;left:56px;top:88px;--o:.55"],["--s:40px;right:22px;top:48px"],["--s:16px;right:60px;top:92px;--o:.55"]].forEach(([st])=>{const i=el("i","sp"); i.setAttribute("style",st); i.setAttribute("aria-hidden","true"); xm.append(i);});
+    [["--s:26px;left:20px;top:104px"],["--s:14px;left:40px;top:140px;--o:.55"],["--s:30px;right:18px;top:98px"],["--s:13px;right:40px;top:142px;--o:.55"]].forEach(([st])=>{const i=el("i","sp"); i.setAttribute("style",st); i.setAttribute("aria-hidden","true"); xm.append(i);});
     xm.append(el("div","kick",X.kick[lang])); const h=el("h2"); h.append(document.createTextNode(X.title[lang][0]+" "),el("span",null,X.title[lang][1])); xm.append(h, el("div","yr",X.year));
     X.groups.forEach(g=>{const s=el("div","xs"); s.append(el("b",null,g.t[lang])); g.items.forEach((it,j)=>{ if(g.or&&j) s.append(el("div","or",lang==="es"?"o":"or")); s.append(el("div",null,tx(it))); }); if(g.fine) s.append(el("div","fine",g.fine[lang])); xm.append(s);});
     const p=el("div","xp"), pp=el("span"); X.pp[lang].forEach(l=>pp.append(el("i",null,l))); p.append(el("strong",null,X.price+"€"),pp); xm.append(p);
