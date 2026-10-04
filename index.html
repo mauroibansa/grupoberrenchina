@@ -130,11 +130,38 @@ button{font:inherit}
 .today .nday b::first-letter{text-transform:uppercase}
 .today .ni{font:400 13.5px/1.35 var(--f-ui);text-transform:uppercase;letter-spacing:.02em}
 
+/* Menú especial (Navidad): solo locales con L.special. Misma familia que la tarjeta de hoy, en granate profundo con doble filete dorado */
+.xmas{--gold:#d2ad72;--cream:#f6efe6;margin-top:14px;position:relative;overflow:hidden;border-radius:20px;padding:26px 22px 20px;color:var(--cream);text-align:center;background:radial-gradient(130% 70% at 50% 0%,#86221e 0%,#6e1a17 45%,#3f0c0b 100%);scroll-margin-top:70px}
+.xmas::before{content:"";position:absolute;inset:8px;border:1px solid color-mix(in srgb,var(--gold) 60%,transparent);border-radius:14px;pointer-events:none}
+.xmas::after{content:"";position:absolute;inset:12px;border:1px solid color-mix(in srgb,var(--gold) 22%,transparent);border-radius:11px;pointer-events:none}
+.xmas .sp{position:absolute;width:var(--s);height:var(--s);opacity:var(--o,.85)}
+.xmas .sp::before,.xmas .sp::after{content:"";position:absolute;left:50%;top:0;width:1.5px;height:100%;margin-left:-.75px;background:linear-gradient(transparent,var(--gold),transparent)}
+.xmas .sp::after{transform:rotate(90deg)}
+.xmas .kick{font:700 10.5px var(--f-ui);letter-spacing:.28em;text-transform:uppercase;color:var(--gold);padding-left:.28em}
+.xmas h2{margin:8px 0 0;font:800 40px/.9 var(--f-ui);text-transform:uppercase;letter-spacing:-.01em;color:var(--cream)}
+.xmas h2 span{display:block;font:400 38px/1 var(--f-script);text-transform:none;color:var(--gold);letter-spacing:0;margin-top:2px}
+.xmas .yr{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:6px;font:600 12px var(--f-ui);letter-spacing:.5em;padding-left:.5em;color:var(--gold)}
+.xmas .yr::before,.xmas .yr::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.7}
+.xmas .xs{margin-top:16px}
+.xmas .xs b{display:block;font:400 25px/1.1 var(--f-script);color:var(--gold);margin-bottom:4px}
+.xmas .xs div{font:400 14px/1.35 var(--f-ui);text-transform:uppercase;letter-spacing:.02em;text-wrap:balance}
+.xmas .xs div+div{margin-top:3px}
+.xmas .xs .or{display:flex;align-items:center;justify-content:center;gap:10px;font:400 20px/1 var(--f-script);color:var(--gold);text-transform:none;margin:4px 0}
+.xmas .xs .or::before,.xmas .xs .or::after{content:"";width:26px;height:1px;background:var(--gold);opacity:.6}
+.xmas .xs .fine{font:500 11.5px/1.4 var(--f-ui);text-transform:none;letter-spacing:.01em;opacity:.8;margin-top:6px}
+.xmas .xp{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:18px;padding-top:14px;border-top:1.5px solid var(--gold);text-align:left}
+.xmas .xp strong{font:400 44px/1 var(--f-script);color:var(--gold);padding-right:16px;border-right:1px solid color-mix(in srgb,var(--gold) 55%,transparent)}
+.xmas .xp span{font:700 11.5px/1.4 var(--f-ui);letter-spacing:.14em;text-transform:uppercase}
+.xmas .xp span i{display:block;font-style:normal}
+.xmas .xcta{display:block;margin:16px auto 2px;max-width:260px;padding:12px 18px;border-radius:999px;background:var(--gold);color:#3f0c0b;font:800 13px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;position:relative;z-index:1}
+.xmas .xnote{margin-top:10px;font:500 11px/1.4 var(--f-ui);opacity:.7}
+
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;margin-top:22px}
 .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:none;padding:7px 13px;border-radius:999px;border:0;background:transparent;color:var(--muted);font:600 13.5px var(--f-ui);cursor:pointer;white-space:nowrap}
 .tab.on{background:var(--soft);color:var(--ink)}
+.tab.xtab{color:var(--accent);font-weight:700}
 .filter{margin-top:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
 .filter summary{padding:12px 14px;cursor:pointer;font-weight:600;font-size:14px;display:flex;justify-content:space-between;gap:8px}
 .filter summary span{color:var(--muted);font-weight:400;font-size:13px}
@@ -205,6 +232,7 @@ footer .by .disc{width:28px;height:28px;box-shadow:none}
     <span class="phone" id="c-phone"></span>
 
     <article class="today" id="today"></article>
+    <article class="xmas" id="navidad" hidden></article>
 
     <nav aria-label="Secciones"><div class="tabs" id="tabs"></div></nav>
     <p class="nalg" id="nalg" hidden></p>
@@ -235,6 +263,17 @@ const DATA={
   instagram:"https://www.instagram.com/restaurantefuertesantiago/",
   today:{kind:"menu",price:12,days:[1,2,3,4,5],incl:{es:"Primer plato, Segundo plato\nPostre o Café, Pan y 1 Bebida",en:"First course, main course\nDessert or coffee, bread and 1 drink"},labels:{primeros:{es:"Primeros",en:"First courses"},segundos:{es:"Segundos",en:"Main courses"},postre:{es:"Postres",en:"Desserts"}}},
   cross:true,anisakis:true,
+  // Menú especial. Visible entre "desde" y "hasta" (AAAA-MM-DD, ambos opcionales). Sin fechas confirmadas: siempre visible.
+  special:{id:"navidad",desde:null,hasta:null,price:50,
+   kick:{es:"Solo en Fuerte Santiago",en:"Only at Fuerte Santiago"},title:{es:["Menú","de Navidad"],en:["Christmas","menu"]},year:"2026",tab:{es:"Navidad",en:"Christmas"},
+   groups:[
+    {t:{es:"Entrantes para compartir",en:"Starters to share"},items:[["Gambas cocidas","Boiled prawns"],["Ensaladilla rusa con ventresca","Russian salad with tuna belly"],["Croquetas caseras de puchero","Homemade puchero stew croquettes"],["Bocaditos de pescado de roca al limón","Lemon rock-fish bites"]]},
+    {t:{es:"Plato principal a elegir",en:"Main course, choose one"},or:true,items:[["Arroz ibérico meloso con variado de setas","Creamy Iberian pork rice with mixed mushrooms"],["Arroz señorito de gambón y choco","Señorito rice with king prawn and cuttlefish"]]},
+    {t:{es:"Postre",en:"Dessert"},items:[["Tartas surtidas","Assorted cakes"]]},
+    {t:{es:"Bebidas",en:"Drinks"},items:[["Tinto Ribera, Rioja, vino de Rueda, frizzante, cervezas con y sin alcohol, refrescos y agua","Ribera and Rioja red wine, Rueda white wine, frizzante, beer with and without alcohol, soft drinks and water"]],
+     fine:{es:"Desde el comienzo de la comida hasta el postre. No incluye café ni chupito.",en:"From the start of the meal until dessert. Coffee and liqueur shots not included."}}],
+   pp:{es:["IVA incluido","por persona"],en:["VAT included","per person"]},cta:{es:"Reservar mesa",en:"Book a table"},
+   note:{es:"Alérgenos: consulta al personal.",en:"Allergens: please ask our staff."}},
   sections:[{id:"entrantes",es:"Entrantes",en:"Starters"},{id:"arroces",es:"Arroces",en:"Rice dishes",note:{es:"Mínimo 2 personas. Precio por persona.",en:"Minimum 2 people. Price per person."}},{id:"pescados",es:"Pescados",en:"Fish & seafood"},{id:"carnes",es:"Carnes",en:"Meat"},{id:"postres",es:"Postres",en:"Desserts"}],
   dishes:[
    {s:"entrantes",es:"Gambas de Huelva al pil pil",en:"Huelva prawns pil-pil style (garlic and chilli)",p:18,a:null},
@@ -421,6 +460,15 @@ function renderCarta(key){
         items.forEach(i=>day.append(el("div","ni",(keys.length>1?L.today.labels[k][lang]+": ":"")+txt(i))));});
       det.append(day);});
     td.append(det); }
+  // Menú especial (Navidad): tarjeta propia bajo la de hoy y pestaña en el menú de secciones
+  const X=L.special, xd=madridDate(), xon=X&&(!X.desde||xd>=X.desde)&&(!X.hasta||xd<=X.hasta), xm=$("navidad"); xm.replaceChildren(); xm.hidden=!xon;
+  if(xon){ const tx=v=>Array.isArray(v)?(lang==="en"&&v[1]?v[1]:v[0]):v[lang];
+    [["--s:34px;left:24px;top:52px"],["--s:18px;left:56px;top:88px;--o:.55"],["--s:40px;right:22px;top:48px"],["--s:16px;right:60px;top:92px;--o:.55"]].forEach(([st])=>{const i=el("i","sp"); i.setAttribute("style",st); i.setAttribute("aria-hidden","true"); xm.append(i);});
+    xm.append(el("div","kick",X.kick[lang])); const h=el("h2"); h.append(document.createTextNode(X.title[lang][0]+" "),el("span",null,X.title[lang][1])); xm.append(h, el("div","yr",X.year));
+    X.groups.forEach(g=>{const s=el("div","xs"); s.append(el("b",null,g.t[lang])); g.items.forEach((it,j)=>{ if(g.or&&j) s.append(el("div","or",lang==="es"?"o":"or")); s.append(el("div",null,tx(it))); }); if(g.fine) s.append(el("div","fine",g.fine[lang])); xm.append(s);});
+    const p=el("div","xp"), pp=el("span"); X.pp[lang].forEach(l=>pp.append(el("i",null,l))); p.append(el("strong",null,X.price+"€"),pp); xm.append(p);
+    if(L.phone){const a=el("a","xcta",X.cta[lang]); a.href="tel:+34"+L.phone.replace(/\s/g,""); a.setAttribute("aria-label",X.cta[lang]+" · "+L.phone); xm.append(a);}
+    if(X.note) xm.append(el("div","xnote",X.note[lang])); }
   // Filtro: solo si la carta tiene alérgenos cargados
   const hasA=L.allergens!==false; $("filter").hidden=!hasA; $("nalg").hidden=hasA; $("nalg").textContent=t.nalg;
   $("f-title").textContent=t.ftitle; $("f-note").textContent=t.fnote; $("f-count").textContent=hide.size?t.fsome(hide.size):t.fnone;
@@ -429,6 +477,7 @@ function renderCarta(key){
     b.append(el("span","code",c),document.createTextNode(lang==="es"?es:en)); b.onclick=()=>{hide.has(k)?hide.delete(k):hide.add(k); renderCarta(key);}; algs.append(b);});
   // Secciones
   const tabs=$("tabs"); tabs.replaceChildren(); const menu=$("menu"); menu.replaceChildren();
+  if(xon){const b=el("button","tab xtab",X.tab[lang]); b.onclick=()=>xm.scrollIntoView(); tabs.append(b);}
   L.sections.forEach((s,i)=>{
     const b=el("button","tab"+(i===0?" on":""),s[lang]); b.dataset.target=s.id; b.onclick=()=>document.getElementById(s.id).scrollIntoView(); tabs.append(b);
     const sec=el("section"); sec.id=s.id; sec.append(el("h2",null,s[lang])); if(s.note) sec.append(el("p","snote",s.note[lang]));
