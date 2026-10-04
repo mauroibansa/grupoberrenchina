@@ -261,7 +261,7 @@ const DATA={
   address:"Av. Capitán Ontañón 3, Algeciras",hours:{es:"Horario por confirmar",en:"Opening hours to be confirmed"},
   phone:"633 79 06 25",maps:"https://www.google.com/maps/search/?api=1&query=Restaurante+Fuerte+Santiago+Algeciras",
   instagram:"https://www.instagram.com/restaurantefuertesantiago/",
-  today:{kind:"menu",price:12,days:[1,2,3,4,5],incl:{es:"Primer plato, Segundo plato\nPostre o Café, Pan y 1 Bebida",en:"First course, main course\nDessert or coffee, bread and 1 drink"},labels:{primeros:{es:"Primeros",en:"First courses"},segundos:{es:"Segundos",en:"Main courses"},postre:{es:"Postres",en:"Desserts"}}},
+  today:{kind:"menu",price:12,days:[1,2,3,4,5],ahead:{dow:0,at:"17:30"},incl:{es:"Primer plato, Segundo plato\nPostre o Café, Pan y 1 Bebida",en:"First course, main course\nDessert or coffee, bread and 1 drink"},labels:{primeros:{es:"Primeros",en:"First courses"},segundos:{es:"Segundos",en:"Main courses"},postre:{es:"Postres",en:"Desserts"}}},
   cross:true,anisakis:true,
   // Menú especial. Visible entre "desde" y "hasta" (AAAA-MM-DD, ambos opcionales). Sin fechas confirmadas: siempre visible.
   special:{id:"navidad",desde:null,hasta:null,price:50,
@@ -399,6 +399,11 @@ function el(tag,cls,txt){const e=document.createElement(tag); if(cls) e.classNam
 let HOY={}, openNext=false;
 function madridDow(){return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(new Intl.DateTimeFormat("en-US",{timeZone:"Europe/Madrid",weekday:"short"}).format(new Date()));}
 function madridDate(){return new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Madrid",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());}
+function madridTime(){return new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Madrid",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date());}
+// Día que enseña la tarjeta de hoy. Con today.ahead ({dow,at}), ese día de la semana a partir de esa hora se adelanta al día siguiente.
+function viewDay(L){ let d=madridDate(), dow=madridDow(); const A=L.today.ahead;
+  if(A&&dow===A.dow&&madridTime()>=A.at){ const n=new Date(d+"T12:00:00Z"); n.setUTCDate(n.getUTCDate()+1); d=n.toISOString().slice(0,10); dow=(dow+1)%7; }
+  return {d,dow,obj:new Date(d+"T12:00:00Z")}; }
 function today(){return new Date().toLocaleDateString(lang==="es"?"es-ES":"en-GB",{weekday:"long",day:"numeric",month:"long"});}
 
 function route(){
@@ -424,20 +429,20 @@ function renderCarta(key){
   // Hoy
   const td=$("today"); td.replaceChildren();
   // Días sin servicio (p. ej. sábado y domingo en Fuerte Santiago): no se muestra la tarjeta de hoy
-  const rest=!!(L.today.days&&!L.today.days.includes(madridDow())); td.hidden=rest;
+  const V=viewDay(L), rest=!!(L.today.days&&!L.today.days.includes(V.dow)); td.hidden=rest;
   if(!rest){
   const words=L.today.kind==="menu"?t.menu:t.plato;
   if(L.eyebrow){const eb=el("div","eyebrow"); eb.append(el("b",null,L.eyebrow[0]+" "),document.createTextNode(L.eyebrow[1][lang])); td.append(eb);}
   const hd=el("div","thead"); const h=el("h2"); h.append(document.createTextNode(words[0]+" "), el("span",null,words[1]));
-  const loc=lang==="es"?"es-ES":"en-GB", tz={timeZone:"Europe/Madrid"}, now=new Date();
-  const dt=el("div","tdate"); dt.setAttribute("aria-label",today());
+  const loc=lang==="es"?"es-ES":"en-GB", tz={timeZone:"Europe/Madrid"}, now=V.obj;
+  const dt=el("div","tdate"); dt.setAttribute("aria-label",now.toLocaleDateString(loc,{...tz,weekday:"long",day:"numeric",month:"long"}));
   dt.append(el("span","wd",now.toLocaleDateString(loc,{...tz,weekday:"long"})), el("span","dd",now.toLocaleDateString(loc,{...tz,day:"2-digit"})), el("span","mm",now.toLocaleDateString(loc,{...tz,month:"long"})));
   hd.append(h,dt); td.append(hd);
   // Menú o plato de hoy: sale de hoy.json por fecha (hora de Madrid). Sin entrada para hoy, no se inventa nada.
-  const H=(HOY[key]||{})[madridDate()], txt=v=>Array.isArray(v)?(lang==="en"&&v[1]?v[1]:v[0]):v;
+  const H=(HOY[key]||{})[V.d], txt=v=>Array.isArray(v)?(lang==="en"&&v[1]?v[1]:v[0]):v;
   const keys=Object.keys(L.today.labels);
   // Plato del día (un solo plato): plato a la izquierda y precio a la derecha en la misma fila
-  const inline=L.today.kind==="plato", off=!H&&L.today.days&&!L.today.days.includes(madridDow());
+  const inline=L.today.kind==="plato", off=!H&&L.today.days&&!L.today.days.includes(V.dow);
   let left=[];
   if(H&&H.cerrado){ td.append(el("div","grp",t.tclosed+" "+(words[0]+" "+words[1]).toLowerCase()+".")); }
   else if(H){ if(inline) keys.forEach(k=>[].concat(H[k]||[]).forEach(i=>left.push(txt(i))));
@@ -453,7 +458,7 @@ function renderCarta(key){
     else pr.classList.add("solo");
     td.append(pr); }
   // Próximos días ya cargados (los pasados no se muestran): desplegable bajo el de hoy
-  const tdy=madridDate(), next=Object.keys(HOY[key]||{}).filter(d=>d>tdy).sort().slice(0,7);
+  const tdy=V.d, next=Object.keys(HOY[key]||{}).filter(d=>d>tdy).sort().slice(0,7);
   if(next.length){ const det=el("details","next"); det.open=openNext; det.ontoggle=()=>{openNext=det.open;};
     const sm=el("summary",null,t.tnext); det.append(sm);
     next.forEach(d=>{const N=HOY[key][d], day=el("div","nday"), dd=new Date(d+"T12:00:00");

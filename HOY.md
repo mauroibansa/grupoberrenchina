@@ -26,3 +26,7 @@ Formato (fecha AAAA-MM-DD). Cada grupo es una lista de platos, y cada plato va s
 - `"cerrado": true` muestra que ese día no hay menú o plato del día.
 
 Para editarlo a mano: abrir `hoy.json` en GitHub, pulsar el lápiz, cambiar y "Commit changes". La web se actualiza en un par de minutos.
+
+## Domingo por la tarde (Fuerte Santiago)
+
+Los domingos desde las 17:30 (hora de Madrid) la tarjeta ya enseña el menú del lunes, para no confundirlo con el servicio del día. Sábados y domingos antes de esa hora no sale nada. Se configura en `today.ahead` (`{dow:0, at:"17:30"}`).
