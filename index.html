@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cartas de Restaurante Fuerte Santiago y A.A.V.V. San García - Mar y Monte, en Algeciras. Grupo Berrenchina.">
+<link rel="icon" href="logos/grupo.svg" type="image/svg+xml">
+<title>Cartas Grupo Berrenchina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap">
+<style>
+/* Layout: portada con dos puertas (una por restaurante) y carta de una columna para el móvil en mesa.
+   Cada restaurante redefine los tokens: granate y piedra (Fuerte Santiago), verde de mar y bruma (Mar y Monte). */
+:root{
+  --bg:#f4f1ec; --surface:#fffdf9; --ink:#1d1d1b; --muted:#6a625c; --line:#e2dbd2;
+  --accent:#6e1a17; --accent-ink:#fffdf9; --soft:#efe6dc; --gold:#a8782f;
+  --logo-red:#e20613; --logo-yellow:#f8b133;
+  --f-ui:"Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-script:"Kaushan Script", "Brush Script MT", cursive;
+  --f-num:"Montserrat", system-ui, sans-serif;
+}
+:root[data-local="fuerte"]{ --bg:#f5f1ee; --surface:#fffdfb; --line:#e6dad4; --accent:#6e1a17; --soft:#f1e3dd; --gold:#a8782f; --muted:#6f5b58 }
+:root[data-local="mym"]{ --bg:#eef3f1; --surface:#fbfdfc; --line:#d3e0dc; --accent:#125a5c; --soft:#dceae6; --gold:#5f7a2e; --muted:#566a66 }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#141211; --surface:#1d1a18; --ink:#f1ece6; --muted:#a99f97; --line:#34302c; --accent:#e6a25a; --accent-ink:#141211; --soft:#2a2420; --gold:#e0b46a; color-scheme:dark }
+  :root:not([data-theme="light"])[data-local="fuerte"]{ --bg:#170d0c; --surface:#211413; --line:#3a2725; --accent:#e58a83; --soft:#2d1b19; --gold:#d9b27a; --muted:#b7a19c }
+  :root:not([data-theme="light"])[data-local="mym"]{ --bg:#0c1615; --surface:#13201f; --line:#253634; --accent:#6fc3bd; --soft:#1a2c2a; --gold:#b5cc7a; --muted:#9db3ae }
+}
+:root[data-theme="dark"]{ --bg:#141211; --surface:#1d1a18; --ink:#f1ece6; --muted:#a99f97; --line:#34302c; --accent:#e6a25a; --accent-ink:#141211; --soft:#2a2420; --gold:#e0b46a; color-scheme:dark }
+:root[data-theme="dark"][data-local="fuerte"]{ --bg:#170d0c; --surface:#211413; --line:#3a2725; --accent:#e58a83; --soft:#2d1b19; --gold:#d9b27a; --muted:#b7a19c }
+:root[data-theme="dark"][data-local="mym"]{ --bg:#0c1615; --surface:#13201f; --line:#253634; --accent:#6fc3bd; --soft:#1a2c2a; --gold:#b5cc7a; --muted:#9db3ae }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--f-ui);transition:background .25s}
+.demo{background:var(--logo-yellow);color:#1d1d1b;font:600 12.5px/1.4 var(--f-ui);padding:7px 16px;text-align:center}
+.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:0 56px}
+.disc{background:#fff;border-radius:50%;display:grid;place-items:center;box-shadow:0 1px 0 var(--line),0 8px 24px rgba(0,0,0,.08);flex:none}
+.disc img{display:block;width:88%;height:auto}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* Portada */
+[hidden]{display:none!important}
+#home{padding-block:36px 24px;display:grid;gap:28px;justify-items:center;text-align:center}
+#home .disc{width:132px;height:132px}
+#home h1{margin:0;font:800 italic clamp(26px,7vw,34px)/1.1 var(--f-ui);text-wrap:balance}
+#home h1 span{display:block;font:400 .62em var(--f-script);color:var(--muted);font-style:normal;margin-top:6px}
+.doors{display:grid;gap:14px;width:100%}
+.door{display:flex;align-items:center;gap:16px;text-align:left;width:100%;padding:16px;border-radius:18px;border:0;cursor:pointer;color:#fff;text-decoration:none}
+.door .disc{width:76px;height:76px;box-shadow:none}
+.door b{display:block;font:800 italic 22px/1.1 var(--f-ui)}
+.door small{display:block;font:500 13px/1.4 var(--f-ui);opacity:.85;margin-top:4px}
+.door .go{margin-left:auto;font:600 22px var(--f-ui);opacity:.8}
+.door.fuerte{background:#6e1a17}
+.door.mym{background:#125a5c}
+.door:hover .go{transform:translateX(3px)}
+.home-foot{color:var(--muted);font-size:13px}
+
+/* Carta */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px 0}
+.back{background:none;border:0;color:var(--muted);font:600 13px var(--f-ui);cursor:pointer;padding:6px 0}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{background:none;border:0;padding:5px 11px;font:600 12px var(--f-ui);color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.head{display:flex;gap:16px;align-items:center;padding-block:18px 14px}
+.head .disc{width:92px;height:92px}
+.head h1{margin:0;font:800 italic clamp(24px,6.5vw,30px)/1.1 var(--f-ui);text-wrap:balance}
+.head .meta{color:var(--muted);font-size:13.5px;margin-top:6px;display:grid}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 13.5px var(--f-ui);text-decoration:none;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.phone{font:500 12.5px var(--f-num);color:var(--muted);user-select:all;margin-top:6px;display:block}
+
+.today{margin-top:20px;background:var(--accent);color:var(--accent-ink);border-radius:20px;padding:20px 20px 18px;position:relative;overflow:hidden}
+.today::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;border:14px solid var(--logo-yellow);opacity:.22}
+.today .kicker{font:600 11px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.today h2{margin:2px 0 12px;font:800 italic 26px/1.1 var(--f-ui)}
+.today h2 span{font:400 1.15em var(--f-script);font-style:normal}
+.today .grp{display:grid;gap:2px;margin-bottom:10px}
+.today .grp b{font:400 18px var(--f-script);opacity:.9}
+.today .grp div{font-size:15px;font-weight:500}
+.today .price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-top:1px solid color-mix(in srgb,var(--accent-ink) 30%,transparent);padding-top:12px;margin-top:4px}
+.today .price strong{font:800 28px var(--f-num);font-variant-numeric:tabular-nums}
+.today .price span{font-size:13px;opacity:.85}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;margin-top:22px}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:7px 13px;border-radius:999px;border:0;background:transparent;color:var(--muted);font:600 13.5px var(--f-ui);cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--soft);color:var(--ink)}
+.filter{margin-top:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.filter summary{padding:12px 14px;cursor:pointer;font-weight:600;font-size:14px;display:flex;justify-content:space-between;gap:8px}
+.filter summary span{color:var(--muted);font-weight:400;font-size:13px}
+.algs{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 14px}
+.alg{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:4px 10px 4px 5px;font:500 13px var(--f-ui);cursor:pointer}
+.alg[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.code{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:999px;background:var(--soft);color:var(--ink);font:700 9.5px var(--f-ui);padding:0 5px}
+.alg[aria-pressed="true"] .code{background:var(--bg)}
+main section{padding-top:26px;scroll-margin-top:70px}
+main h2{font:400 30px/1.1 var(--f-script);color:var(--accent);margin:0 0 2px}
+.dish{display:grid;grid-template-columns:1fr auto;gap:3px 16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.dish:last-child{border-bottom:0}
+.dish h3{font:600 16px/1.3 var(--f-ui);margin:0;min-width:0}
+.dish .p{font:700 15px var(--f-num);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.dish .d{grid-column:1/-1;color:var(--muted);font-size:14px;margin:0;max-width:60ch}
+.tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.badge{font:700 9.5px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid currentColor;border-radius:999px;padding:2px 7px}
+.off{opacity:.45}
+.off h3::after{content:" · " attr(data-off);font-weight:500;color:var(--muted)}
+.snote{color:var(--muted);font-size:13.5px;margin:0 0 4px}
+.nalg{margin-top:16px;padding:12px 14px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13.5px}
+.dish .p small{font:500 11.5px var(--f-ui);color:var(--muted);margin-right:5px}
+.code.nodata{background:transparent;border:1px dashed var(--line);color:var(--muted);font-weight:600}
+.fnote{color:var(--muted);font-size:13px;margin:0;padding:0 14px 14px}
+.empty{color:var(--muted);font-size:14px;padding:10px 0}
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;display:grid;gap:6px}
+.legal{display:grid;gap:6px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.legal b{color:var(--ink);font-weight:600}
+footer .by{display:flex;align-items:center;gap:8px}
+footer .by .disc{width:28px;height:28px;box-shadow:none}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}.door .go{transition:transform .15s}}
+</style>
+</head>
+<body>
+
+<div class="demo" id="demo"></div>
+<div class="wrap">
+  <div id="home" hidden>
+    <div class="disc"><img src="logos/grupo.svg" alt="Grupo Berrenchina"></div>
+    <h1>Grupo Berrenchina<span id="h-sub"></span></h1>
+    <div class="doors">
+      <a class="door fuerte" href="#fuerte-santiago" id="door-fuerte">
+        <span class="disc"><img src="logos/fuerte.svg" alt=""></span>
+        <span><b>Fuerte Santiago</b><small id="door-fuerte-s"></small></span><span class="go" aria-hidden="true">→</span>
+      </a>
+      <a class="door mym" href="#mar-y-monte" id="door-mym">
+        <span class="disc"><img src="logos/marymonte.svg" alt=""></span>
+        <span><b>Mar y Monte</b><small id="door-mym-s"></small></span><span class="go" aria-hidden="true">→</span>
+      </a>
+    </div>
+    <div class="lang" role="group" aria-label="Idioma"><button data-l="es" id="hl-es">ES</button><button data-l="en" id="hl-en">EN</button></div>
+    <p class="home-foot">grupoberrenchina.com</p>
+  </div>
+
+  <div id="carta" hidden>
+    <div class="bar">
+      <button class="back" id="back"></button>
+      <div class="lang" role="group" aria-label="Idioma"><button data-l="es" id="cl-es">ES</button><button data-l="en" id="cl-en">EN</button></div>
+    </div>
+    <div class="head">
+      <div class="disc"><img id="c-logo" src="" alt=""></div>
+      <div>
+        <h1 id="c-name"></h1>
+        <div class="meta"><span id="c-addr"></span><span id="c-hours"></span></div>
+      </div>
+    </div>
+    <div class="actions" id="c-actions"></div>
+    <span class="phone" id="c-phone"></span>
+
+    <article class="today" id="today"></article>
+
+    <nav aria-label="Secciones"><div class="tabs" id="tabs"></div></nav>
+    <p class="nalg" id="nalg" hidden></p>
+    <details class="filter" id="filter">
+      <summary><b id="f-title"></b><span id="f-count"></span></summary>
+      <div class="algs" id="algs"></div>
+      <p class="fnote" id="f-note"></p>
+    </details>
+    <main id="menu"></main>
+    <footer>
+      <div class="legal"><b id="f-alg"></b><span id="f-cross"></span><span id="f-anis"></span><span id="f-iva"></span></div>
+      <span class="by"><span class="disc"><img src="logos/grupo.svg" alt=""></span><span>Grupo Berrenchina</span></span>
+    </footer>
+  </div>
+</div>
+
+<script>
+/* En producción, todo lo de DATA sale de una hoja de Google por restaurante:
+   pestaña "Carta" (seccion, plato_es, plato_en, descripcion, precio, alergenos, disponible, de_la_casa)
+   y pestaña "Hoy" (fecha, grupo, plato, precio, incluye), que la cocina rellena cada mañana. */
+const ALG=[["GL","gluten","Gluten","Gluten"],["CR","crustaceos","Crustáceos","Crustaceans"],["HU","huevo","Huevo","Egg"],["PE","pescado","Pescado","Fish"],["CA","cacahuete","Cacahuete","Peanuts"],["SO","soja","Soja","Soya"],["LA","lacteos","Lácteos","Milk"],["FC","frutos","Frutos de cáscara","Tree nuts"],["AP","apio","Apio","Celery"],["MO","mostaza","Mostaza","Mustard"],["SE","sesamo","Sésamo","Sesame"],["SU","sulfitos","Sulfitos","Sulphites"],["AL","altramuces","Altramuces","Lupin"],["ML","moluscos","Moluscos","Molluscs"]];
+const DATA={
+ "fuerte-santiago":{
+  theme:"fuerte",demo:{es:"Carta real. Platos del menú del día de ejemplo. Alérgenos solo en los platos confirmados",en:"Real menu. Sample daily set menu dishes. Allergens shown only where confirmed"},logo:"logos/fuerte.svg",name:"Fuerte Santiago",
+  address:"Av. Capitán Ontañón 3, Algeciras",hours:{es:"Horario por confirmar",en:"Opening hours to be confirmed"},
+  phone:"633 79 06 25",maps:"https://www.google.com/maps/search/?api=1&query=Restaurante+Fuerte+Santiago+Algeciras",
+  instagram:"https://www.instagram.com/restaurantefuertesantiago/",
+  today:{kind:"menu",price:12,incl:{es:"Pan, bebida y postre o café",en:"Bread, a drink and dessert or coffee"},
+    groups:[{es:"Primeros",en:"First courses",items:{es:["Ensalada mixta","Crema de calabaza"],en:["Mixed salad","Pumpkin soup"]}},
+            {es:"Segundos",en:"Main courses",items:{es:["Merluza a la plancha","Pollo al ajillo"],en:["Grilled hake","Garlic chicken"]}},
+            {es:"Postre",en:"Dessert",items:{es:["Flan casero o fruta"],en:["Homemade flan or fruit"]}}]},
+  cross:true,anisakis:true,
+  sections:[{id:"entrantes",es:"Entrantes",en:"Starters"},{id:"arroces",es:"Arroces",en:"Rice dishes",note:{es:"Mínimo 2 personas. Precio por persona.",en:"Minimum 2 people. Price per person."}},{id:"pescados",es:"Pescados",en:"Fish & seafood"},{id:"carnes",es:"Carnes",en:"Meat"},{id:"postres",es:"Postres",en:"Desserts"}],
+  dishes:[
+   {s:"entrantes",es:"Gambas de Huelva al pil pil",en:"Huelva prawns pil-pil style (garlic and chilli)",p:18,a:null},
+   {s:"entrantes",es:"Gamba extra cocida o a la plancha",en:"Premium prawns, boiled or grilled",p:24,a:null},
+   {s:"entrantes",es:"Almeja extra gallega al Tío Pepe",en:"Premium Galician clams with Tío Pepe sherry",p:18,a:null},
+   {s:"entrantes",es:"Ensaladilla rusa con tronco de ventresca tarifeña",en:"Russian salad topped with Tarifa tuna belly",p:14,a:["huevo","pescado","lacteos","sulfitos"]},
+   {s:"entrantes",es:"Tomate rosa con cebolla morada y ventresca tarifeña",en:"Pink tomato with red onion and Tarifa tuna belly",p:14,a:["pescado","sulfitos"]},
+   {s:"entrantes",es:"Alcachofas salteadas con taquitos de jamón y AOVE",en:"Sautéed artichokes with diced ham and extra virgin olive oil",p:16,a:null},
+   {s:"entrantes",es:"Mejillones en salsa kimchi",en:"Mussels in kimchi sauce",p:16,a:null},
+   {s:"entrantes",es:"Zurrapa de atún rojo en manteca colorá",en:"Bluefin tuna zurrapa (shredded tuna spread) in manteca colorá (paprika-spiced lard)",p:16,a:null},
+   {s:"entrantes",es:"Croquetas de choco, carabinero o pollo",en:"Cuttlefish, carabinero prawn or chicken croquettes",p:16,a:["gluten","crustaceos","moluscos"]},
+   {s:"entrantes",es:"Revuelto de centolla y gambón",en:"Scrambled eggs with spider crab and king prawn",p:18,a:null},
+   {s:"entrantes",es:"Revuelto de ortiga y gambón",en:"Scrambled eggs with sea anemone and king prawn",p:18,a:null},
+   {s:"entrantes",es:"Pata de pulpo asada al mojo picón",en:"Roasted octopus tentacle with mojo picón",p:18,a:null},
+   {s:"arroces",es:"Arroz de carabineros",en:"Rice with carabinero prawns",p:30,u:"pp",a:null},
+   {s:"arroces",es:"Arroz del señorito",en:"Arroz del señorito (rice with peeled seafood)",p:18,u:"pp",a:null},
+   {s:"arroces",es:"Arroz caldoso de bogavante",en:"Brothy rice with lobster",p:30,u:"pp",a:null},
+   {s:"arroces",es:"Arroz de secreto y setas",en:"Rice with Iberian pork secreto and mushrooms",p:18,u:"pp",a:null},
+   {s:"arroces",es:"Arroz de pulpo",en:"Octopus rice",p:25,u:"pp",a:null},
+   {s:"arroces",es:"Arroz negro",en:"Black rice with squid ink",p:18,u:"pp",a:null},
+   {s:"arroces",es:"Fideuá del señorito",en:"Fideuá del señorito (noodles with peeled seafood)",p:18,u:"pp",a:null},
+   {s:"pescados",es:"Bocaditos de pescado de roca al limón",en:"Rock fish bites with lemon",d:{es:"Toque del chef.",en:"Chef's touch."},p:16,a:["gluten","pescado"],star:1},
+   {s:"pescados",es:"Pescado fresco de lonja",en:"Fresh fish from the market",d:{es:"Pargo, sama, urta, rodaballo, lubina, gallineta, pollo, lenguado. Consulte con nuestro personal.",en:"Red porgy, sama (dentex), urta (redbanded seabream), turbot, sea bass, blackbelly rosefish, pollo (a local fish, not chicken), sole. Please ask our staff."},p:null,pt:"ask",a:null},
+   {s:"pescados",es:"Calamar de potera frito (300 g)",en:"Fried jig-caught squid (300 g)",p:16,a:["gluten","moluscos"]},
+   {s:"pescados",es:"Calamar de potera entero a la plancha",en:"Whole grilled jig-caught squid",p:null,pt:"sm",a:["gluten","moluscos"]},
+   {s:"pescados",es:"Puntillitas de Sanlúcar",en:"Puntillitas from Sanlúcar (fried baby squid)",p:18,a:null},
+   {s:"pescados",es:"Choco frito",en:"Fried cuttlefish",p:16,a:["gluten","moluscos"]},
+   {s:"pescados",es:"Chipirón de Sanlúcar a la plancha",en:"Grilled Sanlúcar baby squid",p:22,a:null},
+   {s:"pescados",es:"Acedías de Sanlúcar fritas",en:"Acedías from Sanlúcar (fried wedge sole)",p:16,a:["gluten","pescado"]},
+   {s:"pescados",es:"Salmonetito nacional frito",en:"Fried small Spanish red mullet",p:14,a:["gluten","pescado"]},
+   {s:"pescados",es:"Pijotas de Cádiz fritas",en:"Pijotas from Cádiz (fried baby hake)",p:14,a:["gluten","pescado"]},
+   {s:"pescados",es:"Boquerones fritos",en:"Fried anchovies",p:14,a:["gluten","pescado"]},
+   {s:"pescados",es:"Ortiguillas fritas",en:"Ortiguillas (fried sea anemones)",p:16,a:null},
+   {s:"pescados",es:"Tortillitas de camarones",en:"Tortillitas de camarones (shrimp fritters)",p:3.5,u:"und",a:["gluten","huevo","crustaceos"]},
+   {s:"carnes",es:"Presa ibérica",en:"Iberian pork presa (shoulder cut)",p:20,a:null},
+   {s:"carnes",es:"Lagarto ibérico",en:"Iberian pork lagarto (rib-side strip)",p:18,a:null},
+   {s:"carnes",es:"Chuleta de cerdo ibérico 100 % bellota Beher",en:"100% acorn-fed Iberian pork chop, Beher",p:42,u:"kg",a:null},
+   {s:"carnes",es:"Chuletón de vaca premium",en:"Premium beef rib steak",p:65,u:"kg",a:null},
+   {s:"postres",es:"Tarta de queso",en:"Cheesecake",p:6,a:["gluten","huevo","lacteos"]},
+   {s:"postres",es:"Tarta de chocolate",en:"Chocolate cake",p:6,a:null},
+   {s:"postres",es:"Tarta de zanahoria",en:"Carrot cake",p:6,a:null}
+  ]},
+ "mar-y-monte":{
+  theme:"mym",demo:{es:"Carta real. Teléfono y horario pendientes de confirmar",en:"Real menu. Phone and opening hours to be confirmed"},logo:"logos/marymonte.svg",name:"Mar y Monte",
+  address:"A.A.V.V. San García, Algeciras",hours:{es:"Horario por confirmar",en:"Opening hours to be confirmed"},
+  phone:null,maps:"https://www.google.com/maps/search/?api=1&query=Asociaci%C3%B3n+de+Vecinos+San+Garc%C3%ADa+Algeciras",
+  instagram:null,cross:true,anisakis:true,
+  today:{kind:"plato",price:6,incl:{es:"Pregunta por el de hoy",en:"Ask about today's dish"},
+    groups:[{es:"Hoy",en:"Today",items:{es:["Potajes, guisos, marmitako, arroz…"],en:["Stews, casseroles, marmitako (tuna stew), rice dishes…"]}}]},
+  sections:[{id:"bocadillos",es:"Bocadillos",en:"Filled rolls",note:{es:"Nuestros panes: pan moreno, pan rústico, bollo blanco y mollete integral, blanco, de maíz o de semillas con pipas.",en:"Our breads: brown bread, rustic bread, white roll, and molletes in wholemeal, white, corn or seeded varieties."}},{id:"especiales",es:"Especiales",en:"Specials"},{id:"platos",es:"Nuestros platos",en:"Our dishes"},{id:"postres",es:"Postres y tartas",en:"Desserts & cakes"}],
+  dishes:[
+   {s:"bocadillos",es:"Carne mechada",en:"Carne mechada (Andalusian-style slow-roasted meat)",p:6.7,p2:4.4,pl:"em",a:["gluten","pescado"]},
+   {s:"bocadillos",es:"Lomo en manteca",en:"Pork loin in lard",p:6.7,p2:4.4,pl:"em",a:["gluten","huevo","sulfitos"]},
+   {s:"bocadillos",es:"Asadura en manteca",en:"Asadura (offal) cooked in lard",p:5,p2:3.5,pl:"em",a:["gluten","huevo","sulfitos"]},
+   {s:"bocadillos",es:"Chorizo en manteca",en:"Chorizo in lard",p:5,p2:3.5,pl:"em",a:["gluten","huevo","sulfitos"]},
+   {s:"bocadillos",es:"Lomo adobado",en:"Marinated pork loin",p:4,p2:3,pl:"em",a:["gluten","soja","lacteos","sulfitos"]},
+   {s:"bocadillos",es:"Lomo fresco",en:"Fresh pork loin",p:5,p2:3.5,pl:"em",a:["gluten","soja"]},
+   {s:"bocadillos",es:"Pollo empanado",en:"Breaded chicken",p:5,p2:3.5,pl:"em",a:["gluten","huevo"]},
+   {s:"bocadillos",es:"Pollo a la plancha",en:"Grilled chicken",p:5,p2:3.5,pl:"em",a:["gluten","huevo"]},
+   {s:"bocadillos",es:"Tortilla de patatas",en:"Spanish potato omelette",p:4,p2:2.5,pl:"em",a:["gluten","huevo","lacteos","soja"]},
+   {s:"bocadillos",es:"Pollo Afrikanito",en:"Pollo Afrikanito",p:5,p2:3.5,pl:"em",a:null},
+   {s:"bocadillos",es:"Serranito",en:"Serranito (traditional Andalusian sandwich)",p:5,p2:3.5,pl:"em",a:["gluten","soja"]},
+   {s:"especiales",es:"Catalana bollo",en:"Catalana — soft roll",p:4,a:["gluten","soja"]},
+   {s:"especiales",es:"Catalana rústico",en:"Catalana — rustic bread",p:4,a:["gluten","soja"]},
+   {s:"especiales",es:"Catalana (media)",en:"Half Catalana",p:2.5,a:["gluten","soja"]},
+   {s:"especiales",es:"Jamón york",en:"Cooked ham",p:2.5,d:{es:"Bollo o mollete.",en:"Soft roll or mollete (soft Andalusian bread)."},a:["gluten","soja"]},
+   {s:"especiales",es:"Mixto",en:"Ham and cheese",p:4,d:{es:"Bollo o mollete.",en:"Soft roll or mollete (soft Andalusian bread)."},a:["gluten","lacteos","soja"]},
+   {s:"especiales",es:"Sándwich mixto",en:"Ham and cheese sandwich",p:3,a:["gluten","lacteos","soja"]},
+   {s:"especiales",es:"Sándwich vegetal",en:"Sándwich vegetal (Spanish-style cold sandwich)",p:3.5,a:["gluten","huevo","pescado","soja"]},
+   {s:"especiales",es:"Aguacate, jamón y queso fresco",en:"Avocado, ham and fresh cheese",p:3.5,a:["gluten","lacteos","soja"]},
+   {s:"especiales",es:"Sobrasada y queso",en:"Sobrasada (spiced cured sausage spread) and cheese",p:3,a:["gluten","lacteos","soja"]},
+   {s:"platos",es:"Acedías de Sanlúcar fritas",en:"Acedías from Sanlúcar (fried wedge sole)",p:10,a:["gluten","pescado"]},
+   {s:"platos",es:"Boquerones fritos, al limón o rellenos",en:"Fresh anchovies: fried, lemon-marinated or stuffed",p:10,d:{es:"Rellenos: consultar.",en:"Stuffed version: please ask our staff."},a:["gluten","pescado"]},
+   {s:"platos",es:"Pescado de roca al limón",en:"Rock fish with lemon",p:10,a:["gluten","pescado"]},
+   {s:"platos",es:"Salmonetitos fritos",en:"Fried small red mullet",p:10,a:["gluten","pescado"]},
+   {s:"platos",es:"Pijotas fritas",en:"Pijotas (fried baby hake)",p:10,a:["gluten","pescado"]},
+   {s:"platos",es:"Calamares de potera, fritos o a la plancha",en:"Jig-caught squid, fried or grilled",p:12,a:["gluten","moluscos"]},
+   {s:"platos",es:"Choco frito",en:"Fried cuttlefish",p:10,a:["gluten","moluscos"]},
+   {s:"platos",es:"Chipirones fritos",en:"Fried baby squid",p:12,a:["gluten","moluscos"]},
+   {s:"platos",es:"Cazón en adobo",en:"Cazón en adobo (marinated fried dogfish)",p:10,a:["gluten","pescado","sulfitos"]},
+   {s:"platos",es:"Croquetas variadas",en:"Assorted croquettes",p:8,d:{es:"Choco, puchero, jamón, pollo o surtido.",en:"Cuttlefish, puchero (traditional stew), ham, chicken or assorted."},a:["gluten","crustaceos","moluscos"]},
+   {s:"platos",es:"Pollo a la plancha con tomate natural",en:"Grilled chicken with fresh tomato",p:8,a:null},
+   {s:"platos",es:"Presa ibérica con patatas",en:"Iberian pork presa (shoulder cut) with chips",p:10,a:null},
+   {s:"platos",es:"Lagarto ibérico con patatas",en:"Iberian pork lagarto (rib-side strip) with chips",p:9,a:null},
+   {s:"platos",es:"Lomo a la pimienta con patatas",en:"Pork loin in pepper sauce with chips",p:8,a:null},
+   {s:"platos",es:"Bandido de pollo con patatas",en:"Bandido de pollo with chips",p:9,a:null},
+   {s:"platos",es:"Lagrimitas de pollo",en:"Chicken strips",p:8,a:["gluten","lacteos"]},
+   {s:"platos",es:"Tortillitas de camarones",en:"Tortillitas de camarones (shrimp fritters)",p:2.5,a:["gluten","huevo","crustaceos"]},
+   {s:"platos",es:"Ensaladilla rusa",en:"Russian salad",p:9,p2:6,pl:"rm",a:["huevo","pescado","lacteos","sulfitos"]},
+   {s:"platos",es:"Tomate con ventresca",en:"Tomato with tuna belly",p:9,a:["pescado","sulfitos"]},
+   {s:"platos",es:"Pincho de tortilla de patatas",en:"Slice of Spanish potato omelette",p:2.5,a:["huevo"]},
+   {s:"postres",es:"Tarta de queso",en:"Cheesecake",p:3.5,a:["gluten","huevo","lacteos"]},
+   {s:"postres",es:"Tarta de dos chocolates",en:"Two-chocolate cake",p:3.5,a:["gluten","huevo","lacteos"]},
+   {s:"postres",es:"Tarta de la abuela",en:"Tarta de la abuela (traditional Spanish biscuit cake)",p:3.5,a:["gluten","huevo","lacteos","soja","sulfitos"]},
+   {s:"postres",es:"Tarta banoffee",en:"Banoffee pie",p:3.5,a:["gluten","huevo","lacteos"]},
+   {s:"postres",es:"Tarta de dulce de leche",en:"Dulce de leche cake",p:3.5,a:null},
+   {s:"postres",es:"Flan",en:"Crème caramel",p:2.5,a:["gluten","huevo","lacteos","frutos","cacahuete","sulfitos"]},
+   {s:"postres",es:"Natillas",en:"Spanish custard",p:2.5,a:["gluten","huevo","lacteos","soja","sulfitos"]},
+   {s:"postres",es:"Arroz con leche",en:"Rice pudding",p:2.5,a:["gluten","lacteos"]}
+  ]}
+};
+const T={
+ es:{demo:"Prototipo con platos y precios de ejemplo",sub:"Elige restaurante",dfs:"Menú del día y carta",dmym:"Plato del día y carta",back:"← Restaurantes",
+  call:"Reservar",map:"Cómo llegar",ig:"Instagram",menu:["Menú","del día"],plato:["Plato","del día"],kmenu:"Hoy",kplato:"Hoy",
+  ftitle:"Alergias e intolerancias",fnone:"Oculta platos con…",fsome:n=>`Ocultando ${n} alérgeno${n>1?"s":""}`,
+  empty:"No hay platos de esta sección sin los alérgenos elegidos.",sm:"Según mercado",ask:"Consultar",u:{pp:" / pers.",kg:" / kg",und:" / ud."},nalg:"Información de alérgenos: pregunta a nuestro personal.",off:"Agotado hoy",star:"De la casa",pl:{em:["Entero","Medio"],rm:["Ración","Media"]},nodata:"Alérgenos: consultar",fnote:"Los platos sin información de alérgenos se ocultan al filtrar. Ante cualquier duda, pregunta al personal.",cross:"Por las características de instalación, manipulación y elaboración del establecimiento, todos nuestros productos son susceptibles de contener, de manera directa o a través de contaminación cruzada, algún tipo de alérgeno.",
+  falg:"Establecimiento con información disponible en materia de alergias e intolerancias alimentarias, según el Reglamento (UE) 1169/2011. Solicite información a nuestro personal.",fiva:"Precios en euros. IVA incluido.",anis:"En cumplimiento del Real Decreto 1021/2022, los productos de la pesca que se sirven crudos o poco cocinados (sin superar 60 °C en el centro del producto) han sido congelados a −20 °C durante al menos 24 horas para prevenir el parásito Anisakis."},
+ en:{demo:"Prototype with sample dishes and prices",sub:"Choose a restaurant",dfs:"Daily set menu and à la carte menu",dmym:"Dish of the day and à la carte menu",back:"← Restaurants",
+  call:"Book a table",map:"Directions",ig:"Instagram",menu:["Daily","set menu"],plato:["Dish","of the day"],kmenu:"Today",kplato:"Today",
+  ftitle:"Allergies and intolerances",fnone:"Hide dishes containing…",fsome:n=>`Hiding ${n} allergen${n>1?"s":""}`,
+  empty:"No dishes in this section match the selected allergen filters.",sm:"Market price",ask:"Ask our staff",u:{pp:" / person",kg:" / kg",und:" each"},nalg:"Allergen information: please ask our staff.",off:"Sold out today",star:"House special",pl:{em:["Whole","Half"],rm:["Portion","Half portion"]},nodata:"Allergens: please ask",fnote:"Dishes without allergen information are hidden when filters are applied. If in doubt, please ask our staff.",cross:"Due to the characteristics of the premises and our handling and preparation processes, all our products may contain allergens, either directly or through cross-contamination.",
+  falg:"Information on food allergies and intolerances is available at this establishment in accordance with Regulation (EU) No 1169/2011. Please ask our staff.",fiva:"Prices in euros, VAT included.",anis:"In compliance with Royal Decree 1021/2022, fishery products served raw or undercooked (without exceeding 60 °C at the centre of the product) have been frozen at −20 °C for at least 24 hours to prevent the risk of Anisakis."}
+};
+let lang="es"; const hide=new Set();
+try{const s=localStorage.getItem("gb-lang"); if(s==="en"||s==="es") lang=s;}catch(e){}
+const $=id=>document.getElementById(id);
+const algBy=Object.fromEntries(ALG.map(a=>[a[1],a]));
+const money=p=>p==null?T[lang].sm:p.toLocaleString(lang==="es"?"es-ES":"en-GB",{style:"currency",currency:"EUR"});
+const price=d=>d.p==null?(d.pt==="ask"?T[lang].ask:T[lang].sm):money(d.p)+(d.u?T[lang].u[d.u]:"");
+function priceEl(d){const sp=el("span","p"); if(d.p2==null){sp.textContent=price(d); return sp;}
+  const lb=T[lang].pl[d.pl]; [[lb[0],d.p],[lb[1],d.p2]].forEach(([l,v],i)=>{if(i) sp.append(el("br")); sp.append(el("small",null,l),document.createTextNode(money(v)));}); return sp;}
+function el(tag,cls,txt){const e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e;}
+function today(){return new Date().toLocaleDateString(lang==="es"?"es-ES":"en-GB",{weekday:"long",day:"numeric",month:"long"});}
+
+function route(){
+  const key=location.hash.replace("#","");
+  const r=document.documentElement;
+  document.documentElement.lang=lang;
+  $("demo").textContent=(DATA[location.hash.replace("#","")]&&DATA[location.hash.replace("#","")].demo)?DATA[location.hash.replace("#","")].demo[lang]:T[lang].demo;
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===lang)));
+  if(DATA[key]){ r.dataset.local=DATA[key].theme; $("home").hidden=true; $("carta").hidden=false; renderCarta(key); }
+  else { delete r.dataset.local; $("carta").hidden=true; $("home").hidden=false;
+    $("h-sub").textContent=T[lang].sub; $("door-fuerte-s").textContent=T[lang].dfs; $("door-mym-s").textContent=T[lang].dmym; }
+}
+function renderCarta(key){
+  const L=DATA[key], t=T[lang];
+  $("back").textContent=t.back;
+  $("c-logo").src=L.logo; $("c-logo").alt=L.name; $("c-name").textContent=L.name;
+  $("c-addr").textContent=L.address; $("c-hours").textContent=L.hours[lang];
+  const act=$("c-actions"); act.replaceChildren();
+  const links=[]; if(L.phone) links.push([t.call,"tel:+34"+L.phone.replace(/\s/g,""),1]);
+  links.push([t.map,L.maps]); if(L.instagram) links.push([t.ig,L.instagram]);
+  links.forEach(([lab,href,pri])=>{const a=el("a","btn"+(pri?" primary":""),lab); a.href=href; if(pri) a.setAttribute("aria-label",lab+" · "+L.phone); if(href.startsWith("http")){a.target="_blank";a.rel="noopener";} act.append(a);});
+  $("c-phone").hidden=true;
+  // Hoy
+  const td=$("today"); td.replaceChildren();
+  const words=L.today.kind==="menu"?t.menu:t.plato;
+  td.append(el("div","kicker",today()));
+  const h=el("h2"); h.append(document.createTextNode(words[0]+" "), el("span",null,words[1])); td.append(h);
+  L.today.groups.forEach(g=>{const d=el("div","grp"); if(L.today.groups.length>1) d.append(el("b",null,g[lang])); g.items[lang].forEach(i=>d.append(el("div",null,i))); td.append(d);});
+  const pr=el("div","price"); pr.append(el("strong",null,money(L.today.price)), el("span",null,L.today.incl[lang])); td.append(pr);
+  // Filtro: solo si la carta tiene alérgenos cargados
+  const hasA=L.allergens!==false; $("filter").hidden=!hasA; $("nalg").hidden=hasA; $("nalg").textContent=t.nalg;
+  $("f-title").textContent=t.ftitle; $("f-note").textContent=t.fnote; $("f-count").textContent=hide.size?t.fsome(hide.size):t.fnone;
+  const algs=$("algs"); algs.replaceChildren();
+  ALG.forEach(([c,k,es,en])=>{const b=el("button","alg"); b.id="alg-"+k; b.setAttribute("aria-pressed",String(hide.has(k)));
+    b.append(el("span","code",c),document.createTextNode(lang==="es"?es:en)); b.onclick=()=>{hide.has(k)?hide.delete(k):hide.add(k); renderCarta(key);}; algs.append(b);});
+  // Secciones
+  const tabs=$("tabs"); tabs.replaceChildren(); const menu=$("menu"); menu.replaceChildren();
+  L.sections.forEach((s,i)=>{
+    const b=el("button","tab"+(i===0?" on":""),s[lang]); b.dataset.target=s.id; b.onclick=()=>document.getElementById(s.id).scrollIntoView(); tabs.append(b);
+    const sec=el("section"); sec.id=s.id; sec.append(el("h2",null,s[lang])); if(s.note) sec.append(el("p","snote",s.note[lang]));
+    const list=L.dishes.filter(d=>d.s===s.id&&(hide.size&&hasA?d.a!=null&&!d.a.some(a=>hide.has(a)):true));
+    if(!list.length) sec.append(el("p","empty",t.empty));
+    list.forEach(d=>{const row=el("article","dish"+(d.off?" off":"")); const h3=el("h3",null,d[lang]); if(d.off) h3.dataset.off=t.off;
+      row.append(h3,priceEl(d)); if(d.d) row.append(el("p","d",d.d[lang]));
+      const nd=hasA&&d.a==null; if((d.a&&d.a.length)||d.star||nd){const tg=el("div","tags"); if(d.star) tg.append(el("span","badge",t.star)); (d.a||[]).forEach(k=>{const a=algBy[k]; tg.append(el("span","code",lang==="es"?a[2]:a[3]));}); if(nd) tg.append(el("span","code nodata",t.nodata)); row.append(tg);}
+      sec.append(row);});
+    menu.append(sec);
+  });
+  $("f-alg").textContent=t.falg; $("f-cross").textContent=L.cross?t.cross:""; $("f-cross").hidden=!L.cross; $("f-anis").textContent=L.anisakis?t.anis:""; $("f-anis").hidden=!L.anisakis; $("f-iva").textContent=t.fiva;
+  observe();
+}
+let io;
+function observe(){ if(io) io.disconnect(); if(!("IntersectionObserver" in window)) return;
+  io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.target===e.target.id)); }),{rootMargin:"-80px 0px -70% 0px"});
+  document.querySelectorAll("main section").forEach(s=>io.observe(s)); }
+$("back").onclick=()=>{ location.hash="inicio"; window.scrollTo(0,0); };
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l; try{localStorage.setItem("gb-lang",lang)}catch(e){} route();});
+window.addEventListener("hashchange",()=>{route(); window.scrollTo(0,0);});
+route();
+</script>
+</body>
+</html>
