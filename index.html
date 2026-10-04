@@ -98,6 +98,12 @@ button{font:inherit}
 .today .price .incl .l{display:block;white-space:nowrap}
 @media (max-width:340px){.today .price strong{border-left:0;padding-left:0}}
 .today .price.solo strong{border-left:0;padding-left:0}
+.today .price.inline{border-top:0;padding-top:2px;margin-top:0;flex-wrap:nowrap}
+.today .price.inline .pdish{order:1;flex:1 1 auto;min-width:0;margin-right:16px;font:400 15px/1.3 var(--f-ui);text-transform:uppercase;letter-spacing:.02em;text-wrap:balance}
+.today .price.inline .pdish .l{display:block}
+.today .price.inline .pdish .l+.l{margin-top:6px}
+.today .price.inline .pdish .sub{font-size:12.5px;text-transform:none;letter-spacing:0;opacity:.85}
+.today .price.inline strong{align-self:center}
 .today .next{margin-top:14px;border-top:1.5px solid var(--gold);padding-top:10px}
 .today .next summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font:700 12px var(--f-ui);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding:4px 0}
 .today .next summary::-webkit-details-marker{display:none}
@@ -372,14 +378,22 @@ function renderCarta(key){
   // Menú o plato de hoy: sale de hoy.json por fecha (hora de Madrid). Sin entrada para hoy, no se inventa nada.
   const H=(HOY[key]||{})[madridDate()], txt=v=>Array.isArray(v)?(lang==="en"&&v[1]?v[1]:v[0]):v;
   const keys=Object.keys(L.today.labels);
+  // Plato del día (un solo plato): plato a la izquierda y precio a la derecha en la misma fila
+  const inline=L.today.kind==="plato", off=!H&&L.today.days&&!L.today.days.includes(madridDow());
+  let left=[];
   if(H&&H.cerrado){ td.append(el("div","grp",t.tclosed+" "+(words[0]+" "+words[1]).toLowerCase()+".")); }
-  else if(H){ keys.forEach(k=>{const items=[].concat(H[k]||[]); if(!items.length) return; const d=el("div","grp");
+  else if(H){ if(inline) keys.forEach(k=>[].concat(H[k]||[]).forEach(i=>left.push(txt(i))));
+    else keys.forEach(k=>{const items=[].concat(H[k]||[]); if(!items.length) return; const d=el("div","grp");
       if(keys.length>1) d.append(el("b",null,L.today.labels[k][lang])); items.forEach(i=>d.append(el("div",null,txt(i)))); td.append(d);}); }
-  else if(L.today.days&&!L.today.days.includes(madridDow())) td.append(el("div","grp",t.tweekdays));
+  else if(off) td.append(el("div","grp",t.tweekdays));
+  else if(inline){ if(L.today.generic) left.push(L.today.generic[lang]); left.push(t.tnone[L.today.kind]); }
   else { if(L.today.generic) td.append(el("div","grp",L.today.generic[lang])); td.append(el("div","grp",t.tnone[L.today.kind])); }
-  const off=!H&&L.today.days&&!L.today.days.includes(madridDow());
-  if(!(H&&H.cerrado)&&!off){ const pr=el("div","price"); const inc=H&&H.incluye?txt(H.incluye):(L.today.incl?L.today.incl[lang]:"");
-    const pv=H&&H.precio!=null?H.precio:L.today.price; pr.append(el("strong",null,Number.isInteger(pv)?pv+"€":money(pv))); if(inc){const sp=el("span","incl"); String(inc).split("\n").forEach(l=>sp.append(el("span","l",l))); pr.append(sp);} if(!inc) pr.classList.add("solo"); td.append(pr); }
+  if(!(H&&H.cerrado)&&!off){ const pr=el("div","price"+(inline?" inline":"")); const inc=H&&H.incluye?txt(H.incluye):(L.today.incl?L.today.incl[lang]:"");
+    const pv=H&&H.precio!=null?H.precio:L.today.price; pr.append(el("strong",null,Number.isInteger(pv)?pv+"€":money(pv)));
+    if(inline){ const sp=el("span","pdish"); left.forEach(l=>sp.append(el("span","l",l))); if(inc) sp.append(el("span","l sub",inc)); pr.append(sp); }
+    else if(inc){const sp=el("span","incl"); String(inc).split("\n").forEach(l=>sp.append(el("span","l",l))); pr.append(sp);}
+    else pr.classList.add("solo");
+    td.append(pr); }
   // Próximos días ya cargados (los pasados no se muestran): desplegable bajo el de hoy
   const tdy=madridDate(), next=Object.keys(HOY[key]||{}).filter(d=>d>tdy).sort().slice(0,7);
   if(next.length){ const det=el("details","next"); det.open=openNext; det.ontoggle=()=>{openNext=det.open;};
