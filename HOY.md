@@ -2,7 +2,7 @@
 
 La web lee `hoy.json` y muestra la entrada con la fecha de hoy (hora de España). Si no hay entrada para hoy, no enseña platos: Fuerte Santiago muestra "Pregunta por el menú de hoy" y Mar y Monte el texto genérico del plato del día. Se pueden dejar cargados días futuros.
 
-Formato (fecha AAAA-MM-DD). Cada plato puede ir solo en español o como ["español", "inglés"]:
+Formato (fecha AAAA-MM-DD). Cada grupo es una lista de platos, y cada plato va solo en español o como ["español", "inglés"]:
 
 ```json
 {
@@ -15,7 +15,7 @@ Formato (fecha AAAA-MM-DD). Cada plato puede ir solo en español o como ["españ
     }
   },
   "mar-y-monte": {
-    "2026-10-06": { "plato": ["Lentejas con chorizo", "Lentils with chorizo"] },
+    "2026-10-06": { "plato": [["Lentejas con chorizo", "Lentils with chorizo"]] },
     "2026-10-11": { "cerrado": true }
   }
 }

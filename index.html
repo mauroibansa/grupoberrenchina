@@ -6,10 +6,15 @@
 <meta name="description" content="Cartas de Restaurante Fuerte Santiago y A.A.V.V. San García - Mar y Monte, en Algeciras. Grupo Berrenchina.">
 <link rel="icon" href="logos/grupo.svg" type="image/svg+xml">
 <title>Cartas Grupo Berrenchina</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap">
 <style>
+@font-face{font-family:"Montserrat";font-style:normal;font-weight:300;font-display:swap;src:url(fonts/montserrat-latin-300-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/montserrat-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/montserrat-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/montserrat-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/montserrat-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-style:normal;font-weight:800;font-display:swap;src:url(fonts/montserrat-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-style:italic;font-weight:800;font-display:swap;src:url(fonts/montserrat-latin-800-italic.woff2) format("woff2")}
+@font-face{font-family:"Kaushan Script";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/kaushan-script-latin-400-normal.woff2) format("woff2")}
 /* Layout: portada con dos puertas (una por restaurante) y carta de una columna para el móvil en mesa.
    Cada restaurante redefine los tokens: granate y piedra (Fuerte Santiago), verde de mar y bruma (Mar y Monte). */
 :root{
@@ -72,17 +77,19 @@ button{font:inherit}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .phone{font:500 12.5px var(--f-num);color:var(--muted);user-select:all;margin-top:6px;display:block}
 
-.today{margin-top:20px;background:var(--accent);color:var(--accent-ink);border-radius:20px;padding:20px 20px 18px;position:relative;overflow:hidden}
-.today::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;border:14px solid var(--logo-yellow);opacity:.22}
-.today .kicker{font:600 11px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;opacity:.8}
-.today h2{margin:2px 0 12px;font:800 italic 26px/1.1 var(--f-ui)}
-.today h2 span{font:400 1.15em var(--f-script);font-style:normal}
-.today .grp{display:grid;gap:2px;margin-bottom:10px}
-.today .grp b{font:400 18px var(--f-script);opacity:.9}
-.today .grp div{font-size:15px;font-weight:500}
-.today .price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-top:1px solid color-mix(in srgb,var(--accent-ink) 30%,transparent);padding-top:12px;margin-top:4px}
-.today .price strong{font:800 28px var(--f-num);font-variant-numeric:tabular-nums}
-.today .price span{font-size:13px;opacity:.85}
+/* Tarjeta de hoy con la tipografía del cartel del menú: MENÚ en Montserrat negra mayúscula, "del día" y los grupos en script dorado/blanco, platos en mayúscula fina */
+.today{--gold:#d2ad72;margin-top:20px;background:var(--accent);color:#fff;border-radius:20px;padding:22px 22px 20px;position:relative;overflow:hidden}
+.today::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;border:14px solid var(--logo-yellow);opacity:.18}
+.today .kicker{font:300 12px var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.today h2{margin:4px 0 14px;padding-bottom:12px;border-bottom:1.5px solid rgba(255,255,255,.85);font:800 38px/.95 var(--f-ui);text-transform:uppercase;letter-spacing:-.01em}
+.today h2 span{display:block;font:400 34px/1 var(--f-script);text-transform:none;color:var(--gold);margin-top:2px;letter-spacing:0}
+.today .grp{display:grid;gap:1px;margin-bottom:12px}
+.today .grp b{font:400 26px/1.15 var(--f-script);text-transform:lowercase;margin-bottom:2px}
+.today .grp div{font:400 15px/1.35 var(--f-ui);text-transform:uppercase;letter-spacing:.02em}
+.today .grp b~div::before{content:"· "}
+.today .price{display:flex;align-items:center;gap:14px;flex-wrap:wrap-reverse;border-top:1.5px solid rgba(255,255,255,.85);padding-top:14px;margin-top:6px}
+.today .price strong{order:2;font:400 46px/1 var(--f-script);color:var(--gold)}
+.today .price span{order:1;flex:1 1 160px;font:700 14px/1.3 var(--f-ui)}
 
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;margin-top:22px}
 .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
@@ -187,7 +194,7 @@ const DATA={
   address:"Av. Capitán Ontañón 3, Algeciras",hours:{es:"Horario por confirmar",en:"Opening hours to be confirmed"},
   phone:"633 79 06 25",maps:"https://www.google.com/maps/search/?api=1&query=Restaurante+Fuerte+Santiago+Algeciras",
   instagram:"https://www.instagram.com/restaurantefuertesantiago/",
-  today:{kind:"menu",price:12,days:[1,2,3,4,5],incl:{es:"Lunes a viernes · Pan, 1 bebida y postre o café",en:"Monday to Friday · Bread, 1 drink and dessert or coffee"},labels:{primeros:{es:"Primeros",en:"First courses"},segundos:{es:"Segundos",en:"Main courses"},postre:{es:"Postre",en:"Dessert"}}},
+  today:{kind:"menu",price:12,days:[1,2,3,4,5],incl:{es:"Primer plato, Segundo plato, Postre o Café, Pan y 1 Bebida",en:"First course, main course, dessert or coffee, bread and 1 drink"},labels:{primeros:{es:"Primeros",en:"First courses"},segundos:{es:"Segundos",en:"Main courses"},postre:{es:"Postre",en:"Dessert"}}},
   cross:true,anisakis:true,
   sections:[{id:"entrantes",es:"Entrantes",en:"Starters"},{id:"arroces",es:"Arroces",en:"Rice dishes",note:{es:"Mínimo 2 personas. Precio por persona.",en:"Minimum 2 people. Price per person."}},{id:"pescados",es:"Pescados",en:"Fish & seafood"},{id:"carnes",es:"Carnes",en:"Meat"},{id:"postres",es:"Postres",en:"Desserts"}],
   dishes:[
@@ -351,7 +358,7 @@ function renderCarta(key){
   else { if(L.today.generic) td.append(el("div","grp",L.today.generic[lang])); td.append(el("div","grp",t.tnone[L.today.kind])); }
   const off=!H&&L.today.days&&!L.today.days.includes(madridDow());
   if(!(H&&H.cerrado)&&!off){ const pr=el("div","price"); const inc=H&&H.incluye?txt(H.incluye):(L.today.incl?L.today.incl[lang]:"");
-    pr.append(el("strong",null,money(H&&H.precio!=null?H.precio:L.today.price))); if(inc) pr.append(el("span",null,inc)); td.append(pr); }
+    const pv=H&&H.precio!=null?H.precio:L.today.price; pr.append(el("strong",null,Number.isInteger(pv)?pv+"€":money(pv))); if(inc) pr.append(el("span",null,inc)); td.append(pr); }
   // Filtro: solo si la carta tiene alérgenos cargados
   const hasA=L.allergens!==false; $("filter").hidden=!hasA; $("nalg").hidden=hasA; $("nalg").textContent=t.nalg;
   $("f-title").textContent=t.ftitle; $("f-note").textContent=t.fnote; $("f-count").textContent=hide.size?t.fsome(hide.size):t.fnone;
