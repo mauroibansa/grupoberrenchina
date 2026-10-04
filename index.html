@@ -14,6 +14,7 @@
 @font-face{font-family:"Montserrat";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/montserrat-latin-700-normal.woff2) format("woff2")}
 @font-face{font-family:"Montserrat";font-style:normal;font-weight:800;font-display:swap;src:url(fonts/montserrat-latin-800-normal.woff2) format("woff2")}
 @font-face{font-family:"Montserrat";font-style:italic;font-weight:800;font-display:swap;src:url(fonts/montserrat-latin-800-italic.woff2) format("woff2")}
+@font-face{font-family:"Ms Madi";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ms-madi-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Kaushan Script";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/kaushan-script-latin-400-normal.woff2) format("woff2")}
 /* Layout: portada con dos puertas (una por restaurante) y carta de una columna para el móvil en mesa.
    Cada restaurante redefine los tokens: granate y piedra (Fuerte Santiago), verde de mar y bruma (Mar y Monte). */
@@ -104,6 +105,20 @@ button{font:inherit}
 .today .price.inline .pdish .l+.l{margin-top:6px}
 .today .price.inline .pdish .sub{font-size:12.5px;text-transform:none;letter-spacing:0;opacity:.85}
 .today .price.inline strong{align-self:center}
+/* Mar y Monte: línea de su cartelería (Montserrat negra en mayúscula + firma caligráfica Ms Madi en ámbar). No afecta a Fuerte Santiago. */
+:root[data-local="mym"]{--f-sign:"Ms Madi","Kaushan Script",cursive}
+:root[data-local="mym"] main h2{font:400 46px/1 var(--f-sign);margin:0 0 4px}
+:root[data-local="mym"] .today{--gold:#f6a823}
+:root[data-local="mym"] .today .eyebrow{font:300 11px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+:root[data-local="mym"] .today .eyebrow b{font-weight:800;color:var(--gold)}
+:root[data-local="mym"] .today h2{font-size:34px}
+:root[data-local="mym"] .today h2 span{font:400 52px/.8 var(--f-sign);margin:2px 0 0 4px}
+:root[data-local="mym"] .today .tdate .wd{font-weight:800}
+:root[data-local="mym"] .today .price.inline .pdish{font:800 19px/1.15 var(--f-ui);letter-spacing:0}
+:root[data-local="mym"] .today .price.inline .pdish .l+.l{font:400 13px/1.35 var(--f-ui);text-transform:none;margin-top:6px}
+:root[data-local="mym"] .today .price.inline strong{font:600 30px/1 var(--f-ui);color:var(--gold)}
+:root[data-local="mym"] .today .nday b{font:400 34px/1 var(--f-sign);margin-bottom:0;padding-left:6px}
+:root[data-local="mym"] .today .ni{font-weight:700}
 .today .next{margin-top:14px;border-top:1.5px solid var(--gold);padding-top:10px}
 .today .next summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font:700 12px var(--f-ui);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding:4px 0}
 .today .next summary::-webkit-details-marker{display:none}
@@ -266,7 +281,7 @@ const DATA={
   theme:"mym",demo:{es:"Carta real. Teléfono y horario pendientes de confirmar",en:"Real menu. Phone and opening hours to be confirmed"},logo:"logos/marymonte.svg",name:"Mar y Monte",
   address:"A.A.V.V. San García, Algeciras",hours:{es:"Horario por confirmar",en:"Opening hours to be confirmed"},
   phone:null,maps:"https://www.google.com/maps/search/?api=1&query=Asociaci%C3%B3n+de+Vecinos+San+Garc%C3%ADa+Algeciras",
-  instagram:null,cross:true,anisakis:true,
+  instagram:null,cross:true,anisakis:true,eyebrow:["A.A.V.V. Mar y Monte",{es:"Bar restaurante",en:"Bar & restaurant"}],
   today:{kind:"plato",price:6,incl:null,labels:{plato:{es:"Hoy",en:"Today"}},
     generic:{es:"Potajes, guisos, marmitako, arroz…",en:"Stews, casseroles, marmitako (tuna stew), rice dishes…"}},
   sections:[{id:"bocadillos",es:"Bocadillos",en:"Filled rolls",note:{es:"Nuestros panes: pan moreno, pan rústico, bollo blanco y mollete integral, blanco, de maíz o de semillas con pipas.",en:"Our breads: brown bread, rustic bread, white roll, and molletes in wholemeal, white, corn or seeded varieties."}},{id:"especiales",es:"Especiales",en:"Specials"},{id:"platos",es:"Nuestros platos",en:"Our dishes"},{id:"postres",es:"Postres y tartas",en:"Desserts & cakes"}],
@@ -370,6 +385,7 @@ function renderCarta(key){
   // Hoy
   const td=$("today"); td.replaceChildren();
   const words=L.today.kind==="menu"?t.menu:t.plato;
+  if(L.eyebrow){const eb=el("div","eyebrow"); eb.append(el("b",null,L.eyebrow[0]+" "),document.createTextNode(L.eyebrow[1][lang])); td.append(eb);}
   const hd=el("div","thead"); const h=el("h2"); h.append(document.createTextNode(words[0]+" "), el("span",null,words[1]));
   const loc=lang==="es"?"es-ES":"en-GB", tz={timeZone:"Europe/Madrid"}, now=new Date();
   const dt=el("div","tdate"); dt.setAttribute("aria-label",today());
