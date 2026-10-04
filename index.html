@@ -97,6 +97,17 @@ button{font:inherit}
 .today .price .incl{order:1;flex:0 1 auto;margin-right:16px;font:700 clamp(10.5px,3vw,12.5px)/1.35 var(--f-ui)}
 .today .price .incl .l{display:block;white-space:nowrap}
 @media (max-width:340px){.today .price strong{border-left:0;padding-left:0}}
+.today .price.solo strong{border-left:0;padding-left:0}
+.today .next{margin-top:14px;border-top:1.5px solid var(--gold);padding-top:10px}
+.today .next summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font:700 12px var(--f-ui);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding:4px 0}
+.today .next summary::-webkit-details-marker{display:none}
+.today .next summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .2s}
+.today .next[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
+.today .nday{padding:10px 0 2px}
+.today .nday+.nday{border-top:1px solid color-mix(in srgb,var(--gold) 30%,transparent)}
+.today .nday b{display:block;font:400 22px/1.15 var(--f-script);color:var(--gold);margin-bottom:2px}
+.today .nday b::first-letter{text-transform:uppercase}
+.today .ni{font:400 13.5px/1.35 var(--f-ui);text-transform:uppercase;letter-spacing:.02em}
 
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;margin-top:22px}
 .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
@@ -306,12 +317,12 @@ const DATA={
 };
 const T={
  es:{demo:"",sub:"Elige restaurante",dfs:"Menú del día y carta",dmym:"Plato del día y carta",back:"← Restaurantes",
-  call:"Reservar",map:"Cómo llegar",ig:"Instagram",menu:["Menú","del día"],plato:["Plato","del día"],kmenu:"Hoy",kplato:"Hoy",tnone:{menu:"Pregunta por el menú de hoy",plato:"Pregunta por el plato de hoy"},tclosed:"Hoy no hay",tweekdays:"El menú del día se sirve de lunes a viernes.",
+  call:"Reservar",map:"Cómo llegar",ig:"Instagram",menu:["Menú","del día"],plato:["Plato","del día"],kmenu:"Hoy",kplato:"Hoy",tnone:{menu:"Pregunta por el menú de hoy",plato:"Pregunta por el plato de hoy"},tclosed:"Hoy no hay",tweekdays:"El menú del día se sirve de lunes a viernes.",tnext:"Próximos días",
   ftitle:"Alergias e intolerancias",fnone:"Oculta platos con…",fsome:n=>`Ocultando ${n} alérgeno${n>1?"s":""}`,
   empty:"No hay platos de esta sección sin los alérgenos elegidos.",sm:"Según mercado",ask:"Consultar",u:{pp:" / pers.",kg:" / kg",und:" / ud."},nalg:"Información de alérgenos: pregunta a nuestro personal.",off:"Agotado hoy",star:"De la casa",pl:{em:["Entero","Medio"],rm:["Ración","Media"]},nodata:"Alérgenos: consultar",fnote:"Los platos sin información de alérgenos se ocultan al filtrar. Ante cualquier duda, pregunta al personal.",cross:"Por las características de instalación, manipulación y elaboración del establecimiento, todos nuestros productos son susceptibles de contener, de manera directa o a través de contaminación cruzada, algún tipo de alérgeno.",
   falg:"Establecimiento con información disponible en materia de alergias e intolerancias alimentarias, según el Reglamento (UE) 1169/2011. Solicite información a nuestro personal.",fiva:"Precios en euros. IVA incluido.",anis:"En cumplimiento del Real Decreto 1021/2022, los productos de la pesca que se sirven crudos o poco cocinados (sin superar 60 °C en el centro del producto) han sido congelados a −20 °C durante al menos 24 horas para prevenir el parásito Anisakis."},
  en:{demo:"",sub:"Choose a restaurant",dfs:"Daily set menu and à la carte menu",dmym:"Dish of the day and à la carte menu",back:"← Restaurants",
-  call:"Book a table",map:"Directions",ig:"Instagram",menu:["Daily","set menu"],plato:["Dish","of the day"],kmenu:"Today",kplato:"Today",tnone:{menu:"Ask about today's set menu",plato:"Ask about today's dish"},tclosed:"Not available today",tweekdays:"The daily set menu is served Monday to Friday.",
+  call:"Book a table",map:"Directions",ig:"Instagram",menu:["Daily","set menu"],plato:["Dish","of the day"],kmenu:"Today",kplato:"Today",tnone:{menu:"Ask about today's set menu",plato:"Ask about today's dish"},tclosed:"Not available today",tweekdays:"The daily set menu is served Monday to Friday.",tnext:"Coming days",
   ftitle:"Allergies and intolerances",fnone:"Hide dishes containing…",fsome:n=>`Hiding ${n} allergen${n>1?"s":""}`,
   empty:"No dishes in this section match the selected allergen filters.",sm:"Market price",ask:"Ask our staff",u:{pp:" / person",kg:" / kg",und:" each"},nalg:"Allergen information: please ask our staff.",off:"Sold out today",star:"House special",pl:{em:["Whole","Half"],rm:["Portion","Half portion"]},nodata:"Allergens: please ask",fnote:"Dishes without allergen information are hidden when filters are applied. If in doubt, please ask our staff.",cross:"Due to the characteristics of the premises and our handling and preparation processes, all our products may contain allergens, either directly or through cross-contamination.",
   falg:"Information on food allergies and intolerances is available at this establishment in accordance with Regulation (EU) No 1169/2011. Please ask our staff.",fiva:"Prices in euros, VAT included.",anis:"In compliance with Royal Decree 1021/2022, fishery products served raw or undercooked (without exceeding 60 °C at the centre of the product) have been frozen at −20 °C for at least 24 hours to prevent the risk of Anisakis."}
@@ -325,7 +336,7 @@ const price=d=>d.p==null?(d.pt==="ask"?T[lang].ask:T[lang].sm):money(d.p)+(d.u?T
 function priceEl(d){const sp=el("span","p"); if(d.p2==null){sp.textContent=price(d); return sp;}
   const lb=T[lang].pl[d.pl]; [[lb[0],d.p],[lb[1],d.p2]].forEach(([l,v],i)=>{if(i) sp.append(el("br")); sp.append(el("small",null,l),document.createTextNode(money(v)));}); return sp;}
 function el(tag,cls,txt){const e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e;}
-let HOY={};
+let HOY={}, openNext=false;
 function madridDow(){return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(new Intl.DateTimeFormat("en-US",{timeZone:"Europe/Madrid",weekday:"short"}).format(new Date()));}
 function madridDate(){return new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Madrid",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());}
 function today(){return new Date().toLocaleDateString(lang==="es"?"es-ES":"en-GB",{weekday:"long",day:"numeric",month:"long"});}
@@ -368,7 +379,18 @@ function renderCarta(key){
   else { if(L.today.generic) td.append(el("div","grp",L.today.generic[lang])); td.append(el("div","grp",t.tnone[L.today.kind])); }
   const off=!H&&L.today.days&&!L.today.days.includes(madridDow());
   if(!(H&&H.cerrado)&&!off){ const pr=el("div","price"); const inc=H&&H.incluye?txt(H.incluye):(L.today.incl?L.today.incl[lang]:"");
-    const pv=H&&H.precio!=null?H.precio:L.today.price; pr.append(el("strong",null,Number.isInteger(pv)?pv+"€":money(pv))); if(inc){const sp=el("span","incl"); String(inc).split("\n").forEach(l=>sp.append(el("span","l",l))); pr.append(sp);} td.append(pr); }
+    const pv=H&&H.precio!=null?H.precio:L.today.price; pr.append(el("strong",null,Number.isInteger(pv)?pv+"€":money(pv))); if(inc){const sp=el("span","incl"); String(inc).split("\n").forEach(l=>sp.append(el("span","l",l))); pr.append(sp);} if(!inc) pr.classList.add("solo"); td.append(pr); }
+  // Próximos días ya cargados (los pasados no se muestran): desplegable bajo el de hoy
+  const tdy=madridDate(), next=Object.keys(HOY[key]||{}).filter(d=>d>tdy).sort().slice(0,7);
+  if(next.length){ const det=el("details","next"); det.open=openNext; det.ontoggle=()=>{openNext=det.open;};
+    const sm=el("summary",null,t.tnext); det.append(sm);
+    next.forEach(d=>{const N=HOY[key][d], day=el("div","nday"), dd=new Date(d+"T12:00:00");
+      day.append(el("b",null,dd.toLocaleDateString(lang==="es"?"es-ES":"en-GB",{weekday:"long",day:"numeric"})));
+      if(N.cerrado) day.append(el("div","ni",t.tclosed+" "+(words[0]+" "+words[1]).toLowerCase()));
+      else keys.forEach(k=>{const items=[].concat(N[k]||[]); if(!items.length) return;
+        items.forEach(i=>day.append(el("div","ni",(keys.length>1?L.today.labels[k][lang]+": ":"")+txt(i))));});
+      det.append(day);});
+    td.append(det); }
   // Filtro: solo si la carta tiene alérgenos cargados
   const hasA=L.allergens!==false; $("filter").hidden=!hasA; $("nalg").hidden=hasA; $("nalg").textContent=t.nalg;
   $("f-title").textContent=t.ftitle; $("f-note").textContent=t.fnote; $("f-count").textContent=hide.size?t.fsome(hide.size):t.fnone;
