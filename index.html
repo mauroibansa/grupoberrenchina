@@ -88,8 +88,10 @@ button{font:inherit}
 .today .tdate .wd{font:700 13px var(--f-ui);letter-spacing:.2em;color:var(--gold);margin-right:-.2em}
 .today .tdate .dd{font:800 50px/.95 var(--f-ui);color:var(--cream);font-variant-numeric:tabular-nums}
 .today .tdate .mm{font:700 11.5px var(--f-ui);letter-spacing:.24em;color:var(--cream);margin-right:-.24em;margin-top:3px}
-.today .grp div{font:400 15px/1.35 var(--f-ui);text-transform:uppercase;letter-spacing:.02em}
-.today .grp b~div::before{content:"· "}
+.today .grp div{font:400 14.5px/1.3 var(--f-ui);text-transform:uppercase;letter-spacing:.02em;text-wrap:balance}
+.today .grp div+div{margin-top:3px}
+.today .grp b~div{position:relative;padding-left:.85em}
+.today .grp b~div::before{content:"·";position:absolute;left:.1em;top:0}
 .today .price{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:nowrap;border-top:1.5px solid var(--gold);padding-top:14px;margin-top:6px}
 .today .price strong{order:2;flex:none;font:400 33px/1 var(--f-script);color:var(--gold)}
 .today .price .incl{order:1;flex:1 1 auto;min-width:0;font:700 12.5px/1.35 var(--f-ui)}
