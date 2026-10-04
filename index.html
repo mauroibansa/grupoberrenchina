@@ -187,7 +187,7 @@ const DATA={
   address:"Av. Capitán Ontañón 3, Algeciras",hours:{es:"Horario por confirmar",en:"Opening hours to be confirmed"},
   phone:"633 79 06 25",maps:"https://www.google.com/maps/search/?api=1&query=Restaurante+Fuerte+Santiago+Algeciras",
   instagram:"https://www.instagram.com/restaurantefuertesantiago/",
-  today:{kind:"menu",price:12,incl:{es:"Lunes a viernes · Pan, 1 bebida y postre o café",en:"Monday to Friday · Bread, 1 drink and dessert or coffee"},labels:{primeros:{es:"Primeros",en:"First courses"},segundos:{es:"Segundos",en:"Main courses"},postre:{es:"Postre",en:"Dessert"}}},
+  today:{kind:"menu",price:12,days:[1,2,3,4,5],incl:{es:"Lunes a viernes · Pan, 1 bebida y postre o café",en:"Monday to Friday · Bread, 1 drink and dessert or coffee"},labels:{primeros:{es:"Primeros",en:"First courses"},segundos:{es:"Segundos",en:"Main courses"},postre:{es:"Postre",en:"Dessert"}}},
   cross:true,anisakis:true,
   sections:[{id:"entrantes",es:"Entrantes",en:"Starters"},{id:"arroces",es:"Arroces",en:"Rice dishes",note:{es:"Mínimo 2 personas. Precio por persona.",en:"Minimum 2 people. Price per person."}},{id:"pescados",es:"Pescados",en:"Fish & seafood"},{id:"carnes",es:"Carnes",en:"Meat"},{id:"postres",es:"Postres",en:"Desserts"}],
   dishes:[
@@ -292,12 +292,12 @@ const DATA={
 };
 const T={
  es:{demo:"",sub:"Elige restaurante",dfs:"Menú del día y carta",dmym:"Plato del día y carta",back:"← Restaurantes",
-  call:"Reservar",map:"Cómo llegar",ig:"Instagram",menu:["Menú","del día"],plato:["Plato","del día"],kmenu:"Hoy",kplato:"Hoy",tnone:{menu:"Pregunta por el menú de hoy",plato:"Pregunta por el plato de hoy"},tclosed:"Hoy no hay",
+  call:"Reservar",map:"Cómo llegar",ig:"Instagram",menu:["Menú","del día"],plato:["Plato","del día"],kmenu:"Hoy",kplato:"Hoy",tnone:{menu:"Pregunta por el menú de hoy",plato:"Pregunta por el plato de hoy"},tclosed:"Hoy no hay",tweekdays:"El menú del día se sirve de lunes a viernes.",
   ftitle:"Alergias e intolerancias",fnone:"Oculta platos con…",fsome:n=>`Ocultando ${n} alérgeno${n>1?"s":""}`,
   empty:"No hay platos de esta sección sin los alérgenos elegidos.",sm:"Según mercado",ask:"Consultar",u:{pp:" / pers.",kg:" / kg",und:" / ud."},nalg:"Información de alérgenos: pregunta a nuestro personal.",off:"Agotado hoy",star:"De la casa",pl:{em:["Entero","Medio"],rm:["Ración","Media"]},nodata:"Alérgenos: consultar",fnote:"Los platos sin información de alérgenos se ocultan al filtrar. Ante cualquier duda, pregunta al personal.",cross:"Por las características de instalación, manipulación y elaboración del establecimiento, todos nuestros productos son susceptibles de contener, de manera directa o a través de contaminación cruzada, algún tipo de alérgeno.",
   falg:"Establecimiento con información disponible en materia de alergias e intolerancias alimentarias, según el Reglamento (UE) 1169/2011. Solicite información a nuestro personal.",fiva:"Precios en euros. IVA incluido.",anis:"En cumplimiento del Real Decreto 1021/2022, los productos de la pesca que se sirven crudos o poco cocinados (sin superar 60 °C en el centro del producto) han sido congelados a −20 °C durante al menos 24 horas para prevenir el parásito Anisakis."},
  en:{demo:"",sub:"Choose a restaurant",dfs:"Daily set menu and à la carte menu",dmym:"Dish of the day and à la carte menu",back:"← Restaurants",
-  call:"Book a table",map:"Directions",ig:"Instagram",menu:["Daily","set menu"],plato:["Dish","of the day"],kmenu:"Today",kplato:"Today",tnone:{menu:"Ask about today's set menu",plato:"Ask about today's dish"},tclosed:"Not available today",
+  call:"Book a table",map:"Directions",ig:"Instagram",menu:["Daily","set menu"],plato:["Dish","of the day"],kmenu:"Today",kplato:"Today",tnone:{menu:"Ask about today's set menu",plato:"Ask about today's dish"},tclosed:"Not available today",tweekdays:"The daily set menu is served Monday to Friday.",
   ftitle:"Allergies and intolerances",fnone:"Hide dishes containing…",fsome:n=>`Hiding ${n} allergen${n>1?"s":""}`,
   empty:"No dishes in this section match the selected allergen filters.",sm:"Market price",ask:"Ask our staff",u:{pp:" / person",kg:" / kg",und:" each"},nalg:"Allergen information: please ask our staff.",off:"Sold out today",star:"House special",pl:{em:["Whole","Half"],rm:["Portion","Half portion"]},nodata:"Allergens: please ask",fnote:"Dishes without allergen information are hidden when filters are applied. If in doubt, please ask our staff.",cross:"Due to the characteristics of the premises and our handling and preparation processes, all our products may contain allergens, either directly or through cross-contamination.",
   falg:"Information on food allergies and intolerances is available at this establishment in accordance with Regulation (EU) No 1169/2011. Please ask our staff.",fiva:"Prices in euros, VAT included.",anis:"In compliance with Royal Decree 1021/2022, fishery products served raw or undercooked (without exceeding 60 °C at the centre of the product) have been frozen at −20 °C for at least 24 hours to prevent the risk of Anisakis."}
@@ -312,6 +312,7 @@ function priceEl(d){const sp=el("span","p"); if(d.p2==null){sp.textContent=price
   const lb=T[lang].pl[d.pl]; [[lb[0],d.p],[lb[1],d.p2]].forEach(([l,v],i)=>{if(i) sp.append(el("br")); sp.append(el("small",null,l),document.createTextNode(money(v)));}); return sp;}
 function el(tag,cls,txt){const e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e;}
 let HOY={};
+function madridDow(){return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(new Intl.DateTimeFormat("en-US",{timeZone:"Europe/Madrid",weekday:"short"}).format(new Date()));}
 function madridDate(){return new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Madrid",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());}
 function today(){return new Date().toLocaleDateString(lang==="es"?"es-ES":"en-GB",{weekday:"long",day:"numeric",month:"long"});}
 
@@ -346,8 +347,10 @@ function renderCarta(key){
   if(H&&H.cerrado){ td.append(el("div","grp",t.tclosed+" "+(words[0]+" "+words[1]).toLowerCase()+".")); }
   else if(H){ keys.forEach(k=>{const items=[].concat(H[k]||[]); if(!items.length) return; const d=el("div","grp");
       if(keys.length>1) d.append(el("b",null,L.today.labels[k][lang])); items.forEach(i=>d.append(el("div",null,txt(i)))); td.append(d);}); }
+  else if(L.today.days&&!L.today.days.includes(madridDow())) td.append(el("div","grp",t.tweekdays));
   else { if(L.today.generic) td.append(el("div","grp",L.today.generic[lang])); td.append(el("div","grp",t.tnone[L.today.kind])); }
-  if(!(H&&H.cerrado)){ const pr=el("div","price"); const inc=H&&H.incluye?txt(H.incluye):(L.today.incl?L.today.incl[lang]:"");
+  const off=!H&&L.today.days&&!L.today.days.includes(madridDow());
+  if(!(H&&H.cerrado)&&!off){ const pr=el("div","price"); const inc=H&&H.incluye?txt(H.incluye):(L.today.incl?L.today.incl[lang]:"");
     pr.append(el("strong",null,money(H&&H.precio!=null?H.precio:L.today.price))); if(inc) pr.append(el("span",null,inc)); td.append(pr); }
   // Filtro: solo si la carta tiene alérgenos cargados
   const hasA=L.allergens!==false; $("filter").hidden=!hasA; $("nalg").hidden=hasA; $("nalg").textContent=t.nalg;
