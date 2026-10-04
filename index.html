@@ -423,6 +423,9 @@ function renderCarta(key){
   $("c-phone").hidden=true;
   // Hoy
   const td=$("today"); td.replaceChildren();
+  // Días sin servicio (p. ej. sábado y domingo en Fuerte Santiago): no se muestra la tarjeta de hoy
+  const rest=!!(L.today.days&&!L.today.days.includes(madridDow())); td.hidden=rest;
+  if(!rest){
   const words=L.today.kind==="menu"?t.menu:t.plato;
   if(L.eyebrow){const eb=el("div","eyebrow"); eb.append(el("b",null,L.eyebrow[0]+" "),document.createTextNode(L.eyebrow[1][lang])); td.append(eb);}
   const hd=el("div","thead"); const h=el("h2"); h.append(document.createTextNode(words[0]+" "), el("span",null,words[1]));
@@ -460,6 +463,7 @@ function renderCarta(key){
         items.forEach(i=>day.append(el("div","ni",(keys.length>1?L.today.labels[k][lang]+": ":"")+txt(i))));});
       det.append(day);});
     td.append(det); }
+  }
   // Menú especial (Navidad): tarjeta propia bajo la de hoy y pestaña en el menú de secciones
   const X=L.special, xd=madridDate(), xon=X&&(!X.desde||xd>=X.desde)&&(!X.hasta||xd<=X.hasta), xm=$("navidad"); xm.replaceChildren(); xm.hidden=!xon;
   if(xon){ const tx=v=>Array.isArray(v)?(lang==="en"&&v[1]?v[1]:v[0]):v[lang];

@@ -1,5 +1,34 @@
 {
-  "fuerte-santiago": {},
+  "fuerte-santiago": {
+    "2026-10-05": {
+      "primeros": [
+        [
+          "Lentejas",
+          "Lentils"
+        ],
+        [
+          "Ensalada tropical",
+          "Tropical salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Hamburguesa con huevo y patatas",
+          "Burger with egg and chips"
+        ],
+        [
+          "Boquerones fritos con ensalada",
+          "Fried anchovies with salad"
+        ]
+      ],
+      "postre": [
+        [
+          "A consultar",
+          "Ask our staff"
+        ]
+      ]
+    }
+  },
   "mar-y-monte": {
     "2026-10-05": {
       "plato": [
