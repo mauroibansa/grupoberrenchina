@@ -90,9 +90,10 @@ button{font:inherit}
 .today .tdate .mm{font:700 11.5px var(--f-ui);letter-spacing:.24em;color:var(--cream);margin-right:-.24em;margin-top:3px}
 .today .grp div{font:400 15px/1.35 var(--f-ui);text-transform:uppercase;letter-spacing:.02em}
 .today .grp b~div::before{content:"· "}
-.today .price{display:flex;align-items:center;gap:14px;flex-wrap:wrap-reverse;border-top:1.5px solid var(--gold);padding-top:14px;margin-top:6px}
-.today .price strong{order:2;font:400 46px/1 var(--f-script);color:var(--gold)}
-.today .price span{order:1;flex:1 1 160px;font:700 14px/1.3 var(--f-ui)}
+.today .price{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:nowrap;border-top:1.5px solid var(--gold);padding-top:14px;margin-top:6px}
+.today .price strong{order:2;flex:none;font:400 42px/1 var(--f-script);color:var(--gold)}
+.today .price .incl{order:1;flex:1 1 auto;min-width:0;font:700 12.5px/1.35 var(--f-ui)}
+.today .price .incl .l{display:block;white-space:nowrap}
 
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;margin-top:22px}
 .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
@@ -197,7 +198,7 @@ const DATA={
   address:"Av. Capitán Ontañón 3, Algeciras",hours:{es:"Horario por confirmar",en:"Opening hours to be confirmed"},
   phone:"633 79 06 25",maps:"https://www.google.com/maps/search/?api=1&query=Restaurante+Fuerte+Santiago+Algeciras",
   instagram:"https://www.instagram.com/restaurantefuertesantiago/",
-  today:{kind:"menu",price:12,days:[1,2,3,4,5],incl:{es:"Primer plato, Segundo plato, Postre o Café, Pan y 1 Bebida",en:"First course, main course, dessert or coffee, bread and 1 drink"},labels:{primeros:{es:"Primeros",en:"First courses"},segundos:{es:"Segundos",en:"Main courses"},postre:{es:"Postres",en:"Desserts"}}},
+  today:{kind:"menu",price:12,days:[1,2,3,4,5],incl:{es:"Primer plato, Segundo plato\nPostre o Café, Pan y 1 Bebida",en:"First course, main course\nDessert or coffee, bread and 1 drink"},labels:{primeros:{es:"Primeros",en:"First courses"},segundos:{es:"Segundos",en:"Main courses"},postre:{es:"Postres",en:"Desserts"}}},
   cross:true,anisakis:true,
   sections:[{id:"entrantes",es:"Entrantes",en:"Starters"},{id:"arroces",es:"Arroces",en:"Rice dishes",note:{es:"Mínimo 2 personas. Precio por persona.",en:"Minimum 2 people. Price per person."}},{id:"pescados",es:"Pescados",en:"Fish & seafood"},{id:"carnes",es:"Carnes",en:"Meat"},{id:"postres",es:"Postres",en:"Desserts"}],
   dishes:[
@@ -364,7 +365,7 @@ function renderCarta(key){
   else { if(L.today.generic) td.append(el("div","grp",L.today.generic[lang])); td.append(el("div","grp",t.tnone[L.today.kind])); }
   const off=!H&&L.today.days&&!L.today.days.includes(madridDow());
   if(!(H&&H.cerrado)&&!off){ const pr=el("div","price"); const inc=H&&H.incluye?txt(H.incluye):(L.today.incl?L.today.incl[lang]:"");
-    const pv=H&&H.precio!=null?H.precio:L.today.price; pr.append(el("strong",null,Number.isInteger(pv)?pv+"€":money(pv))); if(inc) pr.append(el("span",null,inc)); td.append(pr); }
+    const pv=H&&H.precio!=null?H.precio:L.today.price; pr.append(el("strong",null,Number.isInteger(pv)?pv+"€":money(pv))); if(inc){const sp=el("span","incl"); String(inc).split("\n").forEach(l=>sp.append(el("span","l",l))); pr.append(sp);} td.append(pr); }
   // Filtro: solo si la carta tiene alérgenos cargados
   const hasA=L.allergens!==false; $("filter").hidden=!hasA; $("nalg").hidden=hasA; $("nalg").textContent=t.nalg;
   $("f-title").textContent=t.ftitle; $("f-note").textContent=t.fnote; $("f-count").textContent=hide.size?t.fsome(hide.size):t.fnone;
