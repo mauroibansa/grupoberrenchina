@@ -187,7 +187,9 @@ main h2{font:400 30px/1.1 var(--f-script);color:var(--accent);margin:0 0 2px}
 .snote{color:var(--muted);font-size:13.5px;margin:0 0 4px}
 main h4.sub{margin:18px 0 0;font:700 11.5px var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
 main h4.sub+.dish{padding-top:8px}
-/* Fuerte en modo oscuro: títulos de la carta en dorado (no en rosa) */
+/* Fuerte: títulos de la carta en dorado (en claro, un dorado algo más oscuro en los subtítulos pequeños para que se lean) */
+:root[data-local="fuerte"] main h2,:root[data-local="fuerte"] .tab.xtab{color:var(--gold)}
+:root[data-local="fuerte"] main h4.sub{color:#8a6326}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"])[data-local="fuerte"] main h2,:root:not([data-theme="light"])[data-local="fuerte"] main h4.sub,:root:not([data-theme="light"])[data-local="fuerte"] .tab.xtab{color:var(--gold)}}
 :root[data-theme="dark"][data-local="fuerte"] main h2,:root[data-theme="dark"][data-local="fuerte"] main h4.sub,:root[data-theme="dark"][data-local="fuerte"] .tab.xtab{color:var(--gold)}
 .nalg{margin-top:16px;padding:12px 14px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13.5px}
