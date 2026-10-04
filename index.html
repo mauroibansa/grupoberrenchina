@@ -182,6 +182,8 @@ main h2{font:400 30px/1.1 var(--f-script);color:var(--accent);margin:0 0 2px}
 .off{opacity:.45}
 .off h3::after{content:" · " attr(data-off);font-weight:500;color:var(--muted)}
 .snote{color:var(--muted);font-size:13.5px;margin:0 0 4px}
+main h4.sub{margin:18px 0 0;font:700 11.5px var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+main h4.sub+.dish{padding-top:8px}
 .nalg{margin-top:16px;padding:12px 14px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13.5px}
 .dish .p small{font:500 11.5px var(--f-ui);color:var(--muted);margin-right:5px}
 .code.nodata{background:transparent;border:1px dashed var(--line);color:var(--muted);font-weight:600}
@@ -274,13 +276,16 @@ const DATA={
      fine:{es:"Desde el comienzo de la comida hasta el postre. No incluye café ni chupito.",en:"From the start of the meal until dessert. Coffee and liqueur shots not included."}}],
    pp:{es:["IVA incluido","por persona"],en:["VAT included","per person"]},cta:{es:"Reservar mesa",en:"Book a table"},
    note:{es:"Alérgenos: consulta al personal.",en:"Allergens: please ask our staff."}},
-  sections:[{id:"entrantes",es:"Entrantes",en:"Starters"},{id:"arroces",es:"Arroces",en:"Rice dishes",note:{es:"Mínimo 2 personas. Precio por persona.",en:"Minimum 2 people. Price per person."}},{id:"pescados",es:"Pescados",en:"Fish & seafood"},{id:"carnes",es:"Carnes",en:"Meat"},{id:"postres",es:"Postres",en:"Desserts"}],
+  sections:[{id:"entrantes",es:"Entrantes",en:"Starters"},{id:"arroces",es:"Arroces",en:"Rice dishes",note:{es:"Mínimo 2 personas. Precio por persona.",en:"Minimum 2 people. Price per person."}},{id:"pescados",es:"Pescados",en:"Fish & seafood"},{id:"carnes",es:"Carnes",en:"Meat"},{id:"postres",es:"Postres",en:"Desserts"},{id:"vinos",es:"Vinos",en:"Wines",quiet:1,note:{es:"Precio por botella.",en:"Price per bottle."}},{id:"espumosos",es:"Cavas y champagne",en:"Cava and champagne",quiet:1,note:{es:"Precio por botella.",en:"Price per bottle."}},{id:"cervezas",es:"Cervezas, refrescos y café",en:"Beer, soft drinks and coffee",quiet:1},{id:"copas",es:"Copas y licores",en:"Spirits and liqueurs",quiet:1}],
+  service:1.2,
   dishes:[
    {s:"entrantes",es:"Gambas de Huelva al pil pil",en:"Huelva prawns pil-pil style (garlic and chilli)",p:18,a:null},
-   {s:"entrantes",es:"Gamba extra cocida o a la plancha",en:"Premium prawns, boiled or grilled",p:24,a:null},
+   {s:"entrantes",es:"Gambas cocidas o a la plancha",en:"Prawns, boiled or grilled",p:22,a:null},
+   {s:"entrantes",es:"Gamba extra cocida o a la plancha",en:"Premium prawns, boiled or grilled",p:28,a:null},
    {s:"entrantes",es:"Almeja extra gallega al Tío Pepe",en:"Premium Galician clams with Tío Pepe sherry",p:18,a:null},
-   {s:"entrantes",es:"Ensaladilla rusa con tronco de ventresca tarifeña",en:"Russian salad topped with Tarifa tuna belly",p:14,a:["huevo","pescado","lacteos","sulfitos"]},
-   {s:"entrantes",es:"Tomate rosa con cebolla morada y ventresca tarifeña",en:"Pink tomato with red onion and Tarifa tuna belly",p:14,a:["pescado","sulfitos"]},
+   {s:"entrantes",es:"Anchoas del Cantábrico",en:"Cantabrian anchovies",p:22,a:null},
+   {s:"entrantes",es:"Ensaladilla rusa con tronco de ventresca tarifeña",en:"Russian salad topped with Tarifa tuna belly",p:16,a:["huevo","pescado","lacteos","sulfitos"]},
+   {s:"entrantes",es:"Tomate rosa con cebolla morada y ventresca tarifeña",en:"Pink tomato with red onion and Tarifa tuna belly",p:16,a:["pescado","sulfitos"]},
    {s:"entrantes",es:"Alcachofas salteadas con taquitos de jamón y AOVE",en:"Sautéed artichokes with diced ham and extra virgin olive oil",p:16,a:null},
    {s:"entrantes",es:"Mejillones en salsa kimchi",en:"Mussels in kimchi sauce",p:16,a:null},
    {s:"entrantes",es:"Zurrapa de atún rojo en manteca colorá",en:"Bluefin tuna zurrapa (shredded tuna spread) in manteca colorá (paprika-spiced lard)",p:16,a:null},
@@ -303,18 +308,86 @@ const DATA={
    {s:"pescados",es:"Choco frito",en:"Fried cuttlefish",p:16,a:["gluten","moluscos"]},
    {s:"pescados",es:"Chipirón de Sanlúcar a la plancha",en:"Grilled Sanlúcar baby squid",p:22,a:null},
    {s:"pescados",es:"Acedías de Sanlúcar fritas",en:"Acedías from Sanlúcar (fried wedge sole)",p:16,a:["gluten","pescado"]},
-   {s:"pescados",es:"Salmonetito nacional frito",en:"Fried small Spanish red mullet",p:14,a:["gluten","pescado"]},
-   {s:"pescados",es:"Pijotas de Cádiz fritas",en:"Pijotas from Cádiz (fried baby hake)",p:14,a:["gluten","pescado"]},
+   {s:"pescados",es:"Salmonetito nacional frito",en:"Fried small Spanish red mullet",p:16,a:["gluten","pescado"]},
+   {s:"pescados",es:"Pijotas de Cádiz fritas",en:"Pijotas from Cádiz (fried baby hake)",p:16,a:["gluten","pescado"]},
    {s:"pescados",es:"Boquerones fritos",en:"Fried anchovies",p:14,a:["gluten","pescado"]},
    {s:"pescados",es:"Ortiguillas fritas",en:"Ortiguillas (fried sea anemones)",p:16,a:null},
+   {s:"pescados",es:"Dentón con gambón",en:"Dentex with king prawn",p:22,a:null},
    {s:"pescados",es:"Tortillitas de camarones",en:"Tortillitas de camarones (shrimp fritters)",p:3.5,u:"und",a:["gluten","huevo","crustaceos"]},
    {s:"carnes",es:"Presa ibérica",en:"Iberian pork presa (shoulder cut)",p:20,a:null},
    {s:"carnes",es:"Lagarto ibérico",en:"Iberian pork lagarto (rib-side strip)",p:18,a:null},
+   {s:"carnes",es:"Solomillo al Tío Pepe",en:"Tenderloin in Tío Pepe sherry sauce",p:18,a:null},
    {s:"carnes",es:"Chuleta de cerdo ibérico 100 % bellota Beher",en:"100% acorn-fed Iberian pork chop, Beher",p:42,u:"kg",a:null},
    {s:"carnes",es:"Chuletón de vaca premium",en:"Premium beef rib steak",p:65,u:"kg",a:null},
    {s:"postres",es:"Tarta de queso",en:"Cheesecake",p:6,a:["gluten","huevo","lacteos"]},
    {s:"postres",es:"Tarta de chocolate",en:"Chocolate cake",p:6,a:null},
-   {s:"postres",es:"Tarta de zanahoria",en:"Carrot cake",p:6,a:null}
+   {s:"postres",es:"Tarta de zanahoria",en:"Carrot cake",p:6,a:null},
+   {s:"vinos",g:{es:"Tintos Rioja",en:"Rioja reds"},es:"Heraclio Alfaro",en:"Heraclio Alfaro",p:17.5,a:null},
+   {s:"vinos",g:{es:"Tintos Rioja",en:"Rioja reds"},es:"Zinio",en:"Zinio",p:17.5,a:null},
+   {s:"vinos",g:{es:"Tintos Rioja",en:"Rioja reds"},es:"Ramón Bilbao",en:"Ramón Bilbao",p:17.5,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Admiración",en:"Admiración",p:28,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Carramimbre",en:"Carramimbre",p:17.5,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Jesús Yllera",en:"Jesús Yllera",p:29,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Pepe Yllera",en:"Pepe Yllera",p:17.5,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Bosque de Matasnos",en:"Bosque de Matasnos",p:42,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Pago de Capellanes",en:"Pago de Capellanes",p:28,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Pago de Carraovejas",en:"Pago de Carraovejas",p:44,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Pago de Anguix",en:"Pago de Anguix",p:32,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Rivendel 6 meses",en:"Rivendel 6 months",p:17.5,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Rivendel 12 meses",en:"Rivendel 12 months",p:22,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Matarromera",en:"Matarromera",p:36,a:null},
+   {s:"vinos",g:{es:"Tintos Ribera del Duero",en:"Ribera del Duero reds"},es:"Torresilo",en:"Torresilo",p:36,a:null},
+   {s:"vinos",g:{es:"Blancos",en:"Whites"},es:"Yllera Vendimia Nocturna",en:"Yllera Vendimia Nocturna",p:16.5,a:null,d:{es:"Verdejo",en:"Verdejo"}},
+   {s:"vinos",g:{es:"Blancos",en:"Whites"},es:"Azoe",en:"Azoe",p:17.5,a:null,d:{es:"Verdejo",en:"Verdejo"}},
+   {s:"vinos",g:{es:"Blancos",en:"Whites"},es:"Barbadillo",en:"Barbadillo",p:16,a:null},
+   {s:"vinos",g:{es:"Blancos",en:"Whites"},es:"Miraldis Blanco",en:"Miraldis Blanco",p:29,a:null,d:{es:"Verdejo",en:"Verdejo"}},
+   {s:"vinos",g:{es:"Blancos",en:"Whites"},es:"Frizzante de la casa",en:"House frizzante",p:15,a:null},
+   {s:"vinos",g:{es:"Blancos",en:"Whites"},es:"Naiz Verdejo",en:"Naiz Verdejo",p:16,a:null,d:{es:"D.O. Rueda",en:"D.O. Rueda"}},
+   {s:"vinos",g:{es:"Rosados",en:"Rosés"},es:"Pago de Anguix",en:"Pago de Anguix",p:22,a:null},
+   {s:"vinos",g:{es:"Rosados",en:"Rosés"},es:"Cillar de Silos",en:"Cillar de Silos",p:15,a:null},
+   {s:"vinos",g:{es:"Rosados",en:"Rosés"},es:"Montalvo Wilmot",en:"Montalvo Wilmot",p:16.5,a:null},
+   {s:"vinos",g:{es:"Semidulces",en:"Semi-sweet"},es:"Árabe",en:"Árabe",p:16,a:null},
+   {s:"vinos",g:{es:"Semidulces",en:"Semi-sweet"},es:"Barbadillo",en:"Barbadillo",p:16,a:null},
+   {s:"vinos",g:{es:"Finos de Jerez y manzanillas",en:"Sherry finos and manzanillas"},es:"Tío Pepe 1/2",en:"Tío Pepe 1/2",p:9,a:null},
+   {s:"vinos",g:{es:"Finos de Jerez y manzanillas",en:"Sherry finos and manzanillas"},es:"Tío Pepe 3/4",en:"Tío Pepe 3/4",p:16.5,a:null},
+   {s:"vinos",g:{es:"Finos de Jerez y manzanillas",en:"Sherry finos and manzanillas"},es:"Tío Pepe en Rama",en:"Tío Pepe en Rama",p:24,a:null},
+   {s:"vinos",g:{es:"Finos de Jerez y manzanillas",en:"Sherry finos and manzanillas"},es:"Manzanilla Solear 1/4",en:"Manzanilla Solear 1/4",p:8,a:null},
+   {s:"vinos",g:{es:"Finos de Jerez y manzanillas",en:"Sherry finos and manzanillas"},es:"Manzanilla Solear 3/4",en:"Manzanilla Solear 3/4",p:15,a:null},
+   {s:"vinos",g:{es:"Finos de Jerez y manzanillas",en:"Sherry finos and manzanillas"},es:"Manzanilla Argüeso 1/4",en:"Manzanilla Argüeso 1/4",p:8,a:null},
+   {s:"vinos",g:{es:"Finos de Jerez y manzanillas",en:"Sherry finos and manzanillas"},es:"Manzanilla Argüeso 3/4",en:"Manzanilla Argüeso 3/4",p:15,a:null},
+   {s:"vinos",g:{es:"Albariños",en:"Albariños"},es:"Eido da Fonte",en:"Eido da Fonte",p:20,a:null},
+   {s:"vinos",g:{es:"Albariños",en:"Albariños"},es:"Torre de Moreira",en:"Torre de Moreira",p:20,a:null},
+   {s:"vinos",g:{es:"Albariños",en:"Albariños"},es:"Marqués de Vizhoja",en:"Marqués de Vizhoja",p:16.5,a:null},
+   {s:"vinos",g:{es:"Albariños",en:"Albariños"},es:"Do Ferreiro Lourido",en:"Do Ferreiro Lourido",p:42,a:null},
+   {s:"vinos",g:{es:"Albariños",en:"Albariños"},es:"Do Ferreiro Cepas Vellas",en:"Do Ferreiro Cepas Vellas",p:40,a:null},
+   {s:"vinos",g:{es:"Albariños",en:"Albariños"},es:"Terras Gauda",en:"Terras Gauda",p:24,a:null},
+   {s:"vinos",g:{es:"Albariños",en:"Albariños"},es:"Do Ferreiro",en:"Do Ferreiro",p:25,a:null},
+   {s:"espumosos",g:{es:"Cavas",en:"Cavas"},es:"Juvé & Camps Cinta Púrpura",en:"Juvé & Camps Cinta Púrpura",p:22,a:null},
+   {s:"espumosos",g:{es:"Cavas",en:"Cavas"},es:"Juvé & Camps Rosé",en:"Juvé & Camps Rosé",p:22,a:null},
+   {s:"espumosos",g:{es:"Cavas",en:"Cavas"},es:"Gran Juvé & Camps",en:"Gran Juvé & Camps",p:38,a:null},
+   {s:"espumosos",g:{es:"Cavas",en:"Cavas"},es:"Comte de Subirats Brut Nature",en:"Comte de Subirats Brut Nature",p:22,a:null},
+   {s:"espumosos",g:{es:"Cavas",en:"Cavas"},es:"Raventós",en:"Raventós",p:29,a:null},
+   {s:"espumosos",g:{es:"Champagne",en:"Champagne"},es:"Moët & Chandon Brut",en:"Moët & Chandon Brut",p:75,a:null},
+   {s:"espumosos",g:{es:"Champagne",en:"Champagne"},es:"Moët & Chandon Rosé",en:"Moët & Chandon Rosé",p:85,a:null},
+   {s:"cervezas",es:"Jarra de cerveza",en:"Beer jug",p:10,a:null},
+   {s:"cervezas",es:"Copa de cerveza",en:"Glass of beer",p:2.9,a:null},
+   {s:"cervezas",es:"Caña de cerveza",en:"Small draught beer",p:2,a:null},
+   {s:"cervezas",es:"Cañón",en:"Cañón (large draught beer)",p:2.4,a:null},
+   {s:"cervezas",es:"Cañonazo",en:"Cañonazo (extra-large draught beer)",p:2.7,a:null},
+   {s:"cervezas",es:"1/3 cerveza con o sin alcohol",en:"1/3 l beer, regular or alcohol-free",p:3,a:null},
+   {s:"cervezas",es:"Refrescos",en:"Soft drinks",p:1.8,a:null},
+   {s:"cervezas",es:"Agua sin gas 1/2 l",en:"Still water 1/2 l",p:1.4,a:null},
+   {s:"cervezas",es:"Agua con gas",en:"Sparkling water",p:1.8,a:null},
+   {s:"cervezas",es:"Café / infusiones",en:"Coffee / herbal teas",p:1.4,a:null},
+   {s:"copas",g:{es:"Ginebra",en:"Gin"},es:"Larios",en:"Larios",p:6,a:null},
+   {s:"copas",g:{es:"Ginebra",en:"Gin"},es:"Larios 12",en:"Larios 12",p:7,a:null},
+   {s:"copas",g:{es:"Ginebra",en:"Gin"},es:"Beefeater",en:"Beefeater",p:6,a:null},
+   {s:"copas",g:{es:"Ginebra",en:"Gin"},es:"Puerto de Indias",en:"Puerto de Indias",p:7,a:null},
+   {s:"copas",g:{es:"Ginebra",en:"Gin"},es:"Rivers 1880",en:"Rivers 1880",p:7,a:null},
+   {s:"copas",g:{es:"Whisky",en:"Whisky"},es:"DYC",en:"DYC",p:6,a:null},
+   {s:"copas",g:{es:"Whisky",en:"Whisky"},es:"Black Label doble",en:"Black Label, double",p:12,a:null},
+   {s:"copas",g:{es:"Licores",en:"Liqueurs"},es:"Malibú",en:"Malibú",p:6,a:null},
+   {s:"copas",g:{es:"Licores",en:"Liqueurs"},es:"Ponche",en:"Ponche",p:3.5,a:null}
   ]},
  "mar-y-monte":{
   theme:"mym",demo:{es:"Carta real. Teléfono y horario pendientes de confirmar",en:"Real menu. Phone and opening hours to be confirmed"},logo:"logos/marymonte.svg",name:"Mar y Monte",
@@ -380,12 +453,12 @@ const T={
   call:"Reservar",map:"Cómo llegar",ig:"Instagram",menu:["Menú","del día"],plato:["Plato","del día"],kmenu:"Hoy",kplato:"Hoy",tnone:{menu:"Pregunta por el menú de hoy",plato:"Pregunta por el plato de hoy"},tclosed:"Hoy no hay",tweekdays:"El menú del día se sirve de lunes a viernes.",tnext:"Próximos días",
   ftitle:"Alergias e intolerancias",fnone:"Oculta platos con…",fsome:n=>`Ocultando ${n} alérgeno${n>1?"s":""}`,
   empty:"No hay platos de esta sección sin los alérgenos elegidos.",sm:"Según mercado",ask:"Consultar",u:{pp:" / pers.",kg:" / kg",und:" / ud."},nalg:"Información de alérgenos: pregunta a nuestro personal.",off:"Agotado hoy",star:"De la casa",pl:{em:["Entero","Medio"],rm:["Ración","Media"]},nodata:"Alérgenos: consultar",fnote:"Los platos sin información de alérgenos se ocultan al filtrar. Ante cualquier duda, pregunta al personal.",cross:"Por las características de instalación, manipulación y elaboración del establecimiento, todos nuestros productos son susceptibles de contener, de manera directa o a través de contaminación cruzada, algún tipo de alérgeno.",
-  falg:"Establecimiento con información disponible en materia de alergias e intolerancias alimentarias, según el Reglamento (UE) 1169/2011. Solicite información a nuestro personal.",fiva:"Precios en euros. IVA incluido.",anis:"En cumplimiento del Real Decreto 1021/2022, los productos de la pesca que se sirven crudos o poco cocinados (sin superar 60 °C en el centro del producto) han sido congelados a −20 °C durante al menos 24 horas para prevenir el parásito Anisakis."},
+  falg:"Establecimiento con información disponible en materia de alergias e intolerancias alimentarias, según el Reglamento (UE) 1169/2011. Solicite información a nuestro personal.",fiva:"Precios en euros. IVA incluido.",serv:"Servicio por comensal:",anis:"En cumplimiento del Real Decreto 1021/2022, los productos de la pesca que se sirven crudos o poco cocinados (sin superar 60 °C en el centro del producto) han sido congelados a −20 °C durante al menos 24 horas para prevenir el parásito Anisakis."},
  en:{demo:"",sub:"Choose a restaurant",dfs:"Daily set menu and à la carte menu",dmym:"Dish of the day and à la carte menu",back:"← Restaurants",
   call:"Book a table",map:"Directions",ig:"Instagram",menu:["Daily","set menu"],plato:["Dish","of the day"],kmenu:"Today",kplato:"Today",tnone:{menu:"Ask about today's set menu",plato:"Ask about today's dish"},tclosed:"Not available today",tweekdays:"The daily set menu is served Monday to Friday.",tnext:"Coming days",
   ftitle:"Allergies and intolerances",fnone:"Hide dishes containing…",fsome:n=>`Hiding ${n} allergen${n>1?"s":""}`,
   empty:"No dishes in this section match the selected allergen filters.",sm:"Market price",ask:"Ask our staff",u:{pp:" / person",kg:" / kg",und:" each"},nalg:"Allergen information: please ask our staff.",off:"Sold out today",star:"House special",pl:{em:["Whole","Half"],rm:["Portion","Half portion"]},nodata:"Allergens: please ask",fnote:"Dishes without allergen information are hidden when filters are applied. If in doubt, please ask our staff.",cross:"Due to the characteristics of the premises and our handling and preparation processes, all our products may contain allergens, either directly or through cross-contamination.",
-  falg:"Information on food allergies and intolerances is available at this establishment in accordance with Regulation (EU) No 1169/2011. Please ask our staff.",fiva:"Prices in euros, VAT included.",anis:"In compliance with Royal Decree 1021/2022, fishery products served raw or undercooked (without exceeding 60 °C at the centre of the product) have been frozen at −20 °C for at least 24 hours to prevent the risk of Anisakis."}
+  falg:"Information on food allergies and intolerances is available at this establishment in accordance with Regulation (EU) No 1169/2011. Please ask our staff.",fiva:"Prices in euros, VAT included.",serv:"Cover charge per person:",anis:"In compliance with Royal Decree 1021/2022, fishery products served raw or undercooked (without exceeding 60 °C at the centre of the product) have been frozen at −20 °C for at least 24 hours to prevent the risk of Anisakis."}
 };
 let lang="es"; const hide=new Set();
 try{const s=localStorage.getItem("gb-lang"); if(s==="en"||s==="es") lang=s;}catch(e){}
@@ -491,14 +564,16 @@ function renderCarta(key){
     const b=el("button","tab"+(i===0?" on":""),s[lang]); b.dataset.target=s.id; b.onclick=()=>document.getElementById(s.id).scrollIntoView(); tabs.append(b);
     const sec=el("section"); sec.id=s.id; sec.append(el("h2",null,s[lang])); if(s.note) sec.append(el("p","snote",s.note[lang]));
     const list=L.dishes.filter(d=>d.s===s.id&&(hide.size&&hasA?d.a!=null&&!d.a.some(a=>hide.has(a)):true));
+    if(s.quiet&&hasA) sec.append(el("p","snote",t.nalg));
     if(!list.length) sec.append(el("p","empty",t.empty));
-    list.forEach(d=>{const row=el("article","dish"+(d.off?" off":"")); const h3=el("h3",null,d[lang]); if(d.off) h3.dataset.off=t.off;
+    let lg=null;
+    list.forEach(d=>{ if(d.g&&d.g.es!==lg){ lg=d.g.es; sec.append(el("h4","sub",d.g[lang])); }const row=el("article","dish"+(d.off?" off":"")); const h3=el("h3",null,d[lang]); if(d.off) h3.dataset.off=t.off;
       row.append(h3,priceEl(d)); if(d.d) row.append(el("p","d",d.d[lang]));
-      const nd=hasA&&d.a==null; if((d.a&&d.a.length)||d.star||nd){const tg=el("div","tags"); if(d.star) tg.append(el("span","badge",t.star)); (d.a||[]).forEach(k=>{const a=algBy[k]; tg.append(el("span","code",lang==="es"?a[2]:a[3]));}); if(nd) tg.append(el("span","code nodata",t.nodata)); row.append(tg);}
+      const nd=hasA&&d.a==null&&!s.quiet; if((d.a&&d.a.length)||d.star||nd){const tg=el("div","tags"); if(d.star) tg.append(el("span","badge",t.star)); (d.a||[]).forEach(k=>{const a=algBy[k]; tg.append(el("span","code",lang==="es"?a[2]:a[3]));}); if(nd) tg.append(el("span","code nodata",t.nodata)); row.append(tg);}
       sec.append(row);});
     menu.append(sec);
   });
-  $("f-alg").textContent=t.falg; $("f-cross").textContent=L.cross?t.cross:""; $("f-cross").hidden=!L.cross; $("f-anis").textContent=L.anisakis?t.anis:""; $("f-anis").hidden=!L.anisakis; $("f-iva").textContent=t.fiva;
+  $("f-alg").textContent=t.falg; $("f-cross").textContent=L.cross?t.cross:""; $("f-cross").hidden=!L.cross; $("f-anis").textContent=L.anisakis?t.anis:""; $("f-anis").hidden=!L.anisakis; $("f-iva").textContent=t.fiva+(L.service?" "+t.serv+" "+money(L.service)+".":"");
   observe();
 }
 let io;
