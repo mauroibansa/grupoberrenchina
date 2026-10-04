@@ -1,4 +1,53 @@
 {
   "fuerte-santiago": {},
-  "mar-y-monte": {}
+  "mar-y-monte": {
+    "2026-10-05": {
+      "plato": [
+        [
+          "Estofado de carne con patatas",
+          "Beef stew with potatoes"
+        ]
+      ]
+    },
+    "2026-10-06": {
+      "plato": [
+        [
+          "Albóndigas a la jardinera",
+          "Meatballs with garden vegetables"
+        ]
+      ]
+    },
+    "2026-10-07": {
+      "plato": [
+        [
+          "Fideos a la marinera",
+          "Seafood noodles"
+        ]
+      ]
+    },
+    "2026-10-08": {
+      "plato": [
+        [
+          "Puchero",
+          "Puchero (traditional Andalusian stew)"
+        ]
+      ]
+    },
+    "2026-10-09": {
+      "plato": [
+        [
+          "Carne con tomate",
+          "Beef in tomato sauce"
+        ]
+      ]
+    },
+    "2026-10-10": {
+      "plato": [
+        [
+          "Paella de carne y setas",
+          "Meat and mushroom paella"
+        ]
+      ]
+    }
+  }
 }
