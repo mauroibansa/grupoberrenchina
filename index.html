@@ -250,6 +250,12 @@ textarea.inp{resize:vertical;min-height:70px}
 .send svg{width:19px;height:19px}
 .fine{margin:9px 0 0;text-align:center;font-size:12.5px;color:var(--muted)}
 .err{margin:10px 0 0;text-align:center;font:600 13px var(--f-ui);color:#c0392b}
+/* Firma de la agencia en el pie (portada y cartas); logo negro, blanco en modo oscuro */
+.mmt{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font:500 12.5px var(--f-ui);text-decoration:none}
+.mmt img{height:12px;width:auto;display:block}
+.mmt .w{display:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .mmt .b{display:none} :root:not([data-theme="light"]) .mmt .w{display:block} }
+:root[data-theme="dark"] .mmt .b{display:none} :root[data-theme="dark"] .mmt .w{display:block}
 </style>
 </head>
 <body>
@@ -278,7 +284,7 @@ textarea.inp{resize:vertical;min-height:70px}
       <button class="go" id="ev-go"></button>
     </section>
     <div class="lang" role="group" aria-label="Idioma"><button data-l="es" id="hl-es">ES</button><button data-l="en" id="hl-en">EN</button></div>
-    <p class="home-foot">grupoberrenchina.com</p>
+    <p class="home-foot"><a class="mmt" href="https://www.agenciamammut.com" target="_blank" rel="noopener" aria-label="Diseño y desarrollo: Agencia Mammut">Diseño y desarrollo <img class="b" src="logos/mammut-negro.png" alt="MAMMUT"><img class="w" src="logos/mammut-blanco.png" alt=""> 2026</a></p>
   </div>
 
   <div id="carta" hidden>
@@ -310,6 +316,7 @@ textarea.inp{resize:vertical;min-height:70px}
     <footer>
       <div class="legal"><b id="f-alg"></b><span id="f-cross"></span><span id="f-anis"></span><span id="f-iva"></span></div>
       <span class="by"><span class="disc"><img src="logos/grupo.svg" alt=""></span><span>Grupo Berrenchina</span></span>
+      <a class="mmt" href="https://www.agenciamammut.com" target="_blank" rel="noopener" aria-label="Diseño y desarrollo: Agencia Mammut">Diseño y desarrollo <img class="b" src="logos/mammut-negro.png" alt="MAMMUT"><img class="w" src="logos/mammut-blanco.png" alt=""> 2026</a>
     </footer>
   </div>
 </div>
