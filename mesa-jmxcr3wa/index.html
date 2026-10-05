@@ -204,6 +204,42 @@ footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:v
 footer .by{display:flex;align-items:center;gap:8px}
 footer .by .disc{width:28px;height:28px;box-shadow:none}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}.door .go{transition:transform .15s}}
+
+/* Eventos y grupos (portada): bloque en tabaco con texto blanco, como las puertas, y hoja inferior con el formulario.
+   La solicitud se envía por WhatsApp al número de eventos (EVENTOS.wa). */
+.ev{width:100%;text-align:left;background:#7a5640;color:#fff;border-radius:18px;padding:22px 20px 20px}
+.ev .k{font:700 11px var(--f-ui);letter-spacing:.22em;text-transform:uppercase;color:#f1d8c2}
+.ev h2{margin:6px 0 12px;font:800 italic 26px/1.1 var(--f-ui);color:#fff}
+.ev h2 span{display:block;font:500 italic 17px/1.3 var(--f-ui);color:#f1d8c2;margin-top:4px}
+.ev p{margin:0 0 16px;color:rgba(255,255,255,.86);font-size:14.5px}
+.ev .q{font:600 13px var(--f-ui);margin-bottom:8px}
+.ev .chips{margin-bottom:16px}
+.ev .chip{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+.ev .go{display:flex;justify-content:center;width:100%;padding:13px;border-radius:999px;background:#f6ece3;color:#4a3324;font:800 15px var(--f-ui);border:0;cursor:pointer}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:8px 11px;font:600 13.5px/1.15 var(--f-ui);color:var(--ink);text-align:center;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center}
+.chip small{display:block;font:500 11px var(--f-ui);color:var(--muted);margin-top:2px}
+.chip[aria-pressed="true"]{background:#7a5640;border-color:transparent;color:#fff}
+.chip[aria-pressed="true"] small{color:#f1d8c2}
+.chip.loc{flex-direction:row;gap:7px;padding:6px 12px 6px 6px}
+.chip.loc img{width:30px;height:30px;border-radius:50%;background:#fff}
+.scrim{position:fixed;inset:0;background:rgba(20,16,12,.45);z-index:20}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--surface);color:var(--ink);border-radius:22px 22px 0 0;padding:10px 20px 22px;max-width:640px;max-height:92vh;overflow-y:auto;margin:0 auto;box-shadow:0 -10px 40px rgba(0,0,0,.2);text-align:left}
+.sheet .grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 12px}
+.sheet .sh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding-bottom:12px;border-bottom:1.5px solid #c9a98f;margin-bottom:6px}
+.sheet .sh small{display:block;font:700 11px var(--f-ui);letter-spacing:.2em;text-transform:uppercase;color:#9a6a45}
+.sheet .sh b{display:block;font:800 italic 23px/1.1 var(--f-ui);margin-top:3px}
+.sheet .x{width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--bg);font:600 18px var(--f-ui);color:var(--muted);cursor:pointer}
+.fld{margin-top:14px}
+.fld label,.fld .l{display:block;font:700 12px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.inp{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:11px 12px;font:500 16px var(--f-ui);color:var(--ink);min-height:47px}
+textarea.inp{resize:vertical;min-height:70px}
+.inp:invalid.touched,.chips.bad{outline:2px solid #c0392b;outline-offset:2px}
+.send{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px;border-radius:999px;background:#7a5640;color:#fff;font:700 15.5px var(--f-ui);border:0;cursor:pointer}
+.send svg{width:19px;height:19px}
+.fine{margin:9px 0 0;text-align:center;font-size:12.5px;color:var(--muted)}
+.err{margin:10px 0 0;text-align:center;font:600 13px var(--f-ui);color:#c0392b}
 </style>
 </head>
 <body>
@@ -223,6 +259,14 @@ footer .by .disc{width:28px;height:28px;box-shadow:none}
         <span><b>Mar y Monte</b><small id="door-mym-s"></small></span><span class="go" aria-hidden="true">→</span>
       </a>
     </div>
+    <section class="ev" id="eventos" aria-labelledby="ev-h">
+      <div class="k" id="ev-k"></div>
+      <h2 id="ev-h"></h2>
+      <p id="ev-p"></p>
+      <div class="q" id="ev-q"></div>
+      <div class="chips" id="ev-quick"></div>
+      <button class="go" id="ev-go"></button>
+    </section>
     <div class="lang" role="group" aria-label="Idioma"><button data-l="es" id="hl-es">ES</button><button data-l="en" id="hl-en">EN</button></div>
     <p class="home-foot">grupoberrenchina.com</p>
   </div>
@@ -259,6 +303,28 @@ footer .by .disc{width:28px;height:28px;box-shadow:none}
     </footer>
   </div>
 </div>
+
+<div class="scrim" id="ev-scrim" hidden></div>
+<form class="sheet" id="ev-sheet" role="dialog" aria-modal="true" aria-labelledby="ev-title" hidden novalidate>
+  <div class="grab"></div>
+  <div class="sh"><div><small id="ev-kick"></small><b id="ev-title"></b></div><button type="button" class="x" id="ev-x" aria-label="Cerrar">×</button></div>
+  <div class="fld"><span class="l" id="ev-l-loc"></span><div class="chips" id="ev-loc"></div></div>
+  <div class="fld"><span class="l" id="ev-l-type"></span><div class="chips" id="ev-type"></div></div>
+  <div class="fld row2">
+    <div><label for="ev-date" id="ev-l-date"></label><input class="inp" type="date" id="ev-date" required></div>
+    <div><label for="ev-time" id="ev-l-time"></label><input class="inp" type="time" id="ev-time" step="900" required></div>
+  </div>
+  <div class="fld"><label for="ev-pax" id="ev-l-pax"></label><input class="inp" type="number" inputmode="numeric" min="1" max="500" id="ev-pax" required></div>
+  <div class="fld"><span class="l" id="ev-l-menu"></span><div class="chips" id="ev-menu"></div></div>
+  <div class="fld row2">
+    <div><label for="ev-name" id="ev-l-name"></label><input class="inp" id="ev-name" autocomplete="name" required></div>
+    <div><label for="ev-tel" id="ev-l-tel"></label><input class="inp" type="tel" id="ev-tel" autocomplete="tel" inputmode="tel" required></div>
+  </div>
+  <div class="fld"><label for="ev-more" id="ev-l-more"></label><textarea class="inp" id="ev-more" rows="2"></textarea></div>
+  <p class="err" id="ev-err" hidden></p>
+  <button class="send" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><span id="ev-send"></span></button>
+  <p class="fine" id="ev-fine"></p>
+</form>
 
 <script>
 /* En producción, todo lo de DATA sale de una hoja de Google por restaurante:
@@ -400,9 +466,9 @@ const DATA={
 /*FIN-BEBIDAS*/
   ]},
  "mar-y-monte":{
-  theme:"mym",demo:{es:"Carta real. Teléfono y horario pendientes de confirmar",en:"Real menu. Phone and opening hours to be confirmed"},logo:"../logos/marymonte.svg",name:"Mar y Monte",
+  theme:"mym",demo:{es:"Carta real. Horario pendiente de confirmar",en:"Real menu. Opening hours to be confirmed"},logo:"../logos/marymonte.svg",name:"Mar y Monte",
   address:"A.A.V.V. San García, Algeciras",hours:{es:"Horario por confirmar",en:"Opening hours to be confirmed"},
-  phone:null,maps:"https://www.google.com/maps/search/?api=1&query=Asociaci%C3%B3n+de+Vecinos+San+Garc%C3%ADa+Algeciras",
+  phone:"633 79 06 25",maps:"https://www.google.com/maps/search/?api=1&query=Asociaci%C3%B3n+de+Vecinos+San+Garc%C3%ADa+Algeciras",
   instagram:null,cross:true,anisakis:true,eyebrow:["A.A.V.V. Mar y Monte",{es:"Bar restaurante",en:"Bar & restaurant"}],
   today:{kind:"plato",price:6,incl:null,labels:{plato:{es:"Hoy",en:"Today"}},
     generic:{es:"Potajes, guisos, marmitako, arroz…",en:"Stews, casseroles, marmitako (tuna stew), rice dishes…"}},
@@ -497,7 +563,7 @@ function route(){
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===lang)));
   if(DATA[key]){ r.dataset.local=DATA[key].theme; $("home").hidden=true; $("carta").hidden=false; renderCarta(key); }
   else { delete r.dataset.local; $("carta").hidden=true; $("home").hidden=false;
-    $("h-sub").textContent=T[lang].sub; $("door-fuerte-s").textContent=T[lang].dfs; $("door-mym-s").textContent=T[lang].dmym; }
+    $("h-sub").textContent=T[lang].sub; $("door-fuerte-s").textContent=T[lang].dfs; $("door-mym-s").textContent=T[lang].dmym; renderEventos(); }
 }
 function renderCarta(key){
   const L=DATA[key], t=T[lang];
@@ -590,6 +656,56 @@ let io;
 function observe(){ if(io) io.disconnect(); if(!("IntersectionObserver" in window)) return;
   io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.target===e.target.id)); }),{rootMargin:"-80px 0px -70% 0px"});
   document.querySelectorAll("main section").forEach(s=>io.observe(s)); }
+// Eventos y grupos: formulario de la portada. Abre WhatsApp con la solicitud ya escrita.
+const EVENTOS={wa:"34633790625",
+ es:{k:"Eventos y grupos",h:"¿Celebras algo?",h2:"Nosotros ponemos la mesa",p:"Comidas de empresa, bodas, cumpleaños, Navidad o reuniones familiares en Fuerte Santiago o Mar y Monte. Cuéntanos qué necesitas y te preparamos menú y presupuesto.",q:"¿Qué vais a celebrar?",go:"Solicitar presupuesto",
+  quick:["empresa","navidad","cumple","familia","otro"],
+  kick:"Eventos · Grupo Berrenchina",title:"Cuéntanos tu celebración",loc:"¿Dónde?",type:"Tipo de evento",date:"Fecha",time:"Hora",pax:"Número de invitados",menu:"Menú",name:"Nombre",tel:"Teléfono",more:"¿Algo más?",morePh:"Alergias, niños, decoración…",send:"Enviar solicitud por WhatsApp",fine:"Te respondemos con propuesta de menú y presupuesto.",
+  types:{empresa:"Comida de empresa",navidad:"Navidad",boda:"Boda",cumple:"Cumpleaños",comunion:"Comunión o bautizo",familia:"Reunión familiar",otro:"Otro"},
+  qtypes:{empresa:"Empresa",navidad:"Navidad",cumple:"Cumpleaños",familia:"Familia",otro:"Otro"},
+  menus:{navidad:["Menú de Navidad","50 € · Fuerte Santiago"],medida:["A medida","os proponemos uno"]},
+  err:"Faltan datos: ",need:{loc:"lugar",type:"tipo de evento",date:"fecha",time:"hora",pax:"invitados",name:"nombre",tel:"teléfono"},
+  msg:(o)=>["Hola, quería pedir presupuesto para un evento:","📍 "+o.loc,"🎉 "+o.type,"📅 "+o.date+" · "+o.time,"👥 "+o.pax+" personas"].concat(o.menu?["🍽️ "+o.menu]:[],o.more?["📝 "+o.more]:[],["🙋 "+o.name+" · "+o.tel,"(Enviado desde grupoberrenchina.com)"]).join("\n")},
+ en:{k:"Events and groups",h:"Celebrating something?",h2:"We'll set the table",p:"Company lunches, weddings, birthdays, Christmas or family gatherings at Fuerte Santiago or Mar y Monte. Tell us what you need and we'll prepare a menu and a quote.",q:"What are you celebrating?",go:"Request a quote",
+  quick:["empresa","navidad","cumple","familia","otro"],
+  kick:"Events · Grupo Berrenchina",title:"Tell us about your event",loc:"Where?",type:"Type of event",date:"Date",time:"Time",pax:"Number of guests",menu:"Menu",name:"Name",tel:"Phone",more:"Anything else?",morePh:"Allergies, children, decoration…",send:"Send request via WhatsApp",fine:"We'll reply with a menu proposal and a quote.",
+  types:{empresa:"Company lunch",navidad:"Christmas",boda:"Wedding",cumple:"Birthday",comunion:"Communion or christening",familia:"Family gathering",otro:"Other"},
+  qtypes:{empresa:"Company",navidad:"Christmas",cumple:"Birthday",familia:"Family",otro:"Other"},
+  menus:{navidad:["Christmas menu","€50 · Fuerte Santiago"],medida:["Tailor-made","we'll suggest one"]},
+  err:"Missing: ",need:{loc:"venue",type:"type of event",date:"date",time:"time",pax:"guests",name:"name",tel:"phone"},
+  msg:(o)=>["Hello, I'd like a quote for an event:","📍 "+o.loc,"🎉 "+o.type,"📅 "+o.date+" · "+o.time,"👥 "+o.pax+" guests"].concat(o.menu?["🍽️ "+o.menu]:[],o.more?["📝 "+o.more]:[],["🙋 "+o.name+" · "+o.tel,"(Sent from grupoberrenchina.com)"]).join("\n")}};
+const EV={loc:null,type:null,menu:null};
+function evChips(box,items,key,onPick){ box.replaceChildren();
+  items.forEach(([v,lab,sub,img])=>{const b=el("button","chip"+(img?" loc":"")); b.type="button"; b.dataset.v=v;
+    if(img){const i=el("img"); i.src=img; i.alt=""; b.append(i);} b.append(document.createTextNode(lab)); if(sub) b.append(el("small",null,sub));
+    b.setAttribute("aria-pressed",String(EV[key]===v)); b.onclick=()=>{EV[key]=EV[key]===v&&key==="menu"?null:v; box.classList.remove("bad"); onPick&&onPick(); renderEventos();}; box.append(b);}); }
+function renderEventos(){ const E=EVENTOS[lang];
+  $("ev-k").textContent=E.k; $("ev-h").replaceChildren(document.createTextNode(E.h),el("span",null,E.h2)); $("ev-p").textContent=E.p; $("ev-q").textContent=E.q; $("ev-go").textContent=E.go;
+  evChips($("ev-quick"),E.quick.map(k=>[k,E.qtypes[k]]),"type",()=>openEventos());
+  $("ev-kick").textContent=E.kick; $("ev-title").textContent=E.title;
+  [["loc","loc"],["type","type"],["date","date"],["time","time"],["pax","pax"],["menu","menu"],["name","name"],["tel","tel"],["more","more"]].forEach(([id,k])=>$("ev-l-"+id).textContent=E[k]);
+  $("ev-more").placeholder=E.morePh; $("ev-send").textContent=E.send; $("ev-fine").textContent=E.fine;
+  evChips($("ev-loc"),[["fuerte-santiago","Fuerte Santiago",null,"../logos/fuerte.svg"],["mar-y-monte","Mar y Monte",null,"../logos/marymonte.svg"]],"loc");
+  evChips($("ev-type"),Object.entries(E.types).map(([k,v])=>[k,v]),"type");
+  // El Menú de Navidad solo existe en Fuerte Santiago
+  if(EV.menu==="navidad"&&EV.loc==="mar-y-monte") EV.menu=null;
+  const ms=Object.entries(E.menus).filter(([k])=>k!=="navidad"||EV.loc!=="mar-y-monte");
+  evChips($("ev-menu"),ms.map(([k,[a,b]])=>[k,a,b]),"menu");
+  $("ev-date").min=madridDate(); }
+function openEventos(){ $("ev-scrim").hidden=false; $("ev-sheet").hidden=false; document.body.style.overflow="hidden"; $("ev-sheet").scrollTop=0; }
+function closeEventos(){ $("ev-scrim").hidden=true; $("ev-sheet").hidden=true; document.body.style.overflow=""; }
+$("ev-go").onclick=openEventos; $("ev-x").onclick=closeEventos; $("ev-scrim").onclick=closeEventos;
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("ev-sheet").hidden) closeEventos(); });
+$("ev-sheet").addEventListener("input",()=>{$("ev-err").hidden=true;});
+$("ev-sheet").addEventListener("submit",e=>{ e.preventDefault(); const E=EVENTOS[lang], miss=[];
+  if(!EV.loc){miss.push(E.need.loc); $("ev-loc").classList.add("bad");}
+  if(!EV.type){miss.push(E.need.type); $("ev-type").classList.add("bad");}
+  [["date","date"],["time","time"],["pax","pax"],["name","name"],["tel","tel"]].forEach(([id,k])=>{const i=$("ev-"+id); i.classList.add("touched"); if(!i.value.trim()||!i.checkValidity()) miss.push(E.need[k]);});
+  const er=$("ev-err"); if(miss.length){ er.textContent=E.err+miss.join(", ")+"."; er.hidden=false; return; } er.hidden=true;
+  const d=new Date($("ev-date").value+"T12:00:00Z").toLocaleDateString(lang==="es"?"es-ES":"en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:"UTC"});
+  const txt=E.msg({loc:EV.loc==="mar-y-monte"?"Mar y Monte":"Fuerte Santiago",type:E.types[EV.type],date:d.charAt(0).toUpperCase()+d.slice(1),time:$("ev-time").value,pax:$("ev-pax").value,
+    menu:EV.menu?E.menus[EV.menu][0]+(EV.menu==="navidad"?" (50 €)":""):null,more:$("ev-more").value.trim(),name:$("ev-name").value.trim(),tel:$("ev-tel").value.trim()});
+  window.open("https://wa.me/"+EVENTOS.wa+"?text="+encodeURIComponent(txt),"_blank","noopener"); });
 $("back").onclick=()=>{ location.hash="inicio"; window.scrollTo(0,0); };
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l; try{localStorage.setItem("gb-lang",lang)}catch(e){} route();});
 window.addEventListener("hashchange",()=>{route(); window.scrollTo(0,0);});
