@@ -15,3 +15,9 @@ Cuando el dominio esté comprado:
    - Registros A de `@` a 185.199.108.153, 185.199.109.153, 185.199.110.153 y 185.199.111.153
    - Registro CNAME de `www` a `mauroibansa.github.io`
 2. En GitHub: Settings → Pages → Custom domain → `grupoberrenchina.com` → Save. Cuando el certificado esté listo, marcar "Enforce HTTPS".
+
+## Dos cartas
+
+- `index.html`: carta pública, sin bebidas. No se edita a mano.
+- `mesa-*/index.html`: carta completa con bebidas, solo para el QR de mesa (noindex, sin enlaces desde la pública). Es la que se edita.
+- Tras editarla: `python3 build.py` regenera `index.html` quitando lo marcado entre `/*BEBIDAS*/` y `/*FIN-BEBIDAS*/`.
