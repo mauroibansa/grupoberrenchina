@@ -215,30 +215,34 @@ footer .by{display:flex;align-items:center;gap:8px}
 footer .by .disc{width:28px;height:28px;box-shadow:none}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}.door .go{transition:transform .15s}}
 
-/* Eventos y grupos (portada): bloque en tabaco con texto blanco, como las puertas, y hoja inferior con el formulario.
-   La solicitud se envía por WhatsApp al número de eventos (EVENTOS.wa). */
-.ev{width:100%;text-align:left;background:#7a5640;color:#fff;border-radius:18px;padding:22px 20px 20px}
-.ev .k{font:700 11px var(--f-ui);letter-spacing:.22em;text-transform:uppercase;color:#f1d8c2}
-.ev h2{margin:6px 0 12px;font:800 italic 26px/1.1 var(--f-ui);color:#fff}
-.ev h2 span{display:block;font:500 italic 17px/1.3 var(--f-ui);color:#f1d8c2;margin-top:4px}
-.ev p{margin:0 0 16px;color:rgba(255,255,255,.86);font-size:14.5px}
-.ev .q{font:600 13px var(--f-ui);margin-bottom:8px}
-.ev .chips{margin-bottom:16px}
-.ev .chip{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
-.ev .go{display:flex;justify-content:center;width:100%;padding:13px;border-radius:999px;background:#f6ece3;color:#4a3324;font:800 15px var(--f-ui);border:0;cursor:pointer}
+/* Eventos y grupos (portada): solo Fuerte Santiago (en Mar y Monte no se reserva). Misma identidad que la tarjeta de hoy
+   del Fuerte: granate, dorado, Montserrat + Kaushan. La solicitud se envía por WhatsApp (EVENTOS.wa). */
+.ev{--gold:#d2ad72;--cream:#f6efe6;width:100%;text-align:left;background:#6e1a17;color:var(--cream);border-radius:20px;padding:22px 20px 20px;position:relative;overflow:hidden}
+.ev::before{content:"";position:absolute;inset:7px;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);border-radius:14px;pointer-events:none}
+.ev .k{display:flex;align-items:center;gap:10px;font:700 11px var(--f-ui);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+#home .ev .k .disc{width:52px;height:52px;box-shadow:none}
+.ev .k span{display:block}
+.ev .k small{display:block;font:600 10px var(--f-ui);letter-spacing:.18em;color:var(--cream);opacity:.8;margin-top:3px}
+.ev h2{margin:14px 0 12px;font:800 32px/.95 var(--f-ui);text-transform:uppercase;letter-spacing:-.01em;color:var(--cream)}
+.ev h2 span{display:block;font:400 30px/1.05 var(--f-script);text-transform:none;letter-spacing:0;color:var(--gold);margin-top:4px}
+.ev p{margin:0 0 16px;color:color-mix(in srgb,var(--cream) 88%,transparent);font-size:14.5px}
+.ev .q{font:700 11.5px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+.ev .chips{margin-bottom:16px;position:relative}
+.ev .chip{background:transparent;border-color:color-mix(in srgb,var(--gold) 55%,transparent);color:var(--cream)}
+.ev .go{position:relative;display:flex;justify-content:center;width:100%;padding:13px;border-radius:999px;background:var(--gold);color:#3f0c0b;font:800 13.5px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;border:0;cursor:pointer}
 .chips{display:flex;gap:7px;flex-wrap:wrap}
 .chip{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:8px 11px;font:600 13.5px/1.15 var(--f-ui);color:var(--ink);text-align:center;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center}
 .chip small{display:block;font:500 11px var(--f-ui);color:var(--muted);margin-top:2px}
-.chip[aria-pressed="true"]{background:#7a5640;border-color:transparent;color:#fff}
-.chip[aria-pressed="true"] small{color:#f1d8c2}
+.chip[aria-pressed="true"]{background:#6e1a17;border-color:transparent;color:#fff}
+.chip[aria-pressed="true"] small{color:#e9cfa3}
 .chip.loc{flex-direction:row;gap:7px;padding:6px 12px 6px 6px}
 .chip.loc img{width:30px;height:30px;border-radius:50%;background:#fff}
 .scrim{position:fixed;inset:0;background:rgba(20,16,12,.45);z-index:20}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--surface);color:var(--ink);border-radius:22px 22px 0 0;padding:10px 20px 22px;max-width:640px;max-height:92vh;overflow-y:auto;margin:0 auto;box-shadow:0 -10px 40px rgba(0,0,0,.2);text-align:left}
 .sheet .grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 12px}
-.sheet .sh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding-bottom:12px;border-bottom:1.5px solid #c9a98f;margin-bottom:6px}
-.sheet .sh small{display:block;font:700 11px var(--f-ui);letter-spacing:.2em;text-transform:uppercase;color:#9a6a45}
-.sheet .sh b{display:block;font:800 italic 23px/1.1 var(--f-ui);margin-top:3px}
+.sheet .sh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding-bottom:12px;border-bottom:1.5px solid #d2ad72;margin-bottom:6px}
+.sheet .sh small{display:block;font:700 11px var(--f-ui);letter-spacing:.2em;text-transform:uppercase;color:#8a6326}
+.sheet .sh b{display:block;font:400 30px/1.05 var(--f-script);color:#6e1a17;margin-top:4px}
 .sheet .x{width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--bg);font:600 18px var(--f-ui);color:var(--muted);cursor:pointer}
 .fld{margin-top:14px}
 .fld label,.fld .l{display:block;font:700 12px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
@@ -246,7 +250,7 @@ footer .by .disc{width:28px;height:28px;box-shadow:none}
 .inp{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:11px 12px;font:500 16px var(--f-ui);color:var(--ink);min-height:47px}
 textarea.inp{resize:vertical;min-height:70px}
 .inp:invalid.touched,.chips.bad{outline:2px solid #c0392b;outline-offset:2px}
-.send{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px;border-radius:999px;background:#7a5640;color:#fff;font:700 15.5px var(--f-ui);border:0;cursor:pointer}
+.send{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px;border-radius:999px;background:#6e1a17;color:#fff;font:700 15.5px var(--f-ui);border:0;cursor:pointer}
 .send svg{width:19px;height:19px}
 .fine{margin:9px 0 0;text-align:center;font-size:12.5px;color:var(--muted)}
 .err{margin:10px 0 0;text-align:center;font:600 13px var(--f-ui);color:#c0392b}
@@ -276,7 +280,7 @@ textarea.inp{resize:vertical;min-height:70px}
       </a>
     </div>
     <section class="ev" id="eventos" aria-labelledby="ev-h">
-      <div class="k" id="ev-k"></div>
+      <div class="k"><span class="disc"><img src="logos/fuerte.svg" alt=""></span><span><span id="ev-k"></span><small id="ev-k2"></small></span></div>
       <h2 id="ev-h"></h2>
       <p id="ev-p"></p>
       <div class="q" id="ev-q"></div>
@@ -325,7 +329,6 @@ textarea.inp{resize:vertical;min-height:70px}
 <form class="sheet" id="ev-sheet" role="dialog" aria-modal="true" aria-labelledby="ev-title" hidden novalidate>
   <div class="grab"></div>
   <div class="sh"><div><small id="ev-kick"></small><b id="ev-title"></b></div><button type="button" class="x" id="ev-x" aria-label="Cerrar">×</button></div>
-  <div class="fld"><span class="l" id="ev-l-loc"></span><div class="chips" id="ev-loc"></div></div>
   <div class="fld"><span class="l" id="ev-l-type"></span><div class="chips" id="ev-type"></div></div>
   <div class="fld row2">
     <div><label for="ev-date" id="ev-l-date"></label><input class="inp" type="date" id="ev-date" required></div>
@@ -418,7 +421,7 @@ const DATA={
  "mar-y-monte":{
   theme:"mym",demo:{es:"Carta real. Horario pendiente de confirmar",en:"Real menu. Opening hours to be confirmed"},logo:"logos/marymonte.svg",name:"Mar y Monte",
   address:"A.A.V.V. San García, Algeciras",hours:{es:"Horario por confirmar",en:"Opening hours to be confirmed"},
-  phone:"633 79 06 25",maps:"https://www.google.com/maps/search/?api=1&query=Asociaci%C3%B3n+de+Vecinos+San+Garc%C3%ADa+Algeciras",
+  phone:null,maps:"https://www.google.com/maps/search/?api=1&query=Asociaci%C3%B3n+de+Vecinos+San+Garc%C3%ADa+Algeciras",
   instagram:null,cross:true,anisakis:true,eyebrow:["A.A.V.V. Mar y Monte",{es:"Bar restaurante",en:"Bar & restaurant"}],
   today:{kind:"plato",price:6,incl:null,labels:{plato:{es:"Hoy",en:"Today"}},
     generic:{es:"Potajes, guisos, marmitako, arroz…",en:"Stews, casseroles, marmitako (tuna stew), rice dishes…"}},
@@ -506,6 +509,7 @@ function viewDay(L){ let d=madridDate(), dow=madridDow(); const A=L.today.ahead;
 function today(){return new Date().toLocaleDateString(lang==="es"?"es-ES":"en-GB",{weekday:"long",day:"numeric",month:"long"});}
 
 function route(){
+  if(!$("ev-sheet").hidden) closeEventos();
   const key=location.hash.replace("#","");
   const r=document.documentElement;
   document.documentElement.lang=lang;
@@ -608,39 +612,35 @@ function observe(){ if(io) io.disconnect(); if(!("IntersectionObserver" in windo
   document.querySelectorAll("main section").forEach(s=>io.observe(s)); }
 // Eventos y grupos: formulario de la portada. Abre WhatsApp con la solicitud ya escrita.
 const EVENTOS={wa:"34633790625",
- es:{k:"Eventos y grupos",h:"¿Celebras algo?",h2:"Nosotros ponemos la mesa",p:"Comidas de empresa, bodas, cumpleaños, Navidad o reuniones familiares en Fuerte Santiago o Mar y Monte. Cuéntanos qué necesitas y te preparamos menú y presupuesto.",q:"¿Qué vais a celebrar?",go:"Solicitar presupuesto",
+ es:{k:"Fuerte Santiago",k2:"Eventos y grupos",h:"¿Celebras algo?",h2:"Nosotros ponemos la mesa",p:"Comidas de empresa, bodas, cumpleaños, Navidad o reuniones familiares en el Restaurante Fuerte Santiago. Cuéntanos qué necesitas y te preparamos menú y presupuesto.",q:"¿Qué vais a celebrar?",go:"Solicitar presupuesto",
   quick:["empresa","navidad","cumple","familia","otro"],
-  kick:"Eventos · Grupo Berrenchina",title:"Cuéntanos tu celebración",loc:"¿Dónde?",type:"Tipo de evento",date:"Fecha",time:"Hora",pax:"Número de invitados",menu:"Menú",name:"Nombre",tel:"Teléfono",more:"¿Algo más?",morePh:"Alergias, niños, decoración…",send:"Enviar solicitud por WhatsApp",fine:"Te respondemos con propuesta de menú y presupuesto.",
+  kick:"Eventos · Fuerte Santiago",title:"Cuéntanos tu celebración",loc:"¿Dónde?",type:"Tipo de evento",date:"Fecha",time:"Hora",pax:"Número de invitados",menu:"Menú",name:"Nombre",tel:"Teléfono",more:"¿Algo más?",morePh:"Alergias, niños, decoración…",send:"Enviar solicitud por WhatsApp",fine:"Te respondemos con propuesta de menú y presupuesto.",
   types:{empresa:"Comida de empresa",navidad:"Navidad",boda:"Boda",cumple:"Cumpleaños",comunion:"Comunión o bautizo",familia:"Reunión familiar",otro:"Otro"},
   qtypes:{empresa:"Empresa",navidad:"Navidad",cumple:"Cumpleaños",familia:"Familia",otro:"Otro"},
-  menus:{navidad:["Menú de Navidad","50 € · Fuerte Santiago"],medida:["A medida","os proponemos uno"]},
+  menus:{navidad:["Menú de Navidad","50 € por persona"],medida:["A medida","os proponemos uno"]},
   err:"Faltan datos: ",need:{loc:"lugar",type:"tipo de evento",date:"fecha",time:"hora",pax:"invitados",name:"nombre",tel:"teléfono"},
   msg:(o)=>["Hola, quería pedir presupuesto para un evento:","📍 "+o.loc,"🎉 "+o.type,"📅 "+o.date+" · "+o.time,"👥 "+o.pax+" personas"].concat(o.menu?["🍽️ "+o.menu]:[],o.more?["📝 "+o.more]:[],["🙋 "+o.name+" · "+o.tel,"(Enviado desde grupoberrenchina.com)"]).join("\n")},
- en:{k:"Events and groups",h:"Celebrating something?",h2:"We'll set the table",p:"Company lunches, weddings, birthdays, Christmas or family gatherings at Fuerte Santiago or Mar y Monte. Tell us what you need and we'll prepare a menu and a quote.",q:"What are you celebrating?",go:"Request a quote",
+ en:{k:"Fuerte Santiago",k2:"Events and groups",h:"Celebrating something?",h2:"We'll set the table",p:"Company lunches, weddings, birthdays, Christmas or family gatherings at Fuerte Santiago restaurant. Tell us what you need and we'll prepare a menu and a quote.",q:"What are you celebrating?",go:"Request a quote",
   quick:["empresa","navidad","cumple","familia","otro"],
-  kick:"Events · Grupo Berrenchina",title:"Tell us about your event",loc:"Where?",type:"Type of event",date:"Date",time:"Time",pax:"Number of guests",menu:"Menu",name:"Name",tel:"Phone",more:"Anything else?",morePh:"Allergies, children, decoration…",send:"Send request via WhatsApp",fine:"We'll reply with a menu proposal and a quote.",
+  kick:"Events · Fuerte Santiago",title:"Tell us about your event",loc:"Where?",type:"Type of event",date:"Date",time:"Time",pax:"Number of guests",menu:"Menu",name:"Name",tel:"Phone",more:"Anything else?",morePh:"Allergies, children, decoration…",send:"Send request via WhatsApp",fine:"We'll reply with a menu proposal and a quote.",
   types:{empresa:"Company lunch",navidad:"Christmas",boda:"Wedding",cumple:"Birthday",comunion:"Communion or christening",familia:"Family gathering",otro:"Other"},
   qtypes:{empresa:"Company",navidad:"Christmas",cumple:"Birthday",familia:"Family",otro:"Other"},
-  menus:{navidad:["Christmas menu","€50 · Fuerte Santiago"],medida:["Tailor-made","we'll suggest one"]},
+  menus:{navidad:["Christmas menu","€50 per person"],medida:["Tailor-made","we'll suggest one"]},
   err:"Missing: ",need:{loc:"venue",type:"type of event",date:"date",time:"time",pax:"guests",name:"name",tel:"phone"},
   msg:(o)=>["Hello, I'd like a quote for an event:","📍 "+o.loc,"🎉 "+o.type,"📅 "+o.date+" · "+o.time,"👥 "+o.pax+" guests"].concat(o.menu?["🍽️ "+o.menu]:[],o.more?["📝 "+o.more]:[],["🙋 "+o.name+" · "+o.tel,"(Sent from grupoberrenchina.com)"]).join("\n")}};
-const EV={loc:null,type:null,menu:null};
+const EV={loc:"fuerte-santiago",type:null,menu:null};
 function evChips(box,items,key,onPick){ box.replaceChildren();
   items.forEach(([v,lab,sub,img])=>{const b=el("button","chip"+(img?" loc":"")); b.type="button"; b.dataset.v=v;
     if(img){const i=el("img"); i.src=img; i.alt=""; b.append(i);} b.append(document.createTextNode(lab)); if(sub) b.append(el("small",null,sub));
     b.setAttribute("aria-pressed",String(EV[key]===v)); b.onclick=()=>{EV[key]=EV[key]===v&&key==="menu"?null:v; box.classList.remove("bad"); onPick&&onPick(); renderEventos();}; box.append(b);}); }
 function renderEventos(){ const E=EVENTOS[lang];
-  $("ev-k").textContent=E.k; $("ev-h").replaceChildren(document.createTextNode(E.h),el("span",null,E.h2)); $("ev-p").textContent=E.p; $("ev-q").textContent=E.q; $("ev-go").textContent=E.go;
+  $("ev-k").textContent=E.k; $("ev-k2").textContent=E.k2; $("ev-h").replaceChildren(document.createTextNode(E.h),el("span",null,E.h2)); $("ev-p").textContent=E.p; $("ev-q").textContent=E.q; $("ev-go").textContent=E.go;
   evChips($("ev-quick"),E.quick.map(k=>[k,E.qtypes[k]]),"type",()=>openEventos());
   $("ev-kick").textContent=E.kick; $("ev-title").textContent=E.title;
-  [["loc","loc"],["type","type"],["date","date"],["time","time"],["pax","pax"],["menu","menu"],["name","name"],["tel","tel"],["more","more"]].forEach(([id,k])=>$("ev-l-"+id).textContent=E[k]);
+  [["type","type"],["date","date"],["time","time"],["pax","pax"],["menu","menu"],["name","name"],["tel","tel"],["more","more"]].forEach(([id,k])=>$("ev-l-"+id).textContent=E[k]);
   $("ev-more").placeholder=E.morePh; $("ev-send").textContent=E.send; $("ev-fine").textContent=E.fine;
-  evChips($("ev-loc"),[["fuerte-santiago","Fuerte Santiago",null,"logos/fuerte.svg"],["mar-y-monte","Mar y Monte",null,"logos/marymonte.svg"]],"loc");
   evChips($("ev-type"),Object.entries(E.types).map(([k,v])=>[k,v]),"type");
-  // El Menú de Navidad solo existe en Fuerte Santiago
-  if(EV.menu==="navidad"&&EV.loc==="mar-y-monte") EV.menu=null;
-  const ms=Object.entries(E.menus).filter(([k])=>k!=="navidad"||EV.loc!=="mar-y-monte");
-  evChips($("ev-menu"),ms.map(([k,[a,b]])=>[k,a,b]),"menu");
+  evChips($("ev-menu"),Object.entries(E.menus).map(([k,[a,b]])=>[k,a,b]),"menu");
   $("ev-date").min=madridDate(); }
 function openEventos(){ $("ev-scrim").hidden=false; $("ev-sheet").hidden=false; document.body.style.overflow="hidden"; $("ev-sheet").scrollTop=0; }
 function closeEventos(){ $("ev-scrim").hidden=true; $("ev-sheet").hidden=true; document.body.style.overflow=""; }
@@ -648,12 +648,11 @@ $("ev-go").onclick=openEventos; $("ev-x").onclick=closeEventos; $("ev-scrim").on
 document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("ev-sheet").hidden) closeEventos(); });
 $("ev-sheet").addEventListener("input",()=>{$("ev-err").hidden=true;});
 $("ev-sheet").addEventListener("submit",e=>{ e.preventDefault(); const E=EVENTOS[lang], miss=[];
-  if(!EV.loc){miss.push(E.need.loc); $("ev-loc").classList.add("bad");}
   if(!EV.type){miss.push(E.need.type); $("ev-type").classList.add("bad");}
   [["date","date"],["time","time"],["pax","pax"],["name","name"],["tel","tel"]].forEach(([id,k])=>{const i=$("ev-"+id); i.classList.add("touched"); if(!i.value.trim()||!i.checkValidity()) miss.push(E.need[k]);});
   const er=$("ev-err"); if(miss.length){ er.textContent=E.err+miss.join(", ")+"."; er.hidden=false; return; } er.hidden=true;
   const d=new Date($("ev-date").value+"T12:00:00Z").toLocaleDateString(lang==="es"?"es-ES":"en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:"UTC"});
-  const txt=E.msg({loc:EV.loc==="mar-y-monte"?"Mar y Monte":"Fuerte Santiago",type:E.types[EV.type],date:d.charAt(0).toUpperCase()+d.slice(1),time:$("ev-time").value,pax:$("ev-pax").value,
+  const txt=E.msg({loc:"Fuerte Santiago",type:E.types[EV.type],date:d.charAt(0).toUpperCase()+d.slice(1),time:$("ev-time").value,pax:$("ev-pax").value,
     menu:EV.menu?E.menus[EV.menu][0]+(EV.menu==="navidad"?" (50 €)":""):null,more:$("ev-more").value.trim(),name:$("ev-name").value.trim(),tel:$("ev-tel").value.trim()});
   window.open("https://wa.me/"+EVENTOS.wa+"?text="+encodeURIComponent(txt),"_blank","noopener"); });
 $("back").onclick=()=>{ location.hash="inicio"; window.scrollTo(0,0); };
