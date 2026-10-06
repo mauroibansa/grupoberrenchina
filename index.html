@@ -221,8 +221,6 @@ footer .by .disc{width:28px;height:28px;box-shadow:none}
 .ev::before{content:"";position:absolute;inset:7px;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);border-radius:14px;pointer-events:none}
 .ev .k{display:flex;align-items:center;gap:10px;font:700 11px var(--f-ui);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 #home .ev .k .disc{width:52px;height:52px;box-shadow:none}
-.ev .k span{display:block}
-.ev .k small{display:block;font:600 10px var(--f-ui);letter-spacing:.18em;color:var(--cream);opacity:.8;margin-top:3px}
 .ev h2{margin:14px 0 12px;font:800 32px/.95 var(--f-ui);text-transform:uppercase;letter-spacing:-.01em;color:var(--cream)}
 .ev h2 span{display:block;font:400 30px/1.05 var(--f-script);text-transform:none;letter-spacing:0;color:var(--gold);margin-top:4px}
 .ev p{margin:0 0 16px;color:color-mix(in srgb,var(--cream) 88%,transparent);font-size:14.5px}
@@ -280,7 +278,7 @@ textarea.inp{resize:vertical;min-height:70px}
       </a>
     </div>
     <section class="ev" id="eventos" aria-labelledby="ev-h">
-      <div class="k"><span class="disc"><img src="logos/fuerte.svg" alt=""></span><span><span id="ev-k"></span><small id="ev-k2"></small></span></div>
+      <div class="k"><span class="disc"><img src="logos/fuerte.svg" alt="Fuerte Santiago"></span><span id="ev-k"></span></div>
       <h2 id="ev-h"></h2>
       <p id="ev-p"></p>
       <div class="q" id="ev-q"></div>
@@ -612,7 +610,7 @@ function observe(){ if(io) io.disconnect(); if(!("IntersectionObserver" in windo
   document.querySelectorAll("main section").forEach(s=>io.observe(s)); }
 // Eventos y grupos: formulario de la portada. Abre WhatsApp con la solicitud ya escrita.
 const EVENTOS={wa:"34633790625",
- es:{k:"Fuerte Santiago",k2:"Eventos y grupos",h:"¿Celebras algo?",h2:"Nosotros ponemos la mesa",p:"Comidas de empresa, bodas, cumpleaños, Navidad o reuniones familiares en el Restaurante Fuerte Santiago. Cuéntanos qué necesitas y te preparamos menú y presupuesto.",q:"¿Qué vais a celebrar?",go:"Solicitar presupuesto",
+ es:{k:"Eventos y grupos",h:"¿Celebras algo?",h2:"Nosotros ponemos la mesa",p:"Comidas de empresa, bodas, cumpleaños, Navidad o reuniones familiares en el Restaurante Fuerte Santiago. Cuéntanos qué necesitas y te preparamos menú y presupuesto.",q:"¿Qué vais a celebrar?",go:"Solicitar presupuesto",
   quick:["empresa","navidad","cumple","familia","otro"],
   kick:"Eventos · Fuerte Santiago",title:"Cuéntanos tu celebración",loc:"¿Dónde?",type:"Tipo de evento",date:"Fecha",time:"Hora",pax:"Número de invitados",menu:"Menú",name:"Nombre",tel:"Teléfono",more:"¿Algo más?",morePh:"Alergias, niños, decoración…",send:"Enviar solicitud por WhatsApp",fine:"Te respondemos con propuesta de menú y presupuesto.",
   types:{empresa:"Comida de empresa",navidad:"Navidad",boda:"Boda",cumple:"Cumpleaños",comunion:"Comunión o bautizo",familia:"Reunión familiar",otro:"Otro"},
@@ -620,7 +618,7 @@ const EVENTOS={wa:"34633790625",
   menus:{navidad:["Menú de Navidad","50 € por persona"],medida:["A medida","os proponemos uno"]},
   err:"Faltan datos: ",need:{loc:"lugar",type:"tipo de evento",date:"fecha",time:"hora",pax:"invitados",name:"nombre",tel:"teléfono"},
   msg:(o)=>["Hola, quería pedir presupuesto para un evento:","📍 "+o.loc,"🎉 "+o.type,"📅 "+o.date+" · "+o.time,"👥 "+o.pax+" personas"].concat(o.menu?["🍽️ "+o.menu]:[],o.more?["📝 "+o.more]:[],["🙋 "+o.name+" · "+o.tel,"(Enviado desde grupoberrenchina.com)"]).join("\n")},
- en:{k:"Fuerte Santiago",k2:"Events and groups",h:"Celebrating something?",h2:"We'll set the table",p:"Company lunches, weddings, birthdays, Christmas or family gatherings at Fuerte Santiago restaurant. Tell us what you need and we'll prepare a menu and a quote.",q:"What are you celebrating?",go:"Request a quote",
+ en:{k:"Events and groups",h:"Celebrating something?",h2:"We'll set the table",p:"Company lunches, weddings, birthdays, Christmas or family gatherings at Fuerte Santiago restaurant. Tell us what you need and we'll prepare a menu and a quote.",q:"What are you celebrating?",go:"Request a quote",
   quick:["empresa","navidad","cumple","familia","otro"],
   kick:"Events · Fuerte Santiago",title:"Tell us about your event",loc:"Where?",type:"Type of event",date:"Date",time:"Time",pax:"Number of guests",menu:"Menu",name:"Name",tel:"Phone",more:"Anything else?",morePh:"Allergies, children, decoration…",send:"Send request via WhatsApp",fine:"We'll reply with a menu proposal and a quote.",
   types:{empresa:"Company lunch",navidad:"Christmas",boda:"Wedding",cumple:"Birthday",comunion:"Communion or christening",familia:"Family gathering",otro:"Other"},
@@ -634,7 +632,7 @@ function evChips(box,items,key,onPick){ box.replaceChildren();
     if(img){const i=el("img"); i.src=img; i.alt=""; b.append(i);} b.append(document.createTextNode(lab)); if(sub) b.append(el("small",null,sub));
     b.setAttribute("aria-pressed",String(EV[key]===v)); b.onclick=()=>{EV[key]=EV[key]===v&&key==="menu"?null:v; box.classList.remove("bad"); onPick&&onPick(); renderEventos();}; box.append(b);}); }
 function renderEventos(){ const E=EVENTOS[lang];
-  $("ev-k").textContent=E.k; $("ev-k2").textContent=E.k2; $("ev-h").replaceChildren(document.createTextNode(E.h),el("span",null,E.h2)); $("ev-p").textContent=E.p; $("ev-q").textContent=E.q; $("ev-go").textContent=E.go;
+  $("ev-k").textContent=E.k; $("ev-h").replaceChildren(document.createTextNode(E.h),el("span",null,E.h2)); $("ev-p").textContent=E.p; $("ev-q").textContent=E.q; $("ev-go").textContent=E.go;
   evChips($("ev-quick"),E.quick.map(k=>[k,E.qtypes[k]]),"type",()=>openEventos());
   $("ev-kick").textContent=E.kick; $("ev-title").textContent=E.title;
   [["type","type"],["date","date"],["time","time"],["pax","pax"],["menu","menu"],["name","name"],["tel","tel"],["more","more"]].forEach(([id,k])=>$("ev-l-"+id).textContent=E[k]);
