@@ -27,6 +27,38 @@
           "Ask our staff"
         ]
       ]
+    },
+    "2026-10-06": {
+      "primeros": [
+        [
+          "Potaje de alubias blancas",
+          "White bean stew"
+        ],
+        [
+          "Ensalada de patatas aliñadas",
+          "Dressed potato salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Muslos de pollo al horno",
+          "Oven-roasted chicken thighs"
+        ],
+        [
+          "Pescado del día",
+          "Fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
     }
   },
   "mar-y-monte": {
