@@ -123,6 +123,38 @@
           "Seasonal fruit or coffee"
         ]
       ]
+    },
+    "2026-10-09": {
+      "primeros": [
+        [
+          "Arroz a la marinera",
+          "Seafood rice"
+        ],
+        [
+          "Patatas alioli",
+          "Potatoes with aioli"
+        ]
+      ],
+      "segundos": [
+        [
+          "Lomo a la pimienta con patatas",
+          "Pork loin with pepper sauce and chips"
+        ],
+        [
+          "Pescaíto del día con ensalada",
+          "Fried fish of the day with salad"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
     }
   },
   "mar-y-monte": {
