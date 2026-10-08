@@ -91,6 +91,38 @@
           "Seasonal fruit or coffee"
         ]
       ]
+    },
+    "2026-10-08": {
+      "primeros": [
+        [
+          "Crema de verdura",
+          "Cream of vegetable soup"
+        ],
+        [
+          "Ensalada mixta",
+          "Mixed salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Albóndigas en salsa",
+          "Meatballs in sauce"
+        ],
+        [
+          "Pescaíto del día con ensalada",
+          "Fried fish of the day with salad"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
     }
   },
   "mar-y-monte": {
