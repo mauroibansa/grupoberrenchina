@@ -262,14 +262,14 @@ textarea.inp{resize:vertical;min-height:70px}
 .cn-k{font:700 11px var(--f-ui);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cn-logo{filter:invert(1)}}
 :root[data-theme="dark"] .cn-logo{filter:invert(1)}
-.cn-b{display:flex;align-items:center;gap:14px;padding:10px 12px 10px 10px;border-radius:18px;background:#1d1d1b;color:#fff;text-decoration:none;border:1px solid #1d1d1b}
-.cn-d{flex:none;width:58px;padding:7px 0 8px;border-radius:12px;background:#5f7a63;text-align:center;line-height:1}
-.cn-d b{display:block;font:800 24px var(--f-ui)}
-.cn-d small{display:block;font:700 10px var(--f-ui);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
-.cn-a{min-width:0}
-.cn-a b{display:block;font:800 italic 17px/1.15 var(--f-ui)}
-.cn-a small{display:block;font:500 12.5px var(--f-ui);opacity:.75;margin-top:3px}
-.cn-go{margin-left:auto;flex:none;padding:8px 12px;border-radius:999px;background:#fff;color:#1d1d1b;font:700 11.5px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.cn-b{display:flex;align-items:center;gap:10px;min-height:80px;padding:0 12px 0 0;border-radius:18px;background:#1d1d1b;color:#fff;text-decoration:none;border:1px solid #1d1d1b;overflow:hidden}
+.cn-ph{flex:none;align-self:stretch;width:80px;position:relative;background:#1d1d1b}
+.cn-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+.cn-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 45%,#1d1d1b)}
+.cn-a{min-width:0;padding:10px 0}
+.cn-a b{display:block;font:800 italic 16px/1.15 var(--f-ui)}
+.cn-a small{display:block;font:700 10.5px var(--f-ui);letter-spacing:.05em;white-space:nowrap;text-transform:uppercase;color:#a9c2ac;margin-top:5px}
+.cn-go{margin-left:auto;flex:none;padding:8px 11px;border-radius:999px;background:#fff;color:#1d1d1b;font:700 11.5px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 .cn-b.pend .cn-go{background:transparent;color:#fff;border:1px dashed rgba(255,255,255,.45);opacity:.8}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cn-b{border-color:#3a3632}}
 :root[data-theme="dark"] .cn-b{border-color:#3a3632}
@@ -746,12 +746,12 @@ $("ev-sheet").addEventListener("submit",e=>{ e.preventDefault(); const E=EVENTOS
   const txt=E.msg({loc:"Fuerte Santiago",type:E.types[EV.type],date:d.charAt(0).toUpperCase()+d.slice(1),time:$("ev-time").value,pax:$("ev-pax").value,
     menu:EV.menu?E.menus[EV.menu][0]+(EV.menu==="navidad"?" (50 €)":""):null,more:$("ev-more").value.trim(),name:$("ev-name").value.trim(),tel:$("ev-tel").value.trim()});
   window.open("https://wa.me/"+EVENTOS.wa+"?text="+encodeURIComponent(txt),"_blank","noopener"); });
-// Conciertos del Centro de Interpretación Paco de Lucía (Algeciras). url: enlace de compra de la entrada; mientras sea null el botón
+// Conciertos del Centro de Interpretación Paco de Lucía (Algeciras). img: foto del artista recortada del cartel (img/). url: enlace de compra de la entrada; mientras sea null el botón
 // sale como "Pronto" sin enlace. Cada concierto se ve hasta el final de su día (hora de Madrid) y luego desaparece solo.
 const CONCIERTOS=[
- {d:"2026-10-23",t:"20:00",a:"David de Arahal",url:"https://www.ocio-entradas.com/par-public/rest/evento/id/9354472"},
- {d:"2026-10-29",t:"20:00",a:"Naima Jazz",url:"https://www.ocio-entradas.com/par-public/rest/evento/id/9354516"},
- {d:"2026-10-30",t:"20:00",a:"Rafael del Zambo",url:"https://www.ocio-entradas.com/par-public/rest/evento/id/9354530"}];
+ {d:"2026-10-23",t:"20:00",a:"David de Arahal",img:"../img/concierto-david-de-arahal.jpg",url:"https://www.ocio-entradas.com/par-public/rest/evento/id/9354472"},
+ {d:"2026-10-29",t:"20:00",a:"Naima Jazz",img:"../img/concierto-naima-jazz.jpg",url:"https://www.ocio-entradas.com/par-public/rest/evento/id/9354516"},
+ {d:"2026-10-30",t:"20:00",a:"Rafael del Zambo",img:"../img/concierto-rafael-del-zambo.jpg",url:"https://www.ocio-entradas.com/par-public/rest/evento/id/9354530"}];
 const CN={es:{k:"Próximos conciertos · Algeciras",buy:"Entradas",soon:"Pronto",buyL:"Comprar entrada",soonL:"Venta de entradas próximamente"},
  en:{k:"Upcoming concerts · Algeciras",buy:"Tickets",soon:"Soon",buyL:"Buy tickets",soonL:"Tickets on sale soon"}};
 function renderConciertos(){ const C=CN[lang], loc=lang==="es"?"es-ES":"en-GB", hoy=madridDate(), box=$("cn-list"); box.replaceChildren();
@@ -760,9 +760,9 @@ function renderConciertos(){ const C=CN[lang], loc=lang==="es"?"es-ES":"en-GB", 
   next.forEach(c=>{ const o=new Date(c.d+"T12:00:00Z"), f=x=>o.toLocaleDateString(loc,Object.assign({timeZone:"UTC"},x)).replace(".","");
     const b=el(c.url?"a":"div","cn-b"+(c.url?"":" pend"));
     if(c.url){ b.href=c.url; b.target="_blank"; b.rel="noopener"; }
-    const dt=el("span","cn-d"); dt.append(el("b",null,f({day:"numeric"})),el("small",null,f({month:"short"})));
-    const wd=f({weekday:"long"}), a=el("span","cn-a"); a.append(el("b",null,c.a),el("small",null,wd.charAt(0).toUpperCase()+wd.slice(1)+" · "+c.t));
-    b.append(dt,a,el("span","cn-go",c.url?C.buy+" →":C.soon));
+    const ph=el("span","cn-ph"), im=el("img"); im.src=c.img; im.alt=""; im.loading="lazy"; ph.append(im);
+    const a=el("span","cn-a"); a.append(el("b",null,c.a),el("small",null,f({weekday:"short",day:"numeric",month:"short"}).replace(/\./g,"").replace(/,/g,"")+" · "+c.t));
+    b.append(ph,a,el("span","cn-go",c.url?C.buy+" →":C.soon));
     b.setAttribute("aria-label",c.a+", "+f({weekday:"long",day:"numeric",month:"long"})+", "+c.t+". "+(c.url?C.buyL:C.soonL));
     box.append(b); }); }
 $("back").onclick=()=>{ location.hash="inicio"; window.scrollTo(0,0); };
