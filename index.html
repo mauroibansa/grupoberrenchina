@@ -252,6 +252,24 @@ textarea.inp{resize:vertical;min-height:70px}
 .send svg{width:19px;height:19px}
 .fine{margin:9px 0 0;text-align:center;font-size:12.5px;color:var(--muted)}
 .err{margin:10px 0 0;text-align:center;font:600 13px var(--f-ui);color:#c0392b}
+/* Conciertos (portada): botones de compra de entrada para el ciclo del Centro de Interpretación Paco de Lucía, bajo eventos.
+   Negro y verde del cartel del ciclo. Cada uno desaparece solo al día siguiente del concierto (CONCIERTOS, hora de Madrid). */
+.cn{width:100%;text-align:left;display:grid;gap:10px}
+.cn-list{display:grid;gap:10px}
+.cn-k{font:700 11px var(--f-ui);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding-left:4px}
+.cn-k span{display:block;font:500 12.5px var(--f-ui);letter-spacing:0;text-transform:none;margin-top:3px}
+.cn-b{display:flex;align-items:center;gap:14px;padding:10px 12px 10px 10px;border-radius:18px;background:#1d1d1b;color:#fff;text-decoration:none;border:1px solid #1d1d1b}
+.cn-d{flex:none;width:58px;padding:7px 0 8px;border-radius:12px;background:#5f7a63;text-align:center;line-height:1}
+.cn-d b{display:block;font:800 24px var(--f-ui)}
+.cn-d small{display:block;font:700 10px var(--f-ui);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+.cn-a{min-width:0}
+.cn-a b{display:block;font:800 italic 17px/1.15 var(--f-ui)}
+.cn-a small{display:block;font:500 12.5px var(--f-ui);opacity:.75;margin-top:3px}
+.cn-go{margin-left:auto;flex:none;padding:8px 12px;border-radius:999px;background:#fff;color:#1d1d1b;font:700 11.5px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.cn-b.pend .cn-go{background:transparent;color:#fff;border:1px dashed rgba(255,255,255,.45);opacity:.8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cn-b{border-color:#3a3632}}
+:root[data-theme="dark"] .cn-b{border-color:#3a3632}
+@media (prefers-reduced-motion:no-preference){a.cn-b .cn-go{transition:transform .15s} a.cn-b:hover .cn-go{transform:translateX(3px)}}
 /* Firma de la agencia en el pie (portada y cartas); logo negro, blanco en modo oscuro */
 .mmt{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font:500 12.5px var(--f-ui);text-decoration:none}
 .mmt img{height:12px;width:auto;display:block}
@@ -284,6 +302,10 @@ textarea.inp{resize:vertical;min-height:70px}
       <div class="q" id="ev-q"></div>
       <div class="chips" id="ev-quick"></div>
       <button class="go" id="ev-go"></button>
+    </section>
+    <section class="cn" id="conciertos" aria-labelledby="cn-h" hidden>
+      <div class="cn-k" id="cn-h"></div>
+      <div class="cn-list" id="cn-list"></div>
     </section>
     <div class="lang" role="group" aria-label="Idioma"><button data-l="es" id="hl-es">ES</button><button data-l="en" id="hl-en">EN</button></div>
     <p class="home-foot"><a class="mmt" href="https://www.agenciamammut.com" target="_blank" rel="noopener" aria-label="Diseño y desarrollo: Agencia Mammut">Diseño y desarrollo <img class="b" src="logos/mammut-negro.png" alt="MAMMUT"><img class="w" src="logos/mammut-blanco.png" alt=""> 2026</a></p>
@@ -515,7 +537,7 @@ function route(){
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===lang)));
   if(DATA[key]){ r.dataset.local=DATA[key].theme; $("home").hidden=true; $("carta").hidden=false; renderCarta(key); }
   else { delete r.dataset.local; $("carta").hidden=true; $("home").hidden=false;
-    $("h-sub").textContent=T[lang].sub; $("door-fuerte-s").textContent=T[lang].dfs; $("door-mym-s").textContent=T[lang].dmym; renderEventos(); }
+    $("h-sub").textContent=T[lang].sub; $("door-fuerte-s").textContent=T[lang].dfs; $("door-mym-s").textContent=T[lang].dmym; renderEventos(); renderConciertos(); }
 }
 function renderCarta(key){
   const L=DATA[key], t=T[lang];
@@ -653,6 +675,25 @@ $("ev-sheet").addEventListener("submit",e=>{ e.preventDefault(); const E=EVENTOS
   const txt=E.msg({loc:"Fuerte Santiago",type:E.types[EV.type],date:d.charAt(0).toUpperCase()+d.slice(1),time:$("ev-time").value,pax:$("ev-pax").value,
     menu:EV.menu?E.menus[EV.menu][0]+(EV.menu==="navidad"?" (50 €)":""):null,more:$("ev-more").value.trim(),name:$("ev-name").value.trim(),tel:$("ev-tel").value.trim()});
   window.open("https://wa.me/"+EVENTOS.wa+"?text="+encodeURIComponent(txt),"_blank","noopener"); });
+// Conciertos del Centro de Interpretación Paco de Lucía (Algeciras). url: enlace de compra de la entrada; mientras sea null el botón
+// sale como "Pronto" sin enlace. Cada concierto se ve hasta el final de su día (hora de Madrid) y luego desaparece solo.
+const CONCIERTOS=[
+ {d:"2026-10-23",t:"20:00",a:"David de Arahal",url:null},
+ {d:"2026-10-29",t:"20:00",a:"Naima Jazz",url:null},
+ {d:"2026-10-30",t:"20:00",a:"Rafael del Zambo",url:null}];
+const CN={es:{k:"Próximos conciertos",v:"Centro de Interpretación Paco de Lucía · Algeciras",buy:"Entradas",soon:"Pronto",buyL:"Comprar entrada",soonL:"Venta de entradas próximamente"},
+ en:{k:"Upcoming concerts",v:"Paco de Lucía Interpretation Centre · Algeciras",buy:"Tickets",soon:"Soon",buyL:"Buy tickets",soonL:"Tickets on sale soon"}};
+function renderConciertos(){ const C=CN[lang], loc=lang==="es"?"es-ES":"en-GB", hoy=madridDate(), box=$("cn-list"); box.replaceChildren();
+  const next=CONCIERTOS.filter(c=>c.d>=hoy); $("conciertos").hidden=!next.length;
+  $("cn-h").replaceChildren(document.createTextNode(C.k),el("span",null,C.v));
+  next.forEach(c=>{ const o=new Date(c.d+"T12:00:00Z"), f=x=>o.toLocaleDateString(loc,Object.assign({timeZone:"UTC"},x)).replace(".","");
+    const b=el(c.url?"a":"div","cn-b"+(c.url?"":" pend"));
+    if(c.url){ b.href=c.url; b.target="_blank"; b.rel="noopener"; }
+    const dt=el("span","cn-d"); dt.append(el("b",null,f({day:"numeric"})),el("small",null,f({month:"short"})));
+    const wd=f({weekday:"long"}), a=el("span","cn-a"); a.append(el("b",null,c.a),el("small",null,wd.charAt(0).toUpperCase()+wd.slice(1)+" · "+c.t));
+    b.append(dt,a,el("span","cn-go",c.url?C.buy+" →":C.soon));
+    b.setAttribute("aria-label",c.a+", "+f({weekday:"long",day:"numeric",month:"long"})+", "+c.t+". "+(c.url?C.buyL:C.soonL));
+    box.append(b); }); }
 $("back").onclick=()=>{ location.hash="inicio"; window.scrollTo(0,0); };
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l; try{localStorage.setItem("gb-lang",lang)}catch(e){} route();});
 window.addEventListener("hashchange",()=>{route(); window.scrollTo(0,0);});
