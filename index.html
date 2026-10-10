@@ -256,8 +256,11 @@ textarea.inp{resize:vertical;min-height:70px}
    Negro y verde del cartel del ciclo. Cada uno desaparece solo al día siguiente del concierto (CONCIERTOS, hora de Madrid). */
 .cn{width:100%;text-align:left;display:grid;gap:10px}
 .cn-list{display:grid;gap:10px}
-.cn-k{font:700 11px var(--f-ui);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding-left:4px}
-.cn-k span{display:block;font:500 12.5px var(--f-ui);letter-spacing:0;text-transform:none;margin-top:3px}
+.cn-head{display:grid;justify-items:center;gap:10px;padding:4px 0 2px;text-align:center}
+.cn-logo{width:min(230px,62%);height:auto;display:block}
+.cn-k{font:700 11px var(--f-ui);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cn-logo{filter:invert(1)}}
+:root[data-theme="dark"] .cn-logo{filter:invert(1)}
 .cn-b{display:flex;align-items:center;gap:14px;padding:10px 12px 10px 10px;border-radius:18px;background:#1d1d1b;color:#fff;text-decoration:none;border:1px solid #1d1d1b}
 .cn-d{flex:none;width:58px;padding:7px 0 8px;border-radius:12px;background:#5f7a63;text-align:center;line-height:1}
 .cn-d b{display:block;font:800 24px var(--f-ui)}
@@ -304,7 +307,7 @@ textarea.inp{resize:vertical;min-height:70px}
       <button class="go" id="ev-go"></button>
     </section>
     <section class="cn" id="conciertos" aria-labelledby="cn-h" hidden>
-      <div class="cn-k" id="cn-h"></div>
+      <div class="cn-head"><img class="cn-logo" src="logos/paco-de-lucia.png" alt="Centro de Interpretación Paco de Lucía" width="720" height="207"><div class="cn-k" id="cn-h"></div></div>
       <div class="cn-list" id="cn-list"></div>
     </section>
     <div class="lang" role="group" aria-label="Idioma"><button data-l="es" id="hl-es">ES</button><button data-l="en" id="hl-en">EN</button></div>
@@ -678,14 +681,14 @@ $("ev-sheet").addEventListener("submit",e=>{ e.preventDefault(); const E=EVENTOS
 // Conciertos del Centro de Interpretación Paco de Lucía (Algeciras). url: enlace de compra de la entrada; mientras sea null el botón
 // sale como "Pronto" sin enlace. Cada concierto se ve hasta el final de su día (hora de Madrid) y luego desaparece solo.
 const CONCIERTOS=[
- {d:"2026-10-23",t:"20:00",a:"David de Arahal",url:null},
- {d:"2026-10-29",t:"20:00",a:"Naima Jazz",url:null},
- {d:"2026-10-30",t:"20:00",a:"Rafael del Zambo",url:null}];
-const CN={es:{k:"Próximos conciertos",v:"Centro de Interpretación Paco de Lucía · Algeciras",buy:"Entradas",soon:"Pronto",buyL:"Comprar entrada",soonL:"Venta de entradas próximamente"},
- en:{k:"Upcoming concerts",v:"Paco de Lucía Interpretation Centre · Algeciras",buy:"Tickets",soon:"Soon",buyL:"Buy tickets",soonL:"Tickets on sale soon"}};
+ {d:"2026-10-23",t:"20:00",a:"David de Arahal",url:"https://www.ocio-entradas.com/par-public/rest/evento/id/9354472"},
+ {d:"2026-10-29",t:"20:00",a:"Naima Jazz",url:"https://www.ocio-entradas.com/par-public/rest/evento/id/9354516"},
+ {d:"2026-10-30",t:"20:00",a:"Rafael del Zambo",url:"https://www.ocio-entradas.com/par-public/rest/evento/id/9354530"}];
+const CN={es:{k:"Próximos conciertos · Algeciras",buy:"Entradas",soon:"Pronto",buyL:"Comprar entrada",soonL:"Venta de entradas próximamente"},
+ en:{k:"Upcoming concerts · Algeciras",buy:"Tickets",soon:"Soon",buyL:"Buy tickets",soonL:"Tickets on sale soon"}};
 function renderConciertos(){ const C=CN[lang], loc=lang==="es"?"es-ES":"en-GB", hoy=madridDate(), box=$("cn-list"); box.replaceChildren();
   const next=CONCIERTOS.filter(c=>c.d>=hoy); $("conciertos").hidden=!next.length;
-  $("cn-h").replaceChildren(document.createTextNode(C.k),el("span",null,C.v));
+  $("cn-h").textContent=C.k;
   next.forEach(c=>{ const o=new Date(c.d+"T12:00:00Z"), f=x=>o.toLocaleDateString(loc,Object.assign({timeZone:"UTC"},x)).replace(".","");
     const b=el(c.url?"a":"div","cn-b"+(c.url?"":" pend"));
     if(c.url){ b.href=c.url; b.target="_blank"; b.rel="noopener"; }
