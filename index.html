@@ -253,8 +253,10 @@ textarea.inp{resize:vertical;min-height:70px}
 .fine{margin:9px 0 0;text-align:center;font-size:12.5px;color:var(--muted)}
 .err{margin:10px 0 0;text-align:center;font:600 13px var(--f-ui);color:#c0392b}
 /* Conciertos (portada): botones de compra de entrada para el ciclo del Centro de Interpretación Paco de Lucía, bajo eventos.
-   Negro y verde del cartel del ciclo. Cada uno desaparece solo al día siguiente del concierto (CONCIERTOS, hora de Madrid). */
+   Negro y verde del cartel del ciclo. Cada uno desaparece solo al día siguiente del concierto (CONCIERTOS, hora de Madrid).
+   El mismo bloque se mueve a la carta de cada local, bajo la tarjeta de hoy (route). */
 .cn{width:100%;text-align:left;display:grid;gap:10px}
+#carta .cn{margin-top:22px}
 .cn-list{display:grid;gap:10px}
 .cn-head{display:grid;justify-items:center;gap:10px;padding:4px 0 2px;text-align:center}
 .cn-logo{width:min(230px,62%);height:auto;display:block}
@@ -538,9 +540,9 @@ function route(){
   document.documentElement.lang=lang;
   const dm=(DATA[key]&&DATA[key].demo)?DATA[key].demo[lang]:T[lang].demo; $("demo").textContent=dm; $("demo").hidden=!dm;
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===lang)));
-  if(DATA[key]){ r.dataset.local=DATA[key].theme; $("home").hidden=true; $("carta").hidden=false; renderCarta(key); }
+  if(DATA[key]){ r.dataset.local=DATA[key].theme; $("home").hidden=true; $("carta").hidden=false; renderCarta(key); $("navidad").after($("conciertos")); renderConciertos(); }
   else { delete r.dataset.local; $("carta").hidden=true; $("home").hidden=false;
-    $("h-sub").textContent=T[lang].sub; $("door-fuerte-s").textContent=T[lang].dfs; $("door-mym-s").textContent=T[lang].dmym; renderEventos(); renderConciertos(); }
+    $("h-sub").textContent=T[lang].sub; $("door-fuerte-s").textContent=T[lang].dfs; $("door-mym-s").textContent=T[lang].dmym; renderEventos(); $("eventos").after($("conciertos")); renderConciertos(); }
 }
 function renderCarta(key){
   const L=DATA[key], t=T[lang];
