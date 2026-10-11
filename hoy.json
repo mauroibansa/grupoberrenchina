@@ -205,6 +205,54 @@
           "Meat and mushroom paella"
         ]
       ]
+    },
+    "2026-10-12": {
+      "plato": [
+        [
+          "Potaje de garbanzos con espinacas",
+          "Chickpea and spinach stew"
+        ]
+      ]
+    },
+    "2026-10-13": {
+      "plato": [
+        [
+          "Albóndigas en salsa strogonoff",
+          "Meatballs in stroganoff sauce"
+        ]
+      ]
+    },
+    "2026-10-14": {
+      "plato": [
+        [
+          "Paella marinera",
+          "Seafood paella"
+        ]
+      ]
+    },
+    "2026-10-15": {
+      "plato": [
+        [
+          "Patatas a la riojana",
+          "Rioja-style potatoes with chorizo"
+        ]
+      ]
+    },
+    "2026-10-16": {
+      "plato": [
+        [
+          "Revuelto de patatas, jamón y huevo",
+          "Scrambled eggs with potatoes and ham"
+        ]
+      ]
+    },
+    "2026-10-17": {
+      "plato": [
+        [
+          "Paella de carne y setas variadas",
+          "Meat and mixed mushroom paella"
+        ]
+      ]
     }
   }
 }
