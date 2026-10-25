@@ -443,6 +443,166 @@
           "Seasonal fruit or coffee"
         ]
       ]
+    },
+    "2026-10-26": {
+      "primeros": [
+        [
+          "Garbanzos con choco",
+          "Chickpeas with cuttlefish"
+        ],
+        [
+          "Ensalada de pasta",
+          "Pasta salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Lasaña de carne",
+          "Meat lasagne"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-10-27": {
+      "primeros": [
+        [
+          "Estofado de costilla",
+          "Pork rib stew"
+        ],
+        [
+          "Judías verdes salteadas",
+          "Sautéed green beans"
+        ]
+      ],
+      "segundos": [
+        [
+          "San Jacobo de lomo y queso",
+          "Breaded pork loin and cheese cordon bleu"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-10-28": {
+      "primeros": [
+        [
+          "Potaje de alubias blancas",
+          "White bean stew"
+        ],
+        [
+          "Patatas alioli",
+          "Potatoes with aioli"
+        ]
+      ],
+      "segundos": [
+        [
+          "Hamburguesa de pollo con patatas",
+          "Chicken burger with chips"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-10-29": {
+      "primeros": [
+        [
+          "Crema de verduras",
+          "Cream of vegetable soup"
+        ],
+        [
+          "Patatas aliñadas",
+          "Dressed potatoes"
+        ]
+      ],
+      "segundos": [
+        [
+          "Carne en salsa",
+          "Meat in sauce"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-10-30": {
+      "primeros": [
+        [
+          "Callos con garbanzos",
+          "Tripe stew with chickpeas"
+        ],
+        [
+          "Ensalada mixta",
+          "Mixed salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Canelones",
+          "Cannelloni"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
     }
   },
   "mar-y-monte": {
