@@ -603,6 +603,134 @@
           "Seasonal fruit or coffee"
         ]
       ]
+    },
+    "2026-11-03": {
+      "primeros": [
+        [
+          "Lentejas",
+          "Lentils"
+        ],
+        [
+          "Salmorejo",
+          "Salmorejo (cold tomato soup)"
+        ]
+      ],
+      "segundos": [
+        [
+          "Muslos de pollo al horno",
+          "Oven-roasted chicken thighs"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-04": {
+      "primeros": [
+        [
+          "Sopa de picadillo",
+          "Andalusian chicken broth with ham and egg"
+        ],
+        [
+          "Patatas aliñadas",
+          "Dressed potatoes"
+        ]
+      ],
+      "segundos": [
+        [
+          "Croquetas con huevo y patatas",
+          "Croquettes with egg and chips"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-05": {
+      "primeros": [
+        [
+          "Arroz thai con verduras y soja",
+          "Thai rice with vegetables and soy"
+        ],
+        [
+          "Ensalada tropical",
+          "Tropical salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Carne mechada en salsa con patatas",
+          "Stuffed roast beef in sauce with chips"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-06": {
+      "primeros": [
+        [
+          "Estofado de pollo con patatas",
+          "Chicken and potato stew"
+        ],
+        [
+          "Judías verdes salteadas",
+          "Sautéed green beans"
+        ]
+      ],
+      "segundos": [
+        [
+          "Tortilla de patatas en salsa",
+          "Spanish omelette in sauce"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
     }
   },
   "mar-y-monte": {
