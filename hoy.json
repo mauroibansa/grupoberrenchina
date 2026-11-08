@@ -640,7 +640,7 @@
       "primeros": [
         [
           "Sopa de picadillo",
-          "Andalusian chicken broth with ham and egg"
+          "Picadillo soup (traditional Andalusian broth)"
         ],
         [
           "Patatas aliñadas",
@@ -715,6 +715,166 @@
         [
           "Tortilla de patatas en salsa",
           "Spanish omelette in sauce"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-09": {
+      "primeros": [
+        [
+          "Lentejas",
+          "Lentil stew"
+        ],
+        [
+          "Patatas aliñadas",
+          "Dressed potato salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Pisto con huevo y patatas",
+          "Spanish ratatouille with egg and chips"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-10": {
+      "primeros": [
+        [
+          "Crema de verduras",
+          "Cream of vegetable soup"
+        ],
+        [
+          "Ensalada de pasta",
+          "Pasta salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Albóndigas en salsa con patatas",
+          "Meatballs in sauce with chips"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-11": {
+      "primeros": [
+        [
+          "Garbanzos con choco",
+          "Chickpea stew with cuttlefish"
+        ],
+        [
+          "Judías verdes salteadas con jamón",
+          "Sautéed green beans with ham"
+        ]
+      ],
+      "segundos": [
+        [
+          "Muslos de pollo al horno",
+          "Oven-roasted chicken thighs"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-12": {
+      "primeros": [
+        [
+          "Sopa de picadillo",
+          "Picadillo soup (traditional Andalusian broth)"
+        ],
+        [
+          "Patatas alioli",
+          "Potatoes with aioli"
+        ]
+      ],
+      "segundos": [
+        [
+          "Hamburguesa mixta con huevo y patatas",
+          "Mixed burger with egg and chips"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-13": {
+      "primeros": [
+        [
+          "Espaguetis a la carbonara",
+          "Spaghetti carbonara"
+        ],
+        [
+          "Ensalada mixta",
+          "Mixed salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Lomo a la plancha con patatas",
+          "Grilled pork loin with chips"
         ],
         [
           "Pescaíto del día",
