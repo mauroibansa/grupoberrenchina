@@ -891,6 +891,166 @@
           "Seasonal fruit or coffee"
         ]
       ]
+    },
+    "2026-11-16": {
+      "primeros": [
+        [
+          "Lentejas",
+          "Lentils"
+        ],
+        [
+          "Patatas alioli",
+          "Potatoes with aioli"
+        ]
+      ],
+      "segundos": [
+        [
+          "Pollo al ajillo con patatas",
+          "Garlic chicken with potatoes"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-17": {
+      "primeros": [
+        [
+          "Potaje de garbanzos con espinacas",
+          "Chickpea and spinach stew"
+        ],
+        [
+          "Ensalada mixta",
+          "Mixed salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Hamburguesa mixta con huevo y patatas",
+          "Mixed burger with egg and chips"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-18": {
+      "primeros": [
+        [
+          "Arroz a la marinera",
+          "Seafood rice"
+        ],
+        [
+          "Patatas aliñadas",
+          "Dressed potatoes"
+        ]
+      ],
+      "segundos": [
+        [
+          "Carne en salsa con patatas",
+          "Meat in sauce with potatoes"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-19": {
+      "primeros": [
+        [
+          "Macarrones a la carbonara",
+          "Macaroni carbonara"
+        ],
+        [
+          "Crema de verduras",
+          "Cream of vegetable soup"
+        ]
+      ],
+      "segundos": [
+        [
+          "Hamburguesa de pollo",
+          "Chicken burger"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-20": {
+      "primeros": [
+        [
+          "Ensalada de pasta",
+          "Pasta salad"
+        ],
+        [
+          "Alubias blancas",
+          "White beans"
+        ]
+      ],
+      "segundos": [
+        [
+          "Lomo a la plancha con salsa Tío Pepe",
+          "Grilled pork loin with Tío Pepe sauce"
+        ],
+        [
+          "Pescaíto del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
     }
   },
   "mar-y-monte": {
@@ -1175,6 +1335,54 @@
       ]
     },
     "2026-11-14": {
+      "plato": [
+        [
+          "Paella de carne y setas variadas",
+          "Meat and mixed mushroom paella"
+        ]
+      ]
+    },
+    "2026-11-16": {
+      "plato": [
+        [
+          "Potaje de garbanzos",
+          "Chickpea stew"
+        ]
+      ]
+    },
+    "2026-11-17": {
+      "plato": [
+        [
+          "Pollo en salsa moruna",
+          "Chicken in Moorish sauce"
+        ]
+      ]
+    },
+    "2026-11-18": {
+      "plato": [
+        [
+          "Paella marinera",
+          "Seafood paella"
+        ]
+      ]
+    },
+    "2026-11-19": {
+      "plato": [
+        [
+          "Carne con tomate",
+          "Meat with tomato"
+        ]
+      ]
+    },
+    "2026-11-20": {
+      "plato": [
+        [
+          "Estofado de carne con patatas fritas",
+          "Meat stew with chips"
+        ]
+      ]
+    },
+    "2026-11-21": {
       "plato": [
         [
           "Paella de carne y setas variadas",
