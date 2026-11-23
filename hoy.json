@@ -1051,6 +1051,166 @@
           "Seasonal fruit or coffee"
         ]
       ]
+    },
+    "2026-11-23": {
+      "primeros": [
+        [
+          "Callos",
+          "Tripe stew"
+        ],
+        [
+          "Judías verdes salteadas con jamón",
+          "Sautéed green beans with ham"
+        ]
+      ],
+      "segundos": [
+        [
+          "Pinchitos de cerdo con arroz",
+          "Pork skewers with rice"
+        ],
+        [
+          "Pescaito del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-24": {
+      "primeros": [
+        [
+          "Sopa de picadillo",
+          "Andalusian picadillo soup"
+        ],
+        [
+          "Patatas aliñadas",
+          "Dressed potatoes"
+        ]
+      ],
+      "segundos": [
+        [
+          "Lomo a la plancha con salsa Tío Pepe",
+          "Grilled pork loin with Tío Pepe sauce"
+        ],
+        [
+          "Pescaito del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-25": {
+      "primeros": [
+        [
+          "Lentejas",
+          "Lentils"
+        ],
+        [
+          "Ensalada de pasta",
+          "Pasta salad"
+        ]
+      ],
+      "segundos": [
+        [
+          "Pollo al horno",
+          "Oven-roasted chicken"
+        ],
+        [
+          "Pescaito del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-26": {
+      "primeros": [
+        [
+          "Alubias blancas",
+          "White beans"
+        ],
+        [
+          "Patatas alioli",
+          "Potatoes with aioli"
+        ]
+      ],
+      "segundos": [
+        [
+          "Carne en salsa",
+          "Meat in sauce"
+        ],
+        [
+          "Pescaito del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
+    },
+    "2026-11-27": {
+      "primeros": [
+        [
+          "Crema de verduras",
+          "Cream of vegetable soup"
+        ],
+        [
+          "Pasta a la carbonara",
+          "Pasta carbonara"
+        ]
+      ],
+      "segundos": [
+        [
+          "Pollo al curry",
+          "Chicken curry"
+        ],
+        [
+          "Pescaito del día",
+          "Fried fish of the day"
+        ]
+      ],
+      "postre": [
+        [
+          "Postre casero",
+          "Homemade dessert"
+        ],
+        [
+          "Fruta de temporada o café",
+          "Seasonal fruit or coffee"
+        ]
+      ]
     }
   },
   "mar-y-monte": {
